@@ -22,7 +22,7 @@ class Simulasi extends CI_Controller
 
     $data = [
       'simulasi'    => $simulasi,
-      'add'      => 'admin/simulasi/add',
+      'add'      => 'admin/simulasi/add/',
       'edit'      => 'admin/simulasi/edit/',
       'delete'      => 'admin/simulasi/delete/',
       'title'     => 'Simulasi',
@@ -52,7 +52,7 @@ class Simulasi extends CI_Controller
           $data = [
             'title'    => 'Tambah Simulasi',
             'add'    => 'admin/simulasi/add',
-            'back'    => 'admin/simulasi',
+            'back'    => 'admin/simulasi/detail/' . $this->uri->segment(4),
             'mapel'   => $mapel,
             'error'     => $this->upload->display_errors(),
             'content'  => 'admin/simulasi/add'
@@ -66,14 +66,14 @@ class Simulasi extends CI_Controller
           $data = [
             'id_simulasi'       => random_string('numeric'),
             'nama_simulasi'     => $i->post('nama_simulasi'),
-            'id_mapel'       => $i->post('id_mapel'),
+            'id_mapel'          => $i->post('id_mapel'),
             'waktu'             => $i->post('waktu'),
             'jumlah_soal'       => $i->post('jumlah_soal'),
             'cover'             => $config['upload_path'] . $upload_data['uploads']['file_name']
           ];
           $this->Crud_model->add('tbl_simulasi', $data);
           $this->session->set_flashdata('msg', 'Simulasi ditambahkan');
-          redirect('admin/simulasi');
+          redirect('admin/simulasi/index/' . $data['id_mapel']);
         }
       }
     }
@@ -92,15 +92,26 @@ class Simulasi extends CI_Controller
   function edit($id_simulasi)
   {
 
+    $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
     $i = $this->input;
-    $data = [
-      'nama_simulasi'  => $i->post('nama_simulasi'),
-      'jumlah_soal' => $i->post('jumlah_soal'),
-      'waktu'       => $i->post('waktu')
-    ];
-    $this->Crud_model->edit('tbl_simulasi', 'id_simulasi', $id_simulasi, $data);
-    $this->session->set_flashdata('msg', 'Simulasi diubah');
-    redirect('admin/simulasi/detail/' . $id_simulasi, 'refresh');
+    $jumlah_soal = $i->post('jumlah_soal');
+
+    if (count($soal) > $jumlah_soal) {
+      $this->session->set_flashdata('msg_er', 'Hapus soal terlebih dahulu sebelum mengubah jumlah');
+      redirect('admin/soal');
+    } else {
+      if (count($soal) < $jumlah_soal) {
+        __is_boolean('tbl_simulasi', 'id_simulasi', $id_simulasi, 'is_active', '0');
+      }
+      $data = [
+        'nama_simulasi'  => $i->post('nama_simulasi'),
+        'jumlah_soal' => $jumlah_soal,
+        'waktu'       => $i->post('waktu')
+      ];
+      $this->Crud_model->edit('tbl_simulasi', 'id_simulasi', $id_simulasi, $data);
+      $this->session->set_flashdata('msg', 'Simulasi diubah');
+      redirect('admin/simulasi/detail/' . $id_simulasi, 'refresh');
+    }
   }
 
   function detail($id_simulasi)
@@ -149,7 +160,7 @@ class Simulasi extends CI_Controller
   function is_active($id_simulasi, $value)
   {
     $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
-    $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
+    $soal = $this->SM->countSoalDone($id_simulasi);
     if ($simulasi->jumlah_soal != count($soal)) {
       $this->session->set_flashdata('msg_er', 'Jumlah soal belum cukup');
       redirect('admin/simulasi/detail/' . $id_simulasi, 'refresh');
@@ -161,17 +172,32 @@ class Simulasi extends CI_Controller
   }
 
 
-  function is_pembahasan($id_simulasi, $value)
+  function uploadCover()
   {
-    __is_boolean('tbl_simulasi', 'id_simulasi', $id_simulasi, 'is_pembahasan', $value);
-    $this->session->set_flashdata('msg', 'Pembahasan simulasi diaktifkan');
-    redirect('admin/simulasi/detail/' . $id_simulasi, 'refresh');
-  }
-  function is_rangking($id_simulasi, $value)
-  {
+    $id_simulasi = $this->session->userdata('id_simulasi');
+    $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
+    if (!empty($_FILES['cover']['name'])) {
+      $config['upload_path']   = './assets/uploads/images/';
+      $config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
+      $config['max_size']      = '100000'; // KB 
+      $this->upload->initialize($config);
 
-    __is_boolean('tbl_simulasi', 'id_simulasi', $id_simulasi, 'is_rangking', $value);
-    $this->session->set_flashdata('msg', 'Rangking simulasi diaktifkan');
-    redirect('admin/simulasi/detail/' . $id_simulasi, 'refresh');
+      if (!$this->upload->do_upload('cover')) {
+        $this->upload->display_errors();
+        redirect('admin/simulasi/detail/' . $id_simulasi);
+      } else {
+
+        if ($simulasi->cover != "") {
+          unlink($simulasi->cover);
+        }
+        $upload_data = ['uploads' => $this->upload->data()];
+        $data = [
+          'cover'        => $config['upload_path'] . $upload_data['uploads']['file_name']
+        ];
+        $this->Crud_model->edit('tbl_simulasi', 'id_simulasi', $id_simulasi, $data);
+        $this->session->set_flashdata('msg', 'Foto diperbaharui');
+        redirect('admin/simulasi/detail/' . $id_simulasi);
+      }
+    }
   }
 }

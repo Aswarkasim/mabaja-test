@@ -60,4 +60,13 @@ class User extends CI_Controller
         ];
         $this->load->view('admin/layout/wrapper', $data, FALSE);
     }
+
+    function is_active($value, $id_user)
+    {
+        $data = [
+            'is_active' => $value
+        ];
+        $this->Crud_model->edit('tbl_user', 'id_user', $id_user, $data);
+        redirect('admin/user', 'refresh');
+    }
 }

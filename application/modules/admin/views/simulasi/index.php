@@ -7,7 +7,8 @@
     <div class="box-body">
 
         <p>
-            <a href="<?= base_url($add) ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+            <a href="<?= base_url('admin/mapel'); ?>" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
+            <a href="<?= base_url($add . $this->uri->segment(4)) ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>
         </p>
 
         <table class="table DataTable">

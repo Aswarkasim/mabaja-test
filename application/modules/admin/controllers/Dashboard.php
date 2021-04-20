@@ -17,7 +17,12 @@ class Dashboard extends CI_Controller
     {
         $id_admin = $this->session->userdata('id_admin');
         $admin = $this->Crud_model->listingOne('tbl_admin', 'id_admin', $id_admin);
-        $label = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $mapel = $this->Crud_model->listingOne('tbl_mapel', 'is_active', '1');
+        $simulasi = $this->Crud_model->listingOneAll('tbl_simulasi', 'id_mapel', $mapel->id_mapel);
+        $listMapel = $this->Crud_model->listing('tbl_mapel');
+
+        $user = $this->Crud_model->listing('tbl_user');
+
 
         $current = date('Y-m-d');
         $yearNow = date("Y", strtotime($current));
@@ -28,19 +33,15 @@ class Dashboard extends CI_Controller
             $tahun = $yearNow;
         }
 
-        $penghasilanTahunan = $this->AM->sumPenghasilanTahunan($tahun);
-        $penjualanTahunan = $this->AM->sumPenjualanTahunan($tahun);
-        $persenan = $penghasilanTahunan->totalPenghasilan * 10 / 100;
-
         $data = [
             'title'     => 'Dashboard',
             'admin'      => $admin,
+            'user'      => $user,
+            'mapelDetail'      => $mapel,
+            'mapel'      => $listMapel,
+            'simulasi'      => $simulasi,
             'tahun'      => $tahun,
             'yearNow'      => $yearNow,
-            'label'      => $label,
-            'penghasilanTahunan' => $penghasilanTahunan->totalPenghasilan,
-            'penjualanTahunan' => count($penjualanTahunan),
-            'persenan' => $persenan,
             'content'   => 'admin/dashboard/index'
         ];
 

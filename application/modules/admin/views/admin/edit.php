@@ -37,27 +37,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="" class="pull-right">Role</label>
-                            </div>
-                            <div class="col-md-9">
-                                <select name="role" class="form-control">
-                                    <option value="none">-- Role --</option>
-                                    <option value="admin" <?php if ($admin->role == "admin") {
-                                                                echo "selected";
-                                                            } ?>>Admin</option>
-                                    <option value="manager" <?php if ($admin->role == "manager") {
-                                                                echo "selected";
-                                                            } ?>>Manager</option>
-                                    <option value="transactor" <?php if ($admin->role == "transactor") {
-                                                                    echo "selected";
-                                                                } ?>>Transactor</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">

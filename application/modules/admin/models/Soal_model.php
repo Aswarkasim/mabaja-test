@@ -80,4 +80,25 @@ class Soal_model extends CI_Model
       ->where('no_soal', $no_soal);
     return $this->db->get()->row();
   }
+
+  function pilihanTask($id_member)
+  {
+    $this->db->select('tbl_task.*, 
+                    tbl_pilihan.anotasi,
+                    tbl_soal.id_pilihan as jawaban_benar')
+      ->from('tbl_task')
+      ->join('tbl_pilihan', 'tbl_pilihan.id_pilihan = tbl_task.id_pilihan', 'left')
+      ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
+      ->where('tbl_task.id_member', $id_member);
+    return $this->db->get()->result();
+  }
+
+  function countSoalDone($id_simulasi)
+  {
+    $this->db->select('*')
+      ->from('tbl_soal')
+      ->where('id_simulasi', $id_simulasi)
+      ->where('is_done', '1');
+    return $this->db->get()->result();
+  }
 }

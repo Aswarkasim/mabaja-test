@@ -28,6 +28,8 @@
 
                  <form action="" method="post">
 
+                     <input type="hidden" name="id_mapel" value="<?= $this->uri->segment(4) ?>">
+
                      <div class="form-group">
                          <div class="row">
                              <div class="col-md-3">
@@ -40,21 +42,6 @@
                      </div>
 
 
-                     <div class="form-group">
-                         <div class="row">
-                             <div class="col-md-3">
-                                 <label for="" class="pull-right">Mapel</label>
-                             </div>
-                             <div class="col-md-9">
-                                 <select name="id_mapel" required class="form-control select2" id="">
-                                     <option value="">-- Mapel --</option>
-                                     <?php foreach ($mapel as $row) { ?>
-                                         <option value="<?= $row->id_mapel; ?>"><?= $row->nama_mapel; ?></option>
-                                     <?php } ?>
-                                 </select>
-                             </div>
-                         </div>
-                     </div>
 
 
                      <div class="form-group">
@@ -99,7 +86,7 @@
 
                              </div>
                              <div class="col-md-9">
-                                 <a href="<?= base_url($back) ?>" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>
+                                 <a href="<?= base_url('admin/simulasi/index/' . $this->uri->segment(4)) ?>" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>
                                  <button type="submit" class="btn btn-primary">Tambah</button>
                              </div>
                          </div>

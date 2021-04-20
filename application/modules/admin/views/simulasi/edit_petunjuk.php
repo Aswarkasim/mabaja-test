@@ -14,13 +14,13 @@
         </button>
       </div>
 
-      <?= form_open(base_url('admin/paket/editPetunjuk')) ?>
+      <?= form_open(base_url('admin/simulasi/editPetunjuk')) ?>
       <form action="" method="POST">
 
         <div class="modal-body">
           <div class="form-group">
             <label for="">Edit Petunjuk</label>
-            <textarea name="petunjuk" class="form-control" id="editor1" cols="30" rows="10"><?= $paket->petunjuk; ?></textarea>
+            <textarea name="petunjuk" class="form-control" id="editor1" cols="30" rows="10"><?= $simulasi->petunjuk; ?></textarea>
           </div>
         </div>
 

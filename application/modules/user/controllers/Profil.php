@@ -49,31 +49,30 @@ class Profil extends CI_Controller
     redirect($this->base, 'refresh');
   }
 
-  function uploadFoto()
+  function ubahGambar()
   {
     $id_user = $this->session->userdata('id_user');
-    $profil = $this->Crud_model->listingOne($this->table, 'id_user', $id_user);
+    $user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
     if (!empty($_FILES['foto']['name'])) {
-      $config['upload_path']   = './assets/uploads/images/users/';
+      $config['upload_path']   = './assets/uploads/images/';
       $config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
-      $config['max_size']      = '100000'; // KB 
+      $config['max_size']      = '24000'; // KB 
       $this->upload->initialize($config);
 
       if (!$this->upload->do_upload('foto')) {
         $this->upload->display_errors();
-        redirect('home/nikah/daftar/dataPria');
+        redirect('user/profil');
       } else {
-
-        if ($profil->foto != "") {
-          unlink($profil->foto);
+        if ($user->foto != "") {
+          unlink($user->foto);
         }
         $upload_data = ['uploads' => $this->upload->data()];
         $data = [
           'foto'        => $config['upload_path'] . $upload_data['uploads']['file_name']
         ];
-        $this->Crud_model->edit($this->table, 'id_user', $id_user, $data);
-        $this->session->set_flashdata('msg', 'Foto diperbaharui');
-        redirect($this->base);
+        $this->Crud_model->edit('tbl_user', 'id_user', $id_user, $data);
+        $this->session->set_flashdata('msg', 'Gamba diubah');
+        redirect('user/profil');
       }
     }
   }

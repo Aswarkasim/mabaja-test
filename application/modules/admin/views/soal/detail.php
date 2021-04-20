@@ -125,7 +125,6 @@ $this->load->model('admin/Soal_model', 'SM');
                         </form>
 
 
-                        <?php include('pembahasan.php') ?>
                     </div>
                 </div>
             </div>

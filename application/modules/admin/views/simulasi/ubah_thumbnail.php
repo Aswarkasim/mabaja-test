@@ -14,13 +14,13 @@
         </button>
       </div>
 
-      <?= form_open_multipart(base_url('user/profil/ubahInstansi')) ?>
+      <?= form_open_multipart(base_url('admin/simulasi/uploadCover')) ?>
       <form action="" method="POST">
 
         <div class="modal-body">
           <div class="form-group">
             <label for="">Ubah Gambar</label>
-            <input type="file" class="form-control" name="gambar">
+            <input type="file" class="form-control" name="cover">
           </div>
         </div>
 

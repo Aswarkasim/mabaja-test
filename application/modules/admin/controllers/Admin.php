@@ -51,7 +51,7 @@ class Admin extends CI_Controller
                 'nama_admin'     => $i->post('nama_admin'),
                 'email'         => $i->post('email'),
                 'password'      => sha1($i->post('password')),
-                'role'          => $i->post('role'),
+                'role'          => 'admin',
                 'is_active'     => $i->post('is_aktif')
             ];
             $this->Crud_model->add('tbl_admin', $data);
@@ -94,7 +94,7 @@ class Admin extends CI_Controller
                 'nama_admin'     => $i->post('nama_admin'),
                 'email'         => $i->post('email'),
                 'password'      => $password,
-                'role'          => $i->post('role'),
+                'role'          => 'admin',
                 'is_active'     => $i->post('is_aktif')
             ];
             $this->Crud_model->edit('tbl_admin', 'id_admin', $id_admin, $data);

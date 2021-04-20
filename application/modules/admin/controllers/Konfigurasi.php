@@ -119,4 +119,47 @@ class Konfigurasi extends CI_Controller
             }
         }
     }
+
+    function password()
+    {
+        $id_admin = $this->session->userdata('id_admin');
+        $admin = $this->Crud_model->listingOne('tbl_admin', 'id_admin', $id_admin);
+        // print_r($admin);
+        // die;
+
+        $valid = $this->form_validation;
+
+        $valid->set_rules('password_lama', 'Password Lama', 'required');
+        $valid->set_rules('password', 'Password', 'required|min_length[6]', ['min_length' => 'Password minimal 6 karakter']);
+        $valid->set_rules('re_password', 'Password', 'required|matches[password]');
+
+        if ($valid->run() === FALSE) {
+            $data = [
+                'admin'    => $admin,
+                'content'   => 'admin/password/index'
+            ];
+            $this->load->view('admin/layout/wrapper', $data, FALSE);
+        } else {
+            $i = $this->input;
+
+            $pass = sha1($i->post('password_lama'));
+
+            if ($pass != $admin->password) {
+                $data = [
+                    'error'     => 'Password lama yang dimasukkan tidak sama',
+                    'content'   => 'admin/password/index'
+                ];
+                $this->load->view('admin/layout/wrapper', $data, FALSE);
+            } else {
+
+                $data = [
+                    'password'      => sha1($i->post('password'))
+                ];
+                $this->Crud_model->edit('tbl_admin', 'id_admin', $id_admin, $data);
+                $this->load->view('admin/layout/wrapper', $data, FALSE);
+                $this->session->set_flashdata('msg', 'Password diubah');
+                redirect('admin/konfigurasi/password', 'refresh');
+            }
+        }
+    }
 }

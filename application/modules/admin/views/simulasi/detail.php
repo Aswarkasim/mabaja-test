@@ -6,7 +6,7 @@
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <img class="" width="100%" src="<?= base_url('assets/img/blank_image.jpg') ?>" alt="User profile picture">
+          <img class="" width="100%" src="<?= base_url($simulasi->cover) ?>" alt="User profile picture">
 
           <br><br>
           <?php include('ubah_thumbnail.php') ?>
@@ -39,16 +39,12 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#deskripsi" data-toggle="tab">Deskripsi</a></li>
-          <li><a href="#petunjuk" data-toggle="tab">Petunjuk</a></li>
-          <li><a href="#rangking" data-toggle="tab">Rangking</a></li>
+          <li class="active"><a href="#petunjuk" data-toggle="tab">Petunjuk</a></li>
           <li><a href="#peserta" data-toggle="tab">Peserta</a></li>
         </ul>
         <div class="tab-content">
           <?php
-          include('deskripsi.php');
           include('petunjuk.php');
-          include('rangking.php');
           include('peserta.php');
           ?>
           <!-- /.tab-pane -->

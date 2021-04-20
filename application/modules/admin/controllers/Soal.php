@@ -23,6 +23,7 @@ class Soal extends CI_Controller
       'edit'     => 'admin/soal/edit/',
       'add'       => 'admin/soal/add',
       'soal'     => $soal,
+      'id_simulasi'     => $id_simulasi,
       'content'  => 'admin/soal/index'
     ];
     $this->load->view('admin/layout/wrapper', $data, FALSE);
@@ -143,6 +144,10 @@ class Soal extends CI_Controller
 
   function is_doneSoal($value, $id_soal)
   {
+    if ($value == 0) {
+      $id_simulasi = $this->session->userdata('id_simulasi');
+      __is_boolean('tbl_simulasi', 'id_simulasi', $id_simulasi, 'is_active', $value);
+    }
     $message = "";
     if ($value == '1') {
       $message = "Soal telah selesai dan disimpan";

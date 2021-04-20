@@ -50,13 +50,22 @@ class Auth extends CI_Controller
         $user  = $this->AM->login($id_user, $email, $password);
 
         if ($user) {
-          $s = $this->session;
-          $s->set_userdata('id_user', $user->id_user);
-          $s->set_userdata('email', $user->email);
-          $s->set_userdata('namalengkap', $user->namalengkap);
-          $s->set_userdata('is_active', $user->is_active);
+          if ($user->is_active == 1) {
+            $s = $this->session;
+            $s->set_userdata('id_user', $user->id_user);
+            $s->set_userdata('email', $user->email);
+            $s->set_userdata('namalengkap', $user->namalengkap);
+            $s->set_userdata('is_active', $user->is_active);
 
-          redirect(base_url('home'), 'refresh');
+            redirect(base_url('home'), 'refresh');
+          } else {
+            $data = array(
+              'title'     => 'Login',
+              'error'     => 'Akun anda tidak aktif. Hubungi admin untuk mengaktifkan',
+              'content'   => 'home/auth/login'
+            );
+            $this->load->view('home/layout/wrapper', $data);
+          }
         } else {
           $data = array(
             'title'     => 'Login',

@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- 
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">
@@ -46,12 +46,11 @@
                                 <select name="role" class="form-control">
                                     <option value="none">-- Role --</option>
                                     <option value="admin">admin</option>
-                                    <option value="manager">manager</option>
-                                    <option value="transactor">transactor</option>
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-3">

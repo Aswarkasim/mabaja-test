@@ -33,11 +33,11 @@ $role = $this->session->userdata('role');
                                         ?>"><i class="fa fa-calendar"></i> <span>Mapel</span></a></li>
 
 
-            <li class="<?php if ($this->uri->segment(2) == "simulasi") {
-                            echo "active";
-                        }
-                        ?>"><a href="<?php echo base_url('admin/simulasi')
-                                        ?>"><i class="fa fa-folder"></i> <span>Simulasi</span></a></li>
+            <!-- <li class="<?php if ($this->uri->segment(2) == "simulasi") {
+                                echo "active";
+                            }
+                            ?>"><a href="<?php echo base_url('admin/simulasi')
+                                            ?>"><i class="fa fa-folder"></i> <span>Simulasi</span></a></li> -->
 
 
 
@@ -49,23 +49,25 @@ $role = $this->session->userdata('role');
                                         ?>"><i class="fa fa-users"></i> <span>User</span></a></li>
 
 
+            <?php if ($this->session->userdata('role') == 'superadmin') { ?>
 
 
+                <li class="treeview <?php if ($this->uri->segment(2) == "admin") {
+                                        echo "active";
+                                    } ?>">
+                    <a href="#"><i class="fa fa-user-secret"></i> <span>Manajemen Admin</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="<?php if ($this->uri->segment(2) == "admin") {
+                                        echo "active";
+                                    } ?>"><a href="<?= base_url('admin/admin') ?>">List Admin</a></li>
+                    </ul>
+                </li>
 
-            <li class="treeview <?php if ($this->uri->segment(2) == "admin") {
-                                    echo "active";
-                                } ?>">
-                <a href="#"><i class="fa fa-user-secret"></i> <span>Manajemen Admin</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li class="<?php if ($this->uri->segment(2) == "admin") {
-                                    echo "active";
-                                } ?>"><a href="<?= base_url('admin/admin') ?>">List Admin</a></li>
-                </ul>
-            </li>
+            <?php } ?>
 
 
 
@@ -87,6 +89,10 @@ $role = $this->session->userdata('role');
                     <li class="<?php if ($this->uri->segment(3) == "logo") {
                                     echo "active";
                                 } ?>"><a href="<?= base_url('admin/konfigurasi/logo') ?>">Logo</a></li>
+
+                    <li class="<?php if ($this->uri->segment(3) == "password") {
+                                    echo "active";
+                                } ?>"><a href="<?= base_url('admin/konfigurasi/password') ?>">Ubah Password</a></li>
                 </ul>
             </li>
 

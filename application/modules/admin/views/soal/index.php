@@ -7,6 +7,7 @@
   <div class="box-body">
 
     <p>
+      <a href="<?= base_url('admin/simulasi/detail/' . $id_simulasi); ?>" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
       <a href="<?= base_url($add) ?>" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Tambah</a>
     </p>
     <?php echo 'ID PAKET' . $this->session->userdata('id_paket'); ?>

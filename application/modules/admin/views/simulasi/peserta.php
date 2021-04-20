@@ -12,7 +12,13 @@
         foreach ($member as $row) { ?>
          <tr>
            <td><?= $no++; ?></td>
-           <td><a href="<?= base_url('admin/user/detail/' . $row->id_user); ?>"><strong><?= $row->namalengkap ?></strong></a></td>
+           <td>
+             <!-- Button trigger modal -->
+             <a href="" data-toggle="modal" data-target="#RekapJawabanPeserta<?= $row->id_member; ?>">
+               <b> <?= $row->namalengkap ?> </b>
+             </a>
+
+           </td>
            <td>
              <?php if ($row->is_done == 1) { ?>
                <span class="label label-success"><i class="fa fa-check"></i> Selesai</span>
@@ -21,6 +27,7 @@
              <?php } ?>
            </td>
          </tr>
+         <?php include('rekap_jawaban.php') ?>
        <?php } ?>
      </tbody>
    </table>
