@@ -49,7 +49,7 @@ $this->load->model('admin/Soal_model', 'SM');
                                 </select>
                             </div>
 
-                            <?php if ($simulasi->id_mapel == "mrHXIR2D") { ?>
+                            <!-- <?php if ($simulasi->id_mapel == "mrHXIR2D") { ?>
                                 <div class="form-group">
                                     <label for="">Poin</label>
                                     <select name="poin" required class="form-control" id="">
@@ -63,7 +63,7 @@ $this->load->model('admin/Soal_model', 'SM');
                                         } ?>
                                     </select>
                                 </div>
-                            <?php } ?>
+                            <?php } ?> -->
 
 
                             <div class="form-group">
