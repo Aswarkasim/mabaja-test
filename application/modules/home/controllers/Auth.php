@@ -13,12 +13,12 @@ class Auth extends CI_Controller
 
       $valid = $this->form_validation;
 
-      $valid->set_rules(
-        'id_user',
-        'Nomor Anggota',
-        'required',
-        array('required' => '%s harus diisi')
-      );
+      // $valid->set_rules(
+      //   'id_user',
+      //   'Nomor Anggota',
+      //   'required',
+      //   array('required' => '%s harus diisi')
+      // );
 
       $valid->set_rules(
         'email',
