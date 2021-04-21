@@ -17,6 +17,7 @@ class Dashboard extends CI_Controller
     {
         $id_admin = $this->session->userdata('id_admin');
         $admin = $this->Crud_model->listingOne('tbl_admin', 'id_admin', $id_admin);
+        $listAdmin = $this->Crud_model->listing('tbl_admin');
         $mapel = $this->Crud_model->listingOne('tbl_mapel', 'is_active', '1');
         $simulasi = $this->Crud_model->listingOneAll('tbl_simulasi', 'id_mapel', $mapel->id_mapel);
         $listMapel = $this->Crud_model->listing('tbl_mapel');
@@ -36,6 +37,7 @@ class Dashboard extends CI_Controller
         $data = [
             'title'     => 'Dashboard',
             'admin'      => $admin,
+            'listAdmin'      => $listAdmin,
             'user'      => $user,
             'mapelDetail'      => $mapel,
             'mapel'      => $listMapel,

@@ -101,6 +101,8 @@ class Soal extends CI_Controller
       }
     }
 
+
+
     $nilai_akhir = [
       'nilai_akhir' => $poin
     ];
