@@ -3,6 +3,7 @@
 $id_admin = $this->session->userdata('id_admin');
 $role = $this->session->userdata('role');
 
+$user = $this->Crud_model->listingOneAll('tbl_user', 'is_read', '0');
 ?>
 
 <aside class="main-sidebar">
@@ -46,7 +47,11 @@ $role = $this->session->userdata('role');
                             echo "active";
                         }
                         ?>"><a href="<?php echo base_url('admin/user')
-                                        ?>"><i class="fa fa-users"></i> <span>User</span></a></li>
+                                        ?>"><i class="fa fa-users"></i> <span>User</span>
+                    <span class="pull-right-container">
+                        <span class="label label-primary pull-right"><?= count($user); ?></span>
+                    </span>
+                </a></li>
 
 
             <?php if ($this->session->userdata('role') == 'superadmin') { ?>

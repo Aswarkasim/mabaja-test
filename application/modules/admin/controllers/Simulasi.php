@@ -141,9 +141,18 @@ class Simulasi extends CI_Controller
   function delete($id_simulasi)
   {
 
+    $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
+    $id_mapel = $simulasi->id_mapel;
+
+    $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
+
+    foreach ($soal as $row) {
+      $this->Crud_model->delete('tbl_soal', 'id_soal', $row->id_soal);
+    }
+
     $this->Crud_model->delete('tbl_simulasi', 'id_simulasi', $id_simulasi);
     $this->session->set_flashdata('msg', 'dihapus');
-    redirect('admin/simulasi');
+    redirect('admin/mapel/index/' . $id_mapel);
   }
 
   function editPetunjuk()

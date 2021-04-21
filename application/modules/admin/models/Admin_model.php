@@ -27,14 +27,14 @@ class Admin_model extends CI_Model
     return $query->row();
   }
 
-  function listKupon()
+
+  function listUser()
   {
-    $this->db->select('tbl_kupon.*,
-                      tbl_admin.nama_admin')
-      ->from('tbl_kupon')
-      ->join('tbl_admin', 'tbl_admin.id_admin = tbl_kupon.id_admin', 'left')
-      ->order_by('tbl_kupon.date_created', 'DESC');
-    return $this->db->get()->result();
+    return $this->db->select('*')
+      ->from('tbl_user')
+      ->order_by('date_created', 'DESC')
+      ->get()
+      ->result();
   }
 
   public function graph()

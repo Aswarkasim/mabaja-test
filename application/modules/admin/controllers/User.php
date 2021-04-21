@@ -11,12 +11,14 @@ class User extends CI_Controller
         parent::__construct();
         is_logged_in_admin();
         $this->load->model('admin/Soal_model', 'SM');
+        $this->load->model('admin/Admin_model', 'HM');
     }
 
 
     public function index()
     {
-        $user = $this->Crud_model->listing('tbl_user');
+        $user = $this->HM->listUser();
+
         $data = [
             'add'      => 'user/user/add',
             'edit'      => 'user/user/edit/',
@@ -63,6 +65,7 @@ class User extends CI_Controller
 
     function is_active($value, $id_user)
     {
+        __is_boolean('tbl_user', 'id_user', $id_user, 'is_read', '1');
         $data = [
             'is_active' => $value
         ];

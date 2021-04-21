@@ -1,3 +1,13 @@
+<style>
+    .is_read {
+        color: #f0f0f0;
+    }
+
+    .not-read {
+        color: #f39c12;
+    }
+</style>
+
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 <div class="box">
     <div class="box-header">
@@ -25,7 +35,7 @@
                     <tr>
                         <td><?= $no ?></td>
                         <td>
-                            <a href="<?= base_url('admin/user/detail/' . $row->id_user); ?>"> <strong><?= $row->namalengkap ?></strong></a><br>
+                            <i class="fa fa-user <?= $row->is_read == 1 ? 'is-read' : 'not-read'; ?>"></i> <strong><?= $row->namalengkap ?></strong><br>
                             <p><?= $row->email ?></p>
                         </td>
                         <td>
