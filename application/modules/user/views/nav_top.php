@@ -17,7 +17,7 @@ $user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
               <i class="fa fa-edit"></i> Ubah foto
             </button>
 
-            <h5 class="text-center mt-2"><b>Aswar Kasim</b></h5>
+            <h5 class="text-center mt-2"><b><?= $user->namalengkap; ?></b></h5>
             <p class="text-center">No. Peserta : <?= $this->session->userdata('id_user'); ?></p>
           </div>
         </div>

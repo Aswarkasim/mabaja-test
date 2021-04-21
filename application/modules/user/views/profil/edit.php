@@ -1,156 +1,88 @@
-<?php $this->load->view('user/nav'); ?>
+<?php $this->load->view('user/nav_top'); ?>
 
 
-<div class="">
-
-  <div class="container">
-    <div class="form-group">
-      <div class="row">
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-6">
-          <?= validation_errors('<div class="alert alert-danger"><i class="fa fa-warning"></i>', '</div>'); ?>
-        </div>
-      </div>
-    </div>
-
-    <form action="<?= base_url('user/pribadi/edit') ?>" method="POST">
+<form action="<?= base_url('user/profil/edit'); ?>" method="post">
+  <div class="row pt-5">
+    <div class="col-md-12">
       <div class="form-group">
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
+          </div>
+          <div class="col-md-4">
+            <?php echo validation_errors('<p class="alert alert-danger">', '</p>');
+            if (isset($error)) {
+              echo '<div class="alert alert-warning"><i class="fa fa-warning"></i> ';
+              echo $error;
+              echo '</div>';
+            } ?>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-3">
             <label for="" class="pull-right">Nama</label>
           </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" value="<?= $alumni->namalengkap; ?>" name="namalengkap" id="">
+          <div class="col-md-4">
+            <input type="text" class="form-control" name="namalengkap" required value="<?= $user->namalengkap; ?>" placeholder="Nama Lengkap">
           </div>
         </div>
       </div>
 
       <div class="form-group">
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label for="" class="pull-right">Gender</label>
           </div>
-          <div class="col-md-6">
-            <select name="gender" class="form-control" id="">
+          <div class="col-md-4">
+            <select name="gender" required class="form-control" id="">
               <option value="">--Gender--</option>
-              <option value="Laki-laki" <?php if ($alumni->gender == "Laki-laki") {
-                                          echo 'selected';
-                                        } ?>>Laki-laki</option>
-              <option value="Perempuan" <?php if ($alumni->gender == "Perempuan") {
-                                          echo 'selected';
-                                        } ?>>Perempuan</option>
+              <option value="Laki-laki" <?= $user->gender == 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
+              <option value="Perempuan" <?= $user->gender == 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
             </select>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-2">
-            <label for="" class="pull-right">Tempat Lahir</label>
-          </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="tempat_lahir" value="<?= $alumni->tempat_lahir; ?>" id="">
-          </div>
-        </div>
-      </div>
 
       <div class="form-group">
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label for="" class="pull-right">Tanggal Lahir</label>
           </div>
-          <div class="col-md-6">
-            <input type="date" class="form-control" name="tanggal_lahir" value="<?= $alumni->tanggal_lahir; ?>" id="">
+          <div class="col-md-4">
+            <input type="date" class="form-control" required value="<?= $user->tanggal_lahir; ?>" name="tanggal_lahir">
           </div>
         </div>
       </div>
 
       <div class="form-group">
         <div class="row">
-          <div class="col-md-2">
+          <div class="col-md-3">
             <label for="" class="pull-right">Handphone</label>
           </div>
-          <div class="col-md-6">
-            <input type="number" class="form-control" value="<?= $alumni->nohp; ?>" name="nohp" id="">
+          <div class="col-md-4">
+            <input type="text" class="form-control" required value="<?= $user->nohp; ?>" name="nohp" placeholder="No. Hp.">
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-2">
-            <label for="" class="pull-right">Email</label>
-          </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" value="<?= $alumni->email; ?>" name="email" id="">
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-2">
-            <label for="" class="pull-right">Profesional</label>
-          </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="pekerjaan" value="<?= $alumni->pekerjaan; ?>" id="">
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-2">
-            <label for="" class="pull-right">Kategori Pekerjaan</label>
-          </div>
-          <div class="col-md-6">
-            <select name="id_kategori_pekerjaan" class="form-control" id="">
-              <option value="">-- Kategori Pekerjaan --</option>
-              <?php foreach ($kategori_pekerjaan as $row) { ?>
-                <option value="<?= $row->id_kategori_pekerjaan; ?>" <?= $row->id_kategori_pekerjaan == $alumni->id_kategori_pekerjaan ? 'selected' : '' ?>><?= $row->nama_kategori_pekerjaan; ?></option>
-              <?php } ?>
-            </select>
-          </div>
-        </div>
-      </div>
 
 
       <div class="form-group">
         <div class="row">
-          <div class="col-md-2">
-            <label for="" class="pull-right">Penghasilan Awal</label>
+          <div class="col-md-3">
+
           </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="penghasilan" value="<?= $alumni->penghasilan; ?>" id="">
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-md btn-primary">Simpan</button>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-2">
-            <label for="" class="pull-right">Penghasilan Sekarang</label>
-          </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" name="penghasilan_sekarang" value="<?= $alumni->penghasilan_sekarang; ?>" id="">
-          </div>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-6">
-            <a href="<?= base_url('user/pribadi'); ?>" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a>
-            <button type="submit" class="btn btn-primary">Simpan</button>
-          </div>
-        </div>
-      </div>
-    </form>
+    </div>
 
   </div>
-</div>
+</form>
+
+<?php $this->load->view('user/nav_bottom'); ?>

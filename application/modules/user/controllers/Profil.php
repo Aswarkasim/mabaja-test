@@ -31,23 +31,39 @@ class Profil extends CI_Controller
     // $this->load->view('home/index', FALSE);
   }
 
-  function update()
+
+  public function edit()
   {
     $id_user = $this->session->userdata('id_user');
-    $i = $this->input;
-    $data = [
-      'namalengkap'   => $i->post('namalengkap'),
-      'email'         => $i->post('email'),
-      'tanggal_lahir'  => $i->post('tanggal_lahir'),
-      'gender'        => $i->post('gender'),
-      'nohp'          => $i->post('nohp'),
-      'instagram'     => $i->post('instagram'),
-      'facebook'      => $i->post('facebook'),
-    ];
-    $this->Crud_model->edit($this->table, 'id_user', $id_user, $data);
-    $this->session->set_flashdata('msg', 'Data profil diperbaharui');
-    redirect($this->base, 'refresh');
+    $user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
+    // print_r($user);
+    // die;
+
+    $valid = $this->form_validation;
+
+    $valid->set_rules('namalengkap', 'Password Lama', 'required');
+
+    if ($valid->run() === FALSE) {
+      $data = [
+        'user'    => $user,
+        'content'   => 'user/profil/edit'
+      ];
+      $this->load->view('home/layout/wrapper', $data, FALSE);
+    } else {
+      $i = $this->input;
+      $data = [
+        'namalengkap'       => $i->post('namalengkap'),
+        'gender'            => $i->post('gender'),
+        'tanggal_lahir'     => $i->post('tanggal_lahir'),
+        'nohp'              => $i->post('nohp')
+      ];
+      $this->Crud_model->edit('tbl_user', 'id_user', $id_user, $data);
+      $this->load->view('home/layout/wrapper', $data, FALSE);
+      $this->session->set_flashdata('msg', 'Password diubah');
+      redirect('user/profil', 'refresh');
+    }
   }
+
 
   function ubahGambar()
   {

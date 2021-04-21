@@ -32,7 +32,7 @@
 
 
       </table>
-      <a href="<?= base_url('user/pribadi/edit'); ?>" class="btn btn-md btn-primary"><i class="fa fa-edit"></i> Edit</a>
+      <a href="<?= base_url('user/profil/edit'); ?>" class="btn btn-md btn-primary"><i class="fa fa-edit"></i> Edit</a>
     </strong>
 
   </div>
