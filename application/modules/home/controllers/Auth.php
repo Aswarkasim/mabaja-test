@@ -44,10 +44,10 @@ class Auth extends CI_Controller
         $this->load->view('home/layout/wrapper', $data);
       } else {
         $i          = $this->input;
-        $id_user      = $i->post('id_user');
+        // $id_user      = $i->post('id_user');
         $email      = $i->post('email');
         $password   = $i->post('password');
-        $user  = $this->AM->login($id_user, $email, $password);
+        $user  = $this->AM->login($email, $password);
 
         if ($user) {
           if ($user->is_active == 1) {
