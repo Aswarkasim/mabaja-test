@@ -22,7 +22,7 @@
             <div class="icon">
                 <i class="fa fa-graduation-cap"></i>
             </div>
-            <a href="<?= base_url('admin/alumni') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="<?= base_url('admin/mapel') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a> -->
         </div>
     </div>
     <!-- ./col -->
@@ -37,7 +37,7 @@
             <div class="icon">
                 <i class="fa fa-cubes"></i>
             </div>
-            <a href="<?= base_url('admin/lowongan') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="<?= base_url('admin/lowongan') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a> -->
         </div>
     </div>
     <!-- ./col -->
@@ -52,7 +52,7 @@
             <div class="icon">
                 <i class="fa fa-newspaper-o"></i>
             </div>
-            <a href="<?= base_url('admin/berita') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="<?= base_url('admin/berita') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a> -->
         </div>
     </div>
     <!-- ./col -->
@@ -67,7 +67,7 @@
             <div class="icon">
                 <i class="fa fa-envelope"></i>
             </div>
-            <a href="<?= base_url('admin/saran') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="<?= base_url('admin/saran') ?>" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a> -->
         </div>
     </div>
     <!-- ./col -->
