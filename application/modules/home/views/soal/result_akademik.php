@@ -17,7 +17,7 @@
 
 
                 <tr>
-                  <td>Jumlah Poin </td>
+                  <td>Skor </td>
                   <td>: <?= $poin ?></td>
                 </tr>
 
@@ -29,7 +29,7 @@
 
                 <tr>
                   <td>Jumlah Soal </td>
-                  <td>: <?= count($listSoal); ?></td>
+                  <td>: <?= $simulasi->jumlah_soal; ?></td>
                 </tr>
 
                 <tr>
@@ -39,7 +39,7 @@
 
                 <tr>
                   <td>Jawaban Salah </td>
-                  <td>: <?= count($listSoal) - $benar; ?></td>
+                  <td>: <?= $simulasi->jumlah_soal - $benar; ?></td>
                 </tr>
 
                 <!-- <tr>

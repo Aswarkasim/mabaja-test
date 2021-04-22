@@ -112,7 +112,7 @@ class Soal extends CI_Controller
         if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
           $poin = $nilai;
         } else {
-          $jumlah = count($soal);
+          $jumlah = $simulasi->jumlah_soal;
           $poin = ($nilai / $jumlah) * 100;
         }
       }
