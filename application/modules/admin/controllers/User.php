@@ -20,9 +20,9 @@ class User extends CI_Controller
         $user = $this->HM->listUser();
 
         $data = [
-            'add'      => 'user/user/add',
-            'edit'      => 'user/user/edit/',
-            'delete'      => 'user/user/delete/',
+            'add'      => 'admin/user/add',
+            'edit'      => 'admin/user/edit/',
+            'delete'      => 'admin/user/delete/',
             'user'      => $user,
             'content'   => 'admin/user/index'
         ];
@@ -47,7 +47,7 @@ class User extends CI_Controller
     {
         $this->Crud_model->delete('tbl_user', 'id_user', $id_user);
         $this->session->set_flashdata('msg', 'dihapus');
-        redirect('user/user');
+        redirect('admin/user');
     }
 
     public function role()
