@@ -39,8 +39,8 @@
     <div class="col-md-9">
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#petunjuk" data-toggle="tab">Petunjuk</a></li>
-          <li><a href="#peserta" data-toggle="tab">Peserta</a></li>
+          <li><a href="#petunjuk" data-toggle="tab">Petunjuk</a></li>
+          <li class="active"><a href="#peserta" data-toggle="tab">Peserta</a></li>
         </ul>
         <div class="tab-content">
           <?php

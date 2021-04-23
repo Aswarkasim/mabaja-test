@@ -1,4 +1,4 @@
- <div class="active tab-pane" id="petunjuk">
+ <div class="tab-pane" id="petunjuk">
    <?php include('edit_petunjuk.php') ?>
 
    <!-- Is Pembahasan -->

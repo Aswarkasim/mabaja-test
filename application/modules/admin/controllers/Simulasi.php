@@ -209,4 +209,17 @@ class Simulasi extends CI_Controller
       }
     }
   }
+
+  function deleteMember($id_member)
+  {
+    $member = $this->Crud_model->listingOne('tbl_member', 'id_member', $id_member);
+    $id_simulasi = $member->id_simulasi;
+    $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $id_member);
+    foreach ($task as $row) {
+      $this->Crud_model->delete('tbl_task', 'id_task', $row->id_task);
+    }
+    $this->Crud_model->delete('tbl_member', 'id_member', $id_member);
+    $this->session->set_flashdata('msg', 'Foto diperbaharui');
+    redirect('admin/simulasi/detail/' . $id_simulasi);
+  }
 }

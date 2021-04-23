@@ -83,3 +83,25 @@ $('.tombol-logout').on('click', function (e) {
         }
     })
 })
+
+
+// Tommbol reset
+$('.tombol-reset').on('click', function (e) {
+    // Mematikan href
+    e.preventDefault();
+    const href = $(this).attr('href');
+
+    Swal({
+        title: 'Peserta ini akan mengulangi ujian?',
+        text: "data ujian sebelumnya akan dihapus",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya!'
+    }).then((result) => {
+        if (result.value) {
+            document.location.href = href;
+        }
+    })
+})
