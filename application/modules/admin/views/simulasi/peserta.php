@@ -29,7 +29,7 @@
            </td>
            <td><a href="<?= base_url('admin/simulasi/deleteMember/' . $row->id_member); ?>" class="btn btn-warning btn-sm tombol-reset"><i class="fa fa-refresh"></i> Ulangi ujian</a></td>
          </tr>
-         <?php include('rekap_jawaban.php') ?>
+         <?php// include('rekap_jawaban.php') ?>
        <?php } ?>
      </tbody>
    </table>

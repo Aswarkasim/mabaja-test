@@ -16,7 +16,6 @@
 
           $this->load->model('admin/Soal_model', 'SM');
           $task = $this->SM->pilihanTask($row->id_member);
-          // $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $row->id_member);
           foreach ($task as $t) { ?>
 
             <div class="col-md-1">
@@ -34,7 +33,6 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <!-- <button type="submit" class="btn btn-primary">Hapus Data</button> -->
       </div>
 
     </div>
