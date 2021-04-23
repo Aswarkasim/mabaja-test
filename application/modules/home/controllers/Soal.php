@@ -76,12 +76,12 @@ class Soal extends CI_Controller
   {
     __is_boolean('tbl_member', 'id_member', $id_member, 'is_done', '1');
     $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
-    $task = $this->Crud_model->listingOne('tbl_task', 'id_task', $id_task);
-    $soal = $this->Crud_model->listingOne('tbl_soal', 'id_soal', $task->id_soal);
+    $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $id_member);
     $listSoal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
 
     // $benar = 0;
     $poin = 0;
+    $nilai = 0;
 
     //cek apakah simulasi sama dengan kepribadian
 
@@ -91,14 +91,18 @@ class Soal extends CI_Controller
     //   $poin = $poin + $pilihan->poin;
     // } else {
 
-    if ($task->id_pilihan == $soal->id_pilihan) {
-      $nilai = 0;
-      $nilai = $nilai + 1;
-      if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
+    foreach ($task as $row) {
+      $soal = $this->Crud_model->listingOne('tbl_soal', 'id_soal', $row->id_soal);
+      if ($row->id_pilihan == $soal->id_pilihan) {
+        $nilai = $nilai;
+        $nilai = $nilai + 1;
         $poin = $nilai;
-      } else {
-        $jumlah = $simulasi->jumlah_soal;
-        $poin = ($nilai / $jumlah) * 100;
+        if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
+          $poin = $nilai;
+        } else {
+          $jumlah = $simulasi->jumlah_soal;
+          $poin = ($nilai / $jumlah) * 100;
+        }
       }
     }
     //}
