@@ -62,11 +62,12 @@
                   if ($member->is_done == 0) { ?>
                     <div class="btn-group" role="group" aria-label="Basic example">
                       <input type="submit" name="ragu" class="btn btn-warning" value="Ragu-ragu">
-                      <input type="submit" name="selesai" class="btn btn-primary" value="Selesai dan lanjutkan ">
+                      <input type="submit" name="selesai" class="btn btn-primary <?= $this->uri->segment(4) == $simulasi->jumlah_soal ? 'yakin-selesaikan' : ''; ?>" value="Selesai dan lanjutkan ">
                     </div>
                   <?php } else { ?>
                     <a href="<?= base_url('home/soal/butir/' . $next) ?>" class="btn btn-primary">Selanjutnya</a>
                   <?php } ?>
+
                 </div>
               </div>
             </div>

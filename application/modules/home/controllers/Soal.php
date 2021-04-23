@@ -84,39 +84,24 @@ class Soal extends CI_Controller
     $poin = 0;
 
     //cek apakah simulasi sama dengan kepribadian
+
+
     // if ($simulasi->id_mapel == 'mrHXIR2D') {
     //   $pilihan = $this->Crud_model->listingOne('tbl_pilihan', 'id_pilihan', $task->id_pilihan);
     //   $poin = $poin + $pilihan->poin;
     // } else {
 
-    //   if ($task->id_pilihan == $soal->id_pilihan) {
-    //     $nilai = 0;
-    //     $nilai = $nilai + 1;
-    //     if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E') {
-    //       $poin = $nilai;
-    //     } else {
-    //       $jumlah = count($soal);
-    //       $poin = ($nilai / $jumlah) * 100;
-    //     }
-    //   }
-    // }
-
-    if ($simulasi->id_mapel == 'mrHXIR2D') {
-      $pilihan = $this->Crud_model->listingOne('tbl_pilihan', 'id_pilihan', $task->id_pilihan);
-      $poin = $poin + $pilihan->poin;
-    } else {
-
-      if ($task->id_pilihan == $soal->id_pilihan) {
-        $nilai = 0;
-        $nilai = $nilai + 1;
-        if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
-          $poin = $nilai;
-        } else {
-          $jumlah = $simulasi->jumlah_soal;
-          $poin = ($nilai / $jumlah) * 100;
-        }
+    if ($task->id_pilihan == $soal->id_pilihan) {
+      $nilai = 0;
+      $nilai = $nilai + 1;
+      if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
+        $poin = $nilai;
+      } else {
+        $jumlah = $simulasi->jumlah_soal;
+        $poin = ($nilai / $jumlah) * 100;
       }
     }
+    //}
 
 
 

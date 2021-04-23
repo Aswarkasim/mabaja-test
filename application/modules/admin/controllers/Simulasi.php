@@ -219,7 +219,7 @@ class Simulasi extends CI_Controller
       $this->Crud_model->delete('tbl_task', 'id_task', $row->id_task);
     }
     $this->Crud_model->delete('tbl_member', 'id_member', $id_member);
-    $this->session->set_flashdata('msg', 'Foto diperbaharui');
+    $this->session->set_flashdata('msg', 'Ujian dapat diulangi');
     redirect('admin/simulasi/detail/' . $id_simulasi);
   }
 }
