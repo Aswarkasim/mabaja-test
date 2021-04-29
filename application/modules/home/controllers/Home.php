@@ -43,11 +43,11 @@ class Home extends CI_Controller
         $this->load->view('home/layout/wrapper', $data, FALSE);
     }
 
-    public function kecermatan()
+    public function develop()
     {
         $data = [
-            'content'  => 'home/soal/kecermatan'
+            'content'  => 'home/home/develop'
         ];
-        $this->load->view('/layout/wrapper', $data, FALSE);
+        $this->load->view('home/layout/wrapper', $data, FALSE);
     }
 }

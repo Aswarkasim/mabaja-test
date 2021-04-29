@@ -1,4 +1,13 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
+
+<?php
+$url = '';
+if ($this->session->userdata('id_mapel') == 'RPIuQJc5') {
+    $url = 'admin/simulasi/detail/';
+} else {
+    $url = 'admin/kolom/index/';
+} ?>
+
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Manajemen Simulasi</h3>
@@ -27,7 +36,7 @@
                     <tr>
                         <td><?= $no ?></td>
                         <td>
-                            <a href="<?= base_url('admin/simulasi/detail/' . $row->id_simulasi) ?>"><strong><?= $row->nama_simulasi ?></strong></a>
+                            <a href="<?= base_url($url . $row->id_simulasi) ?>"><strong><?= $row->nama_simulasi ?></strong></a>
                         </td>
                         <td><?= $row->jumlah_soal ?></td>
                         <td><?= $row->waktu ?></td>

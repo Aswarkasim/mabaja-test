@@ -4,6 +4,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Soal_model extends CI_Model
 {
+  function listKecermatan($id_kolom)
+  {
+    $this->db->select('*')
+      ->from('tbl_soal')
+      ->where('id_kolom', $id_kolom)
+      ->order_by('no_soal', 'ASC');
+    return $this->db->get()->result();
+  }
+
   function listSimulasi()
   {
     $this->db->select('*')
@@ -34,6 +43,16 @@ class Soal_model extends CI_Model
       ->from('tbl_pilihan')
       ->where('id_soal', $where)
       ->order_by('anotasi', 'ASC')
+      ->get();
+    return $query->result();
+  }
+
+  function listJawabanKecermatan($id_soal)
+  {
+    $query = $this->db->select('*')
+      ->from('tbl_jawaban_kecermatan')
+      ->where('id_soal', $id_soal)
+      ->order_by('no_soal_kecermatan', 'ASC')
       ->get();
     return $query->result();
   }
@@ -78,6 +97,42 @@ class Soal_model extends CI_Model
       ->from('tbl_soal')
       ->where('id_simulasi', $id_simulasi)
       ->where('no_soal', $no_soal);
+    return $this->db->get()->row();
+  }
+
+  function cekNoSoalKolom($id_kolom, $no_soal = 0)
+  {
+    $this->db->select('*')
+      ->from('tbl_soal')
+      ->where('id_kolom', $id_kolom)
+      ->where('no_soal', $no_soal);
+    return $this->db->get()->row();
+  }
+
+  function cekNoSesi($id_simulasi, $no_sesi = 0)
+  {
+    $this->db->select('*')
+      ->from('tbl_soal')
+      ->where('id_simulasi', $id_simulasi)
+      ->where('no_sesi', $no_sesi);
+    return $this->db->get()->row();
+  }
+
+  function cekNoKolom($id_simulasi, $urutan = 0)
+  {
+    $this->db->select('*')
+      ->from('tbl_kolom')
+      ->where('id_simulasi', $id_simulasi)
+      ->where('urutan', $urutan);
+    return $this->db->get()->row();
+  }
+
+  function getIdJawabanKecermatan($id_soal, $no_soal_kecermatan = 0)
+  {
+    $this->db->select('*')
+      ->from('tbl_jawaban_kecermatan')
+      ->where('id_soal', $id_soal)
+      ->where('no_soal_kecermatan', $no_soal_kecermatan);
     return $this->db->get()->row();
   }
 

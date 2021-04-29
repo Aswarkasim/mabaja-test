@@ -63,15 +63,30 @@ class Simulasi extends CI_Controller
 
           $i = $this->input;
 
+          $jumlah_kolom = $i->post('jumlah_kolom');
           $data = [
             'id_simulasi'       => random_string('numeric'),
             'nama_simulasi'     => $i->post('nama_simulasi'),
             'id_mapel'          => $i->post('id_mapel'),
             'waktu'             => $i->post('waktu'),
+            'jumlah_kolom'      => $jumlah_kolom,
             'jumlah_soal'       => $i->post('jumlah_soal'),
             'cover'             => $config['upload_path'] . $upload_data['uploads']['file_name']
           ];
           $this->Crud_model->add('tbl_simulasi', $data);
+
+
+          // $a = 1;
+          // for ($i = 1; $i <= $jumlah_kolom; $i++) {
+
+          //   $kolom = [
+          //     'id_kolom' => random_string('numeric'),
+          //     'id_simulasi' => $data['id_simulasi'],
+          //     'nama_kolom' => 'Kolom ' . $a++
+          //   ];
+          //   $this->Crud_model->add('tbl_kolom', $kolom);
+          // }
+
           $this->session->set_flashdata('msg', 'Simulasi ditambahkan');
           redirect('admin/simulasi/index/' . $data['id_mapel']);
         }

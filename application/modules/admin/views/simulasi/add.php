@@ -36,35 +36,55 @@
                                  <label for="" class="pull-right">Nama Simulasi</label>
                              </div>
                              <div class="col-md-9">
-                                 <input type="text" name="nama_simulasi" placeholder="Nama Simulasi" value="<?= set_value('nama_simulasi') ?>" class="form-control">
+                                 <input type="text" name="nama_simulasi" required placeholder="Nama Simulasi" value="<?= set_value('nama_simulasi') ?>" class="form-control">
                              </div>
                          </div>
                      </div>
 
 
-
-
-                     <div class="form-group">
-                         <div class="row">
-                             <div class="col-md-3">
-                                 <label for="" class="pull-right">Jumlah Soal</label>
-                             </div>
-                             <div class="col-md-6">
-                                 <input type="number" name="jumlah_soal" placeholder="Jumlah Soal" value="<?= set_value('jumlah_soal') ?>" class="form-control">
-                             </div>
-                         </div>
-                     </div>
-
-                     <div class="form-group">
-                         <div class="row">
-                             <div class="col-md-3">
-                                 <label for="" class="pull-right">Waktu</label>
-                             </div>
-                             <div class="col-md-6">
-                                 <input type="number" name="waktu" placeholder="Dalam Menit" value="<?= set_value('waktu') ?>" class="form-control">
+                     <!-- Cek apakah id_mapel == kecermatan -->
+                     <?php if ($this->uri->segment(4) == 'RPIuQJc5') { ?>
+                         <div class="form-group">
+                             <div class="row">
+                                 <div class="col-md-3">
+                                     <label for="" class="pull-right">Jumlah Kolom</label>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <input type="number" name="jumlah_kolom" required placeholder="Jumlah Sesi" value="<?= set_value('jumlah_kolom') ?>" class="form-control">
+                                 </div>
                              </div>
                          </div>
-                     </div>
+
+                     <?php } else { ?>
+
+
+
+                         <div class="form-group">
+                             <div class="row">
+                                 <div class="col-md-3">
+                                     <label for="" class="pull-right">Waktu</label>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <input type="number" name="waktu" required placeholder="Dalam Menit" value="<?= set_value('waktu') ?>" class="form-control">
+                                 </div>
+                             </div>
+                         </div>
+
+
+                         <div class="form-group">
+                             <div class="row">
+                                 <div class="col-md-3">
+                                     <label for="" class="pull-right">Jumlah Soal</label>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <input type="number" name="jumlah_soal" required placeholder="Jumlah Soal" value="<?= set_value('jumlah_soal') ?>" class="form-control">
+                                 </div>
+                             </div>
+                         </div>
+
+
+
+                     <?php } ?>
 
 
                      <div class="form-group">
