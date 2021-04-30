@@ -102,28 +102,23 @@ class Home_model extends CI_Model
   }
 
 
-
-  function cekKupon($kupon)
+  function detailMemberKecermatanPetunjuk($id_user, $id_simulasi)
   {
     $this->db->select('*')
-      ->from('tbl_token')
-      ->where('token', $kupon);
+      ->from('tbl_member')
+      ->where('id_simulasi', $id_simulasi)
+      ->where('id_user', $id_user);
     return $this->db->get()->row();
   }
 
-  function rangking($id_simulasi)
+
+  function detailMemberKecermatan($id_user, $id_simulasi, $id_kolom)
   {
-    $this->db->select('tbl_rangking.*, 
-                      tbl_user.namalengkap,
-                      tbl_user.foto,
-                      tbl_simulasi.nama_simulasi')
-      ->from('tbl_rangking')
-      ->join('tbl_user', 'tbl_user.id_user = tbl_rangking.id_user', 'left')
-      ->join('tbl_simulasi', 'tbl_simulasi.id_simulasi = tbl_rangking.id_simulasi', 'left')
-      ->where('tbl_rangking.id_simulasi', $id_simulasi)
-      ->order_by('tbl_rangking.nilai', 'DESC')
-      ->order_by('tbl_rangking.date_created', 'ASC')
-      ->limit('10');
-    return $this->db->get()->result();
+    $this->db->select('*')
+      ->from('tbl_member')
+      ->where('id_simulasi', $id_simulasi)
+      ->where('id_user', $id_user)
+      ->where('id_kolom', $id_kolom);
+    return $this->db->get()->row();
   }
 }

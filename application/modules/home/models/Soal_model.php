@@ -82,11 +82,26 @@ class Soal_model extends CI_Model
   {
     $this->db->select('tbl_task.*, 
                       tbl_soal.butir_soal,
+                      tbl_soal.gambar,
                       tbl_soal.pembahasan')
       ->from('tbl_task')
       ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
       ->where('tbl_task.id_user', $id_user)
       ->where('tbl_task.id_simulasi', $id_simulasi)
+      ->where('tbl_task.no_soal', $butir);
+    return $this->db->get()->row();
+  }
+
+  function butirSoalKecermatan($id_user, $id_kolom, $butir)
+  {
+    $this->db->select('tbl_task.*, 
+                      tbl_soal.butir_soal,
+                      tbl_soal.gambar,
+                      tbl_soal.pembahasan')
+      ->from('tbl_task')
+      ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
+      ->where('tbl_task.id_user', $id_user)
+      ->where('tbl_task.id_kolom', $id_kolom)
       ->where('tbl_task.no_soal', $butir);
     return $this->db->get()->row();
   }
@@ -107,6 +122,26 @@ class Soal_model extends CI_Model
       ->from('tbl_task')
       ->where('id_member', $id_member)
       ->where('is_done', $status);
+    return $this->db->get()->result();
+  }
+
+  function soalTaskKecermatan($id_member)
+  {
+    $this->db->select('tbl_task.*, 
+                      tbl_soal.butir_soal,
+                      tbl_soal.jawaban_kecermatan as j_kecermatan')
+      ->from('tbl_task')
+      ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
+      ->where('tbl_task.id_member', $id_member);
+    return $this->db->get()->result();
+  }
+
+  function getSimulasiUser($id_user, $id_simulasi)
+  {
+    $this->db->select('*')
+      ->from('tbl_member')
+      ->where('id_user', $id_user)
+      ->order_by('urutan_kecermatan', 'ASC');
     return $this->db->get()->result();
   }
 }

@@ -19,14 +19,22 @@
         </div>
       </div> -->
 
-      <?php foreach ($simulasi as $row) { ?>
+      <?php
+      $link = '';
+      if ($mapel->id_mapel == 'RPIuQJc5') {
+        $link = 'home/kecermatan/petunjuk/';
+      } else {
+        $link = 'home/kecermatan/petunjuk/';
+      }
+      foreach ($simulasi as $row) { ?>
 
         <div class="col-md-4 mt-2">
           <div class="card">
             <div class="card-body">
               <img src="<?= base_url('assets/img/blank_image.jpg'); ?>" width="100%" alt="">
               <h6 class="mt-2"><strong><?= $row->nama_simulasi; ?></strong></h6>
-              <a href="<?= base_url('home/simulasi/petunjuk/' . $row->id_simulasi); ?>" class="btn btn-primary btn-block mt-1">Buka</a>
+
+              <a href="<?= base_url($link . $row->id_simulasi); ?>" class="btn btn-primary btn-block mt-1">Buka</a>
             </div>
           </div>
         </div>
