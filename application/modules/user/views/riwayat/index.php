@@ -21,7 +21,7 @@
             <td><?= $no++; ?></td>
             <td><?= $row->nama_mapel ?></td>
             <td><?php echo $row->nama_simulasi;
-                if ($kolom != null) {
+                if (isset($kolom)) {
                   echo  '<br> Kolom ' . $kolom->urutan;
                 } ?></td>
             <td><?= $row->nilai_akhir; ?></td>

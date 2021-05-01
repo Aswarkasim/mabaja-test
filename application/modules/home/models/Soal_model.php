@@ -141,6 +141,7 @@ class Soal_model extends CI_Model
     $this->db->select('*')
       ->from('tbl_member')
       ->where('id_user', $id_user)
+      ->where('id_simulasi', $id_simulasi)
       ->order_by('urutan_kecermatan', 'ASC');
     return $this->db->get()->result();
   }
