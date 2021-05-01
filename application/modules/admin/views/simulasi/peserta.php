@@ -5,6 +5,7 @@
          <th width="40px">No</th>
          <th>Nama Simulasi</th>
          <th>Status</th>
+         <th>Skor</th>
          <th>Tindakan</th>
        </tr>
      </thead>
@@ -27,6 +28,7 @@
                <span class="label label-warning"><i class="fa fa-spinner"></i> Proses</span>
              <?php } ?>
            </td>
+           <td><?= $row->nilai_akhir; ?></td>
            <td><a href="<?= base_url('admin/simulasi/deleteMember/' . $row->id_member); ?>" class="btn btn-warning btn-sm tombol-reset"><i class="fa fa-refresh"></i> Ulangi ujian</a></td>
          </tr>
          <?php include('rekap_jawaban.php') ?>

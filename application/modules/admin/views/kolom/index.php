@@ -3,7 +3,7 @@
 
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-9">
 
 
         <div class="box">
@@ -15,7 +15,7 @@
 
                 <p>
 
-                    <a href="<?= base_url('admin/simulasi/index/' . $simulasi->id_mapel); ?>" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
+                    <a href="<?= base_url('admin/simulasi/detail/' . $simulasi->id_simulasi); ?>" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
                     <?php include('add.php') ?>
                 </p>
 
@@ -24,6 +24,7 @@
                         <tr>
                             <th width="40px">No</th>
                             <th>Kolom</th>
+                            <th>Petunjuk</th>
                             <th>Jumlah Soal</th>
                             <th>Aktifkan</th>
                             <th width="100px">Aksi</th>
@@ -35,34 +36,13 @@
                             <tr>
                                 <td><?= $no ?></td>
                                 <td><a href="<?= base_url('admin/kolom/detail/' . $row->id_kolom); ?>"><b><?= 'Kolom ' . $row->urutan ?></b></a></td>
+                                <td><img src="<?= base_url($row->petunjuk); ?>" width="100px" alt=""></td>
                                 <td><?= $row->jumlah_soal; ?></td>
-                                <td>
-                                    <div class="btn-group">
-                                        <?php if ($row->is_active == 1) { ?>
-                                            <button type="button" class="btn btn-success"><i class="fa fa-check"></i> Aktif</button>
-                                        <?php } else { ?>
-                                            <button type="button" class="btn btn-danger"><i class="fa fa-times"></i> Kolom Tidak Aktif</button>
-                                        <?php } ?>
-                                        <button type="button" class="btn <?php if ($row->is_active == 1) {
-                                                                                echo 'btn-success';
-                                                                            } else {
-                                                                                echo "btn-danger";
-                                                                            } ?> dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-
-
-                                        <ul class="dropdown-menu" role="menu">
-                                            <?php if ($row->is_active == 0) { ?>
-                                                <li><a href="<?= base_url('admin/kolom/is_active/' . $row->id_kolom) ?>"><i class="fa fa-check"></i> Aktif</a></li>
-                                            <?php } else { ?>
-                                                <li><a href="<?= base_url('admin/kolom/is_active/' . $row->id_kolom) ?>"><i class="fa fa-times"></i> Tidak Aktif</a></li>
-                                            <?php } ?>
-                                        </ul>
-                                    </div>
-
-                                </td>
+                                <td><?php if ($row->is_active == 1) {
+                                        echo '<div class="label label-success">Aktif</div>';
+                                    } else {
+                                        echo '<div class="label label-danger">draft</div>';
+                                    } ?></td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ModalEdit<?= $row->id_kolom ?>">
                                         <i class="fa fa-edit"></i>Edit

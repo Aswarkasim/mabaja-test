@@ -1,12 +1,6 @@
 <div class="flash-data" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 
-<?php
-$url = '';
-if ($this->session->userdata('id_mapel') == 'RPIuQJc5') {
-    $url = 'admin/simulasi/detail/';
-} else {
-    $url = 'admin/kolom/index/';
-} ?>
+
 
 <div class="box">
     <div class="box-header">
@@ -32,11 +26,18 @@ if ($this->session->userdata('id_mapel') == 'RPIuQJc5') {
             </thead>
             <tbody id="targetData">
                 <?php $no = 1;
-                foreach ($simulasi as $row) { ?>
+                foreach ($simulasi as $row) {
+                    //     $url = '';
+                    //     if ($row->id_mapel == 'RPIuQJc5') {
+                    //         $url = 'admin/kolom/index/';
+                    //     } else {
+                    //         $url = 'admin/simulasi/detail/';
+                    //     }
+                ?>
                     <tr>
                         <td><?= $no ?></td>
                         <td>
-                            <a href="<?= base_url($url . $row->id_simulasi) ?>"><strong><?= $row->nama_simulasi ?></strong></a>
+                            <a href="<?= base_url('admin/simulasi/detail/' . $row->id_simulasi) ?>"><strong><?= $row->nama_simulasi ?></strong></a>
                         </td>
                         <td><?= $row->jumlah_soal ?></td>
                         <td><?= $row->waktu ?></td>

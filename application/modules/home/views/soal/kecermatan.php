@@ -28,19 +28,18 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
           <?php if (($soal->gambar != '') && $soal->butir_soal == '') { ?>
             <img src="<?= base_url($soal->gambar); ?>" width="200px" alt="">
           <?php } else { ?>
-            <h4><strong><?= $soal->butir_soal; ?></strong></h4>
+            <h2><strong><?= $soal->butir_soal; ?></strong></h2>
           <?php } ?>
 
-          <img src="<?= base_url('assets/img/simbolsoal.jpg'); ?>" width="200px" alt="">
           <hr>
           <?php if ($member->is_done == 0) { ?>
-            <a href="<?= base_url($link . '/A'); ?>" class="btn btn-primary mr-2 ml-2">A</a>
-            <a href="<?= base_url($link . '/B'); ?>" class="btn btn-primary mr-2 ml-2">B</a>
-            <a href="<?= base_url($link . '/C'); ?>" class="btn btn-primary mr-2 ml-2">C</a>
-            <a href="<?= base_url($link . '/D'); ?>" class="btn btn-primary mr-2 ml-2">D</a>
-            <a href="<?= base_url($link . '/E'); ?>" class="btn btn-primary mr-2 ml-2">E</a>
+            <a href="<?= base_url($link . '/A'); ?>" class="btn btn-outline-primary mr-2 ml-2">A</a>
+            <a href="<?= base_url($link . '/B'); ?>" class="btn btn-outline-primary mr-2 ml-2">B</a>
+            <a href="<?= base_url($link . '/C'); ?>" class="btn btn-outline-primary mr-2 ml-2">C</a>
+            <a href="<?= base_url($link . '/D'); ?>" class="btn btn-outline-primary mr-2 ml-2">D</a>
+            <a href="<?= base_url($link . '/E'); ?>" class="btn btn-outline-primary mr-2 ml-2">E</a>
           <?php } else { ?>
-            <a href="<?= base_url('home/kecermatan/result/' . $member->id_member . '/' . $member->id_simulasi); ?>" class="btn btn-primary">Lihat Hasil</a>
+            <a href="<?= base_url('home/kecermatan/result/' . $member->id_member . '/' . $member->id_simulasi); ?>" class="btn btn-outline-primary">Lihat Hasil</a>
           <?php } ?>
         </center>
       </div>

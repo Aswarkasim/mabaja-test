@@ -259,34 +259,7 @@ class Soal extends CI_Controller
   }
 
   //DeleteChoiceKecermatan
-  function deleteChoiceKecermatan($id_soal, $id_pilihan)
-  {
-    $data = [
-      'jawaban' => ''
-    ];
-    $this->Crud_model->edit('tbl_jawaban_kecermatan', 'id_jawaban_kecermatan', $id_pilihan, $data);
-    redirect('admin/soal/detailKecermatan/' . $id_soal);
-  }
 
-  function is_doneSoalKecermatan($value, $id_soal)
-  {
-    if ($value == 0) {
-      $id_simulasi = $this->session->userdata('id_simulasi');
-      __is_boolean('tbl_simulasi', 'id_simulasi', $id_simulasi, 'is_active', $value);
-    }
-    $message = "";
-    if ($value == '1') {
-      $message = "Soal telah selesai dan disimpan";
-    } else {
-      $message = "Soal disimpan sebagai draft";
-    }
-    $data = [
-      'is_done' => $value
-    ];
-    $this->Crud_model->edit('tbl_soal', 'id_soal', $id_soal, $data);
-    $this->session->set_flashdata('msg', $message);
-    redirect('admin/soal/detailKecermatan/' . $id_soal);
-  }
 
 
   function upload()

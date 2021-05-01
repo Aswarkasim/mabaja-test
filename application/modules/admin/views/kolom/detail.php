@@ -16,7 +16,9 @@ $this->load->model('admin/Soal_model', 'SM');
                     <!-- /.box-header -->
                     <div class="box-body">
                         <a href="<?= base_url('admin/kolom/index/' . $kolom->id_simulasi); ?>" class="btn btn-warning btn-sm"><i class="fa fa-arrow-left"></i> Kembali</a>
+                        <a href="<?= base_url('admin/kecermatan/is_doneKolomKecermatan/1/' . $kolom->id_kolom) ?>" class="btn btn-success"><i class="fa fa-save"></i> Selesai & Simpan</a>
 
+                        <a href="<?= base_url('admin/kecermatan/is_doneKolomKecermatan/0/' . $kolom->id_kolom) ?>" class="btn btn-warning"><i class="fa fa-spinner"></i> Simpan sebagai draft</a>
                         <?php
                         echo validation_errors('<div class="alert alert-warning"><i class="fa fa-warning"></i> ', '</div>');
                         ?>

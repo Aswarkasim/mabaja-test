@@ -6,27 +6,40 @@
                     <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Tambah Kolom</h4>
             </div>
-            <?= form_open(base_url($tombol['edit'] . '/' . $row->id_kolom)) ?>
+            <?= form_open_multipart(base_url($tombol['edit'] . '/' . $row->id_kolom)) ?>
             <div class="modal-body">
                 <div class="form-group">
+
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="" class="pull-right">Nama Kolom</label>
+                            <label for="" class="pull-right">Jumlah Soal</label>
                         </div>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="nama_kolom" required value="<?= $row->nama_kolom ?>">
+                        <div class="col-md-4">
+                            <input type="number" required class="form-control" value="<?= $row->jumlah_soal; ?>" name="jumlah_soal" id="">
                         </div>
                     </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="" class="pull-right">Gambar Petunjuk</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="file" name="petunjuk" id="">
+                        </div>
+                    </div>
+
+
                 </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
+            <?= form_close() ?>
+            <!-- /.modal-content -->
         </div>
-        <?= form_close() ?>
-        <!-- /.modal-content -->
+        <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+    <!-- /.modal -->

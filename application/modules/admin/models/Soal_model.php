@@ -71,6 +71,16 @@ class Soal_model extends CI_Model
     return $this->db->get()->result();
   }
 
+  function detailHasilMemberKecermatan($id_user, $id_simulasi)
+  {
+    $this->db->select('*')
+      ->from('tbl_member')
+      ->where('id_user', $id_user)
+      ->where('id_simulasi', $id_simulasi)
+      ->order_by('urutan_kecermatan', 'ASC');
+    return $this->db->get()->result();
+  }
+
   function mySimulasi($id_user)
   {
     $this->db->select('tbl_member.*, 
@@ -154,6 +164,24 @@ class Soal_model extends CI_Model
       ->from('tbl_soal')
       ->where('id_simulasi', $id_simulasi)
       ->where('is_done', '1');
+    return $this->db->get()->result();
+  }
+
+  function countKolomDone($id_simulasi)
+  {
+    $this->db->select('*')
+      ->from('tbl_kolom')
+      ->where('id_simulasi', $id_simulasi)
+      ->where('is_active', '1');
+    return $this->db->get()->result();
+  }
+
+  function getSimulasiUser($id_user, $id_simulasi)
+  {
+    $this->db->select('*')
+      ->from('tbl_member')
+      ->where('id_user', $id_user)
+      ->order_by('urutan_kecermatan', 'ASC');
     return $this->db->get()->result();
   }
 }

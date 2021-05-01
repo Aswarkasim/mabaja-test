@@ -11,22 +11,45 @@
           <br><br>
           <?php include('ubah_thumbnail.php') ?>
 
-          <ul class="list-group list-group-unbordered">
-            <?php include('edit.php') ?>
-            <h4>
-              <strong><?= $simulasi->nama_simulasi; ?></strong>
-            </h4>
-            <li class="list-group-item">
-              <b>Jumlah Soal</b> <a class="pull-right"><?= $simulasi->jumlah_soal ?></a>
-            </li>
-            <li class="list-group-item">
-              <b>Waktu Pengerjaan</b> <a class="pull-right"><?= $simulasi->waktu . ' Menit' ?></a>
-            </li>
 
 
-          </ul>
+          <?php
 
-          <a href="<?= base_url('admin/soal') ?>" class="btn btn-primary btn-block"><i class="fa fa-list"></i> Manajemen Soal</a>
+          $url = '';
+          if ($simulasi->id_mapel == 'RPIuQJc5') { ?>
+            <ul class="list-group list-group-unbordered">
+              <?php include('edit_kecermatan.php') ?>
+              <h4>
+                <strong><?= $simulasi->nama_simulasi; ?></strong>
+              </h4>
+              <li class="list-group-item">
+                <b>Jumlah Kolom</b> <a class="pull-right"><?= $simulasi->jumlah_kolom ?></a>
+              </li>
+
+            </ul>
+
+            <a href="<?= base_url('admin/kolom/index/' . $simulasi->id_simulasi) ?>" class="btn btn-primary btn-block"><i class="fa fa-list"></i> Manajemen Kolom Soal</a>
+          <?php } else { ?>
+            <ul class="list-group list-group-unbordered">
+              <?php include('edit.php') ?>
+              <h4>
+                <strong><?= $simulasi->nama_simulasi; ?></strong>
+              </h4>
+              <li class="list-group-item">
+                <b>Jumlah Soal</b> <a class="pull-right"><?= $simulasi->jumlah_soal ?></a>
+              </li>
+              <li class="list-group-item">
+                <b>Waktu Pengerjaan</b> <a class="pull-right"><?= $simulasi->waktu . ' Menit' ?></a>
+              </li>
+
+            </ul>
+
+            <a href="<?= base_url('admin/soal') ?>" class="btn btn-primary btn-block"><i class="fa fa-list"></i> Manajemen Soal</a>
+          <?php
+          }
+          ?>
+
+
 
 
         </div>
@@ -45,7 +68,12 @@
         <div class="tab-content">
           <?php
           include('petunjuk.php');
-          include('peserta.php');
+
+          if ($simulasi->id_mapel == 'RPIuQJc5') {
+            include('peserta_kecermatan.php');
+          } else {
+            include('peserta.php');
+          }
           ?>
           <!-- /.tab-pane -->
 

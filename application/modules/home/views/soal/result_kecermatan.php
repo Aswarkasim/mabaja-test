@@ -1,4 +1,3 @@
-<?= date('y-m-d H:i:s') ?>
 <div class="jumbotron">
   <div class="container">
     <div class="row">

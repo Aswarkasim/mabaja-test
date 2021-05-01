@@ -1,7 +1,7 @@
 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-default">
     <i class="fa fa-plus"></i>Tambah
 </button>
-<?= form_open(base_url($tombol['add'])) ?>
+<?= form_open_multipart(base_url($tombol['add'])) ?>
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -42,7 +42,16 @@
                             <label for="" class="pull-right">Jumlah Soal</label>
                         </div>
                         <div class="col-md-4">
-                            <input type="number" class="form-control" name="jumlah_soal" id="">
+                            <input type="number" required class="form-control" name="jumlah_soal" id="">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="" class="pull-right">Gambar Petunjuk</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="file" required name="petunjuk" id="">
                         </div>
                     </div>
 

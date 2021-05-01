@@ -1,6 +1,16 @@
  <div class="tab-pane" id="petunjuk">
    <?php include('edit_petunjuk.php') ?>
 
+   <?php
+    $link_active = '';
+    if ($simulasi->id_mapel == 'RPIuQJc5') {
+      $link_active = 'admin/kecermatan/is_active_kecermatan/';
+    } else {
+      $link_active = 'admin/simulasi/is_active/';
+    }
+    ?>
+
+
    <!-- Is Pembahasan -->
    <div class="btn-group">
      <?php if ($simulasi->is_active == 1) { ?>
@@ -20,9 +30,9 @@
 
      <ul class="dropdown-menu" role="menu">
        <?php if ($simulasi->is_active == 0) { ?>
-         <li><a href="<?= base_url('admin/simulasi/is_active/' . $simulasi->id_simulasi . '/1') ?>"><i class="fa fa-check"></i> Aktif</a></li>
+         <li><a href="<?= base_url($link_active . $simulasi->id_simulasi . '/1') ?>"><i class="fa fa-check"></i> Aktif</a></li>
        <?php } else { ?>
-         <li><a href="<?= base_url('admin/simulasi/is_active/' . $simulasi->id_simulasi . '/0') ?>"><i class="fa fa-times"></i> Tidak Aktif</a></li>
+         <li><a href="<?= base_url($link_active . $simulasi->id_simulasi . '/0') ?>"><i class="fa fa-times"></i> Tidak Aktif</a></li>
        <?php } ?>
      </ul>
    </div>
