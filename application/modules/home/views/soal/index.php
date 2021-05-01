@@ -8,7 +8,13 @@
               <div class="row">
                 <div class="col-md-3 text-center">
                   <p>Waktu</p>
-                  <p id="waktu"></p>
+                  <?php if ($member->is_done == 0) {
+                  ?>
+                    <p id="waktu"></p>
+                  <?php } else {
+                    echo 'Waktu Habis!!';
+                  }
+                  ?>
                 </div>
 
                 <div class="col-md-3 text-center">
@@ -113,43 +119,43 @@
 
 
 
-<?php //if ($member->is_done == 0) {
+<?php if ($member->is_done == 0) {
 ?>
-<script>
-  // Set the date we're counting down to
-  var countDownDate = new Date("<?= $member->time_end; ?>").getTime();
-  // var countDownDate = new Date("2020-12-19 13:50:00").getTime();
+  <script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("<?= $member->time_end; ?>").getTime();
+    // var countDownDate = new Date("2020-12-19 13:50:00").getTime();
 
-  // Update the count down every 1 second
-  var x = setInterval(function() {
+    // Update the count down every 1 second
+    var x = setInterval(function() {
 
-    // Get today's date and time
-    var asiaTime = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Makassar"
-    });
-    var now = new Date(asiaTime).getTime();
+      // Get today's date and time
+      var asiaTime = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Makassar"
+      });
+      var now = new Date(asiaTime).getTime();
 
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-    //  var distance = now - countDownDate;
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+      //  var distance = now - countDownDate;
 
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 
-    // Display the result in the element with id="waktu"
-    document.getElementById("waktu").innerHTML = hours + ":" + minutes + ":" + seconds;
+      // Display the result in the element with id="waktu"
+      document.getElementById("waktu").innerHTML = hours + ":" + minutes + ":" + seconds;
 
-    // If the count down is finished, write some text
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("waktu").innerHTML = "Waktu Habis!!";
-      window.location = "<?= base_url('home/soal/resultTask/' . $task->id_task . '/' . $task->id_simulasi . '/' . $task->id_member) ?>";
-    }
-  }, 1000);
-</script>
-<?php //} 
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("waktu").innerHTML = "Waktu Habis!!";
+        window.location = "<?= base_url('home/soal/resultTask/' . $task->id_task . '/' . $task->id_simulasi . '/' . $task->id_member) ?>";
+      }
+    }, 1000);
+  </script>
+<?php }
 ?>
