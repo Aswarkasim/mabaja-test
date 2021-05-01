@@ -16,7 +16,7 @@
               $id_user = $this->session->userdata('id_user');
               $this->load->model('home/Soal_model', 'SM');
               $rekap_member = $this->SM->getSimulasiUser($id_user, $id_simulasi);
-              print_r($id_user);
+              // print_r($id_user);
               foreach ($rekap_member as $rm) { ?>
                 <tr>
                   <td>Skor Kolom <?= $rm->urutan_kecermatan; ?> </td>
