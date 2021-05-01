@@ -154,7 +154,8 @@ class Soal_model extends CI_Model
       ->from('tbl_task')
       ->join('tbl_pilihan', 'tbl_pilihan.id_pilihan = tbl_task.id_pilihan', 'left')
       ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
-      ->where('tbl_task.id_member', $id_member);
+      ->where('tbl_task.id_member', $id_member)
+      ->order_by('tbl_task.no_soal', 'ASC');
     return $this->db->get()->result();
   }
 
