@@ -24,7 +24,7 @@
       if ($mapel->id_mapel == 'RPIuQJc5') {
         $link = 'home/kecermatan/petunjuk/';
       } else {
-        $link = 'home/kecermatan/petunjuk/';
+        $link = 'home/simulasi/petunjuk/';
       }
       foreach ($simulasi as $row) { ?>
 

@@ -12,13 +12,18 @@
       <tbody>
         <?php $no = 1;
         foreach ($riwayat as $row) {
-          $kolom = $this->Crud_model->listingOne('tbl_kolom', 'id_kolom', $row->id_kolom);
+          if ($row->id_kolom != "") {
+            $kolom = $this->Crud_model->listingOne('tbl_kolom', 'id_kolom', $row->id_kolom);
+          }
         ?>
 
           <tr>
             <td><?= $no++; ?></td>
             <td><?= $row->nama_mapel ?></td>
-            <td><?= $row->nama_simulasi . '<br> Kolom ' . $kolom->urutan; ?></td>
+            <td><?php echo $row->nama_simulasi;
+                if ($kolom != null) {
+                  echo  '<br> Kolom ' . $kolom->urutan;
+                } ?></td>
             <td><?= $row->nilai_akhir; ?></td>
           </tr>
         <?php } ?>
