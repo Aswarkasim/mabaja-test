@@ -16,16 +16,24 @@
 
           $this->load->model('admin/Soal_model', 'SM');
           $task = $this->SM->pilihanTask($row->id_member);
-          foreach ($task as $t) { ?>
-
-            <div class="col-md-1">
-              <div class="form-group">
-                <label for=""><i class="<?= $t->jawaban_benar == $t->id_pilihan ? 'fa fa-check text-success' : 'fa fa-times text-danger'; ?>"></i><?= $t->no_soal . ' ' . $t->anotasi; ?></label>
+          foreach ($task as $t) {
+          ?>
+            <?php if ($simulasi->id_mapel == '45hTKPfdm') { ?>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label for=""><i class="fa fa-check text-success"></i><?= $t->no_soal . ' ' . $t->anotasi; ?></label>
+                </div>
               </div>
-            </div>
+            <?php } else { ?>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <label for=""><i class="<?= $t->jawaban_benar == $t->id_pilihan ? 'fa fa-check text-success' : 'fa fa-times text-danger'; ?>"></i><?= $t->no_soal . ' ' . $t->anotasi; ?></label>
+                </div>
+              </div>
 
 
           <?php
+            }
           } ?>
 
         </div>

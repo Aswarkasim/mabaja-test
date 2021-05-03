@@ -4,19 +4,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Soal_model extends CI_Model
 {
-  function kunciJawabanCpns($id_member, $klasifikasi)
+  function kunciJawaban($id_member)
   {
     $this->db->select('tbl_task.*,
                       tbl_pilihan.poin,
-                      tbl_simulasi.type,
-                      tbl_soal.klasifikasi, 
                       tbl_soal.id_pilihan as kunci_jawaban')
       ->from('tbl_task')
       ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
       ->join('tbl_simulasi', 'tbl_simulasi.id_simulasi = tbl_task.id_simulasi', 'left')
       ->join('tbl_pilihan', 'tbl_pilihan.id_pilihan = tbl_task.id_pilihan', 'left')
-      ->where('tbl_task.id_member', $id_member)
-      ->where('tbl_soal.klasifikasi', $klasifikasi);
+      ->where('tbl_task.id_member', $id_member);
     return $this->db->get()->result();
   }
 

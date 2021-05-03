@@ -143,7 +143,7 @@ class Simulasi extends CI_Controller
 
     $simulasi = $this->SM->detailSimulasi($id_simulasi);
     $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
-    $member = $this->SM->listMember($id_simulasi, '50');
+    $member = $this->SM->listMember($id_simulasi);
 
     // $hasil =  $this->SM->getSimulasiUser($id_user, $id_simulasi);
 

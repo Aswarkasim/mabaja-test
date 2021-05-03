@@ -39,6 +39,10 @@
       </div>
     </div>
 
+    <?php
+
+    ?>
+
     <?php if ($task != null) { ?>
       <form action="<?= base_url('home/soal/submit/' . $task->id_task); ?>" method="POST">
         <div class="row">
@@ -65,7 +69,9 @@
 
                   <?php
                   $next = $soal->no_soal + 1;
-                  if ($member->is_done == 0) { ?>
+                  if ($member->is_done == 0) {
+
+                  ?>
                     <div class="btn-group" role="group" aria-label="Basic example">
                       <input type="submit" name="ragu" class="btn btn-warning" value="Ragu-ragu">
                       <input type="submit" name="selesai" class="btn btn-primary <?= $this->uri->segment(4) == $simulasi->jumlah_soal ? 'yakin-selesaikan' : ''; ?>" value="Selesai dan lanjutkan ">

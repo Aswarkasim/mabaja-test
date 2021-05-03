@@ -76,7 +76,7 @@
                                          <label for="" class="pull-right">Type Option</label>
                                      </div>
                                      <div class="col-md-6">
-                                         <select name="type_option" class="form-control" id="">
+                                         <select name="type_option" required class="form-control" id="">
                                              <option value="">-- Type Option --</option>
                                              <option value="B">A-B</option>
                                              <option value="D">A-D</option>

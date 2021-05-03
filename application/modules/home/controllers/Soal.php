@@ -28,12 +28,14 @@ class Soal extends CI_Controller
     $task = $this->SM->butirSoal($id_user, $id_simulasi, $butir);
     $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
 
-
+    if ($this->uri->segment(4) == $simulasi->jumlah_soal) {
+      $this->session->set_userdata('id_task', $task->id_task);
+      $this->session->userdata('id_task');
+    }
 
     $member = $this->HM->detailMember($id_user, $id_simulasi);
 
     $soalTerjawab = $this->SM->soalTerjawab($member->id_member, 'belum');
-
 
     if ($task != null) {
       $soal = $this->Crud_model->listingOne('tbl_soal', 'id_soal', $task->id_soal);
@@ -54,6 +56,11 @@ class Soal extends CI_Controller
   }
   function submit($id_task)
   {
+    if ($id_task == null) {
+      $id_task = $this->session->userdata('id_task');
+      print_r($id_task);
+      die;
+    }
     $task = $this->Crud_model->listingOne('tbl_task', 'id_task', $id_task);
     $no_soal = $task->no_soal + 1;
     $i = $this->input;
@@ -74,9 +81,13 @@ class Soal extends CI_Controller
 
   function resultTask($id_task, $id_simulasi, $id_member)
   {
+
+    $this->session->unset_userdata('id_task');
+
     __is_boolean('tbl_member', 'id_member', $id_member, 'is_done', '1');
     $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
-    $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $id_member);
+    // $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $id_member);
+    $task = $this->SM->kunciJawaban($id_member);
     $listSoal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
 
     // $benar = 0;
@@ -91,21 +102,39 @@ class Soal extends CI_Controller
     //   $poin = $poin + $pilihan->poin;
     // } else {
 
+    // foreach ($task as $row) {
+
+    //   if ($row->id_pilihan == $row->kunci_jawaban) {
+    //     $nilai = $nilai;
+    //     $nilai = $nilai + 1;
+    //     $poin = 0;
+    //     if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
+    //       $poin = $nilai;
+    //     } else if ($simulasi->id_mapel == '45hTKPfdm') {
+    //     } else {
+    //       $jumlah = $simulasi->jumlah_soal;
+    //       $poin = ($nilai / $jumlah) * 100;
+    //     }
+    //   }
+    // }
+    //}
+
+
     foreach ($task as $row) {
-      $soal = $this->Crud_model->listingOne('tbl_soal', 'id_soal', $row->id_soal);
-      if ($row->id_pilihan == $soal->id_pilihan) {
-        $nilai = $nilai;
-        $nilai = $nilai + 1;
-        $poin = $nilai;
-        if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
-          $poin = $nilai;
-        } else {
+      if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
+        if ($row->id_pilihan == $row->kunci_jawaban) {
+          $poin = $poin + 1;
+        }
+      } else if ($simulasi->id_mapel == '45hTKPfdm') {
+        $poin = $poin + $row->poin;
+      } else {
+        if ($row->id_pilihan == $row->kunci_jawaban) {
+          $nilai = $nilai + 1;
           $jumlah = $simulasi->jumlah_soal;
           $poin = ($nilai / $jumlah) * 100;
         }
       }
     }
-    //}
 
 
 

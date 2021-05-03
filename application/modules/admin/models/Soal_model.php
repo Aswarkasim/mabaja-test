@@ -57,7 +57,7 @@ class Soal_model extends CI_Model
     return $query->result();
   }
 
-  function listMember($member, $limit = null)
+  function listMember($id_simulasi)
   {
     $this->db->select('tbl_member.*,
                       tbl_user.namalengkap,
@@ -65,8 +65,7 @@ class Soal_model extends CI_Model
       ->from('tbl_member')
       ->join('tbl_user', 'tbl_user.id_user = tbl_member.id_user', 'left')
       ->join('tbl_simulasi', 'tbl_simulasi.id_simulasi = tbl_member.id_simulasi', 'left')
-      ->where('tbl_member.id_simulasi', $member)
-      ->limit($limit)
+      ->where('tbl_member.id_simulasi', $id_simulasi)
       ->order_by('tbl_member.date_created', 'DESC');
     return $this->db->get()->result();
   }

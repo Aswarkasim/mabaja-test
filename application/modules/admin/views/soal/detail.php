@@ -37,6 +37,8 @@ $this->load->model('admin/Soal_model', 'SM');
                                 <label for="">Pilihan</label>
                                 <textarea name="butir_pilihan" id="editor1" required class="form-control" id="" cols="20" rows="5"></textarea>
                             </div>
+
+
                             <div class="form-group">
                                 <label for="">Anotasi</label>
                                 <select name="id_pilihan" required class="form-control" id="">
@@ -49,7 +51,21 @@ $this->load->model('admin/Soal_model', 'SM');
                                 </select>
                             </div>
 
-
+                            <?php if ($simulasi->id_mapel == '45hTKPfdm') { ?>
+                                <div class="form-group">
+                                    <label for="">Poin</label>
+                                    <select name="poin" required class="form-control" id="">
+                                        <option value="">-- Poin --</option>
+                                        <?php
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            $cek = $this->SM->cekPoin($soal->id_soal, $i);
+                                            if ($cek->poin != $i) {
+                                                echo '<option value="' . $i . '">' . $i . '</option>';
+                                            }
+                                        } ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
 
 
                             <div class="form-group">
@@ -88,27 +104,32 @@ $this->load->model('admin/Soal_model', 'SM');
                         </table>
                         <hr>
 
-                        <form action="<?= base_url('admin/soal/is_trueChoice') ?>" method="POST">
-                            <div class="form-group">
-                                <input type="hidden" name="id_soal" value="<?= $soal->id_soal ?>">
-                                <label for="">Jawaban Benar</label>
-                                <select name="id_pilihan" required class="form-control" id="">
-                                    <option value="">-- Anotasi --</option>
-                                    <?php foreach ($pilihan as $row) { ?>
-                                        <option <?php if ($row->id_pilihan == $soal->id_pilihan) {
-                                                    echo "selected";
-                                                } ?> value="<?= $row->id_pilihan; ?>"><?= $row->anotasi . ' - ' . character_limiter($row->butir_pilihan, '50'); ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
+                        <?php if ($simulasi->id_mapel != '45hTKPfdm') { ?>
+                            <form action="<?= base_url('admin/soal/is_trueChoice') ?>" method="POST">
+                                <div class="form-group">
+                                    <input type="hidden" name="id_soal" value="<?= $soal->id_soal ?>">
+                                    <label for="">Jawaban Benar</label>
+                                    <select name="id_pilihan" required class="form-control" id="">
+                                        <option value="">-- Anotasi --</option>
+                                        <?php foreach ($pilihan as $row) { ?>
+                                            <option <?php if ($row->id_pilihan == $soal->id_pilihan) {
+                                                        echo "selected";
+                                                    } ?> value="<?= $row->id_pilihan; ?>"><?= $row->anotasi . ' - ' . character_limiter($row->butir_pilihan, '50'); ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Pilih</button>
+                                </div>
+                            </form>
+
+                        <?php } ?>
 
 
 
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Pilih</button>
-                            </div>
-                        </form>
+
 
 
                     </div>
