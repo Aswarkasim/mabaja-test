@@ -38,6 +38,7 @@ class Soal extends CI_Controller
 
     $this->load->helper('string');
     $id_simulasi = $this->session->userdata('id_simulasi');
+    $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
 
     $valid = $this->form_validation;
 
@@ -62,15 +63,30 @@ class Soal extends CI_Controller
         'id_soal'        => random_string(),
         'id_simulasi'       => $id_simulasi,
         'butir_soal'     => $i->post('butir_soal'),
-        'no_sesi'     => $i->post('no_sesi'),
         'no_soal'        => $i->post('no_soal')
 
       ];
       $this->Crud_model->add('tbl_soal', $data);
 
       $a = 'A';
+      $option = 5;
+      if ($simulasi->id_mapel = 'mrHXIR2D') {
+        switch ($simulasi->type_option) {
+          case 'B':
+            $option = 2;
+            break;
+          case 'D':
+            $option = 3;
+            break;
+          case 'E':
+            $option = 5;
+            break;
+        }
+      } else {
+        $option = 5;
+      }
 
-      for ($i = 0; $i < 5; $i++) {
+      for ($i = 0; $i < $option; $i++) {
         $dataPilihan = [
           'id_pilihan'    => random_string(),
           'id_soal'       => $data['id_soal'],

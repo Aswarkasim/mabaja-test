@@ -71,6 +71,7 @@ class Simulasi extends CI_Controller
             'waktu'             => $i->post('waktu'),
             'jumlah_kolom'      => $jumlah_kolom,
             'jumlah_soal'       => $i->post('jumlah_soal'),
+            'type_option'       => $i->post('type_option'),
             'cover'             => $config['upload_path'] . $upload_data['uploads']['file_name']
           ];
           $this->Crud_model->add('tbl_simulasi', $data);
@@ -121,6 +122,7 @@ class Simulasi extends CI_Controller
       $data = [
         'nama_simulasi'  => $i->post('nama_simulasi'),
         'jumlah_soal' => $jumlah_soal,
+        'type_option'       => $i->post('type_option'),
         'waktu'       => $i->post('waktu')
       ];
       $this->Crud_model->edit('tbl_simulasi', 'id_simulasi', $id_simulasi, $data);

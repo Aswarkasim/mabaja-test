@@ -39,6 +39,25 @@
                     </div>
                 </div>
 
+                <?php if ($simulasi->id_mapel == 'mrHXIR2D') { ?>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="" class="pull-right">Type Option</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select name="type_option" class="form-control" id="">
+                                    <option value="">-- Type Option --</option>
+                                    <option value="B" <?= $simulasi->type_option == 'B' ? 'selected' : ''; ?>>A-B</option>
+                                    <option value="D" <?= $simulasi->type_option == 'C' ? 'selected' : ''; ?>>A-D</option>
+                                    <option value="E" <?= $simulasi->type_option == 'E' ? 'selected' : ''; ?>>A-E</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php } ?>
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">

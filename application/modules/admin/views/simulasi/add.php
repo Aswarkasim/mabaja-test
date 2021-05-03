@@ -54,7 +54,8 @@
 
 
                      <!-- Cek apakah id_mapel == kecermatan -->
-                     <?php if ($this->uri->segment(4) == 'RPIuQJc5') { ?>
+                     <?php $id_mapel = $this->uri->segment(4);
+                        if ($id_mapel == 'RPIuQJc5') { ?>
                          <div class="form-group">
                              <div class="row">
                                  <div class="col-md-3">
@@ -66,12 +67,26 @@
                              </div>
                          </div>
 
-                     <?php } else { ?>
+                         <?php } else {
+                            if ($id_mapel == 'mrHXIR2D') {
+                            ?>
+                             <div class="form-group">
+                                 <div class="row">
+                                     <div class="col-md-3">
+                                         <label for="" class="pull-right">Type Option</label>
+                                     </div>
+                                     <div class="col-md-6">
+                                         <select name="type_option" class="form-control" id="">
+                                             <option value="">-- Type Option --</option>
+                                             <option value="B">A-B</option>
+                                             <option value="D">A-D</option>
+                                             <option value="E">A-E</option>
+                                         </select>
+                                     </div>
+                                 </div>
+                             </div>
 
-
-
-
-
+                         <?php } ?>
 
                          <div class="form-group">
                              <div class="row">
@@ -83,6 +98,7 @@
                                  </div>
                              </div>
                          </div>
+
 
 
 
