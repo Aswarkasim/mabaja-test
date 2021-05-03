@@ -23,6 +23,9 @@
                 <strong><?= $simulasi->nama_simulasi; ?></strong>
               </h4>
               <li class="list-group-item">
+                <b>Waktu Pengerjaan</b> <a class="pull-right"><?= $simulasi->waktu . ' Menit' ?></a>
+              </li>
+              <li class="list-group-item">
                 <b>Jumlah Kolom</b> <a class="pull-right"><?= $simulasi->jumlah_kolom ?></a>
               </li>
 

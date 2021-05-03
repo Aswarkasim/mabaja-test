@@ -60,7 +60,9 @@ class Kecermatan extends CI_Controller
 
     $butir = $this->uri->segment('4');
     $id_user = $this->session->userdata('id_user');
+    $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
     $kolom = $this->Crud_model->listingOneAll('tbl_kolom', 'id_simulasi', $id_simulasi);
+
 
 
     $id_kolom = '';
@@ -70,7 +72,9 @@ class Kecermatan extends CI_Controller
         $id_kolom = $k->id_kolom;
       }
     }
-
+    if ($urutan > $simulasi->jumlah_kolom) {
+      redirect('home/kecermatan/result/' . $id_simulasi, 'refresh');
+    }
 
     $member = $this->HM->detailMemberKecermatan($id_user, $id_simulasi, $id_kolom, $urutan);
     $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_kolom', $id_kolom);
@@ -78,9 +82,12 @@ class Kecermatan extends CI_Controller
     // print_r($id_kolom);
     //get satu soal
 
+
+
+
     if (($member->time_start == null) || $member->time_end == null) {
       $time_start = date('y-m-d H:i:s');
-      $endTime = strtotime("+2 minutes", strtotime($time_start));
+      $endTime = strtotime("+" . $simulasi->waktu . " minutes", strtotime($time_start));
       $time_end = date('y-m-d H:i:s', $endTime);
 
       $dataTime = [
@@ -125,11 +132,17 @@ class Kecermatan extends CI_Controller
     $kolom = $this->Crud_model->listingOne('tbl_kolom', 'id_kolom', $id_kolom);
     $soal = $this->SM->butirSoalKecermatan($id_user, $id_kolom, $no_soal);
     $member = $this->HM->detailMemberKecermatan($id_user, $kolom->id_simulasi, $kolom->id_kolom);
-    // print_r($id_kolom);
+    // print_r($member);
     // die;
+    $urutan = $member->urutan_kecermatan + 1;
     if ($soal == null) {
       __is_boolean('tbl_member', 'id_member', $member->id_member, 'is_done', '1');
-      redirect('home/kecermatan/result/' . $member->id_member . '/' . $kolom->id_simulasi);
+      //sampai disini
+      // if (count($kolom) == $member->urutan_kecermatan) {
+      //   redirect('home/kecermatan/result/' . $member->id_member . '/' . $kolom->id_simulasi, 'refresh');
+      // } else {
+      redirect('home/kecermatan/start/' . $kolom->id_simulasi . '/' . $urutan, 'refresh');
+      //}
     }
     $data = [
       'kolom'    => $kolom,
@@ -150,33 +163,30 @@ class Kecermatan extends CI_Controller
     redirect('home/kecermatan/butir/' . $no_next);
   }
 
-  function result($id_member, $id_simulasi)
+  function result($id_simulasi)
   {
 
-    $member = $this->Crud_model->listingOne('tbl_member', 'id_member', $id_member);
+    //  $member = $this->Crud_model->listingOne('tbl_member', 'id_member', $id_member);
+    $id_user = $this->session->userdata('id_user');
     $kolom = $this->Crud_model->listingOneAll('tbl_kolom', 'id_simulasi', $id_simulasi);
-
-    $task = $this->SM->soalTaskKecermatan($id_member);
-
-    $urutan_kolom = $member->urutan_kecermatan + 1;
-
-    //get  data semua kolom user dari tabel member
-
-
-    //tampilkan hasil
-    $skor = 0;
-    foreach ($task as $t) {
-
-      if ($t->jawaban_kecermatan == $t->j_kecermatan) {
-        $skor = $skor + 1;
+    // print_r($kolom);
+    // die;
+    foreach ($kolom as $k) {
+      $member = $this->SM->getSimulasiUserKolom($id_user, $id_simulasi, $k->id_kolom);
+      $task = $this->SM->soalTaskKecermatan($member->id_member);
+      $skor = 0;
+      foreach ($task as $t) {
+        if ($t->j_kecermatan == $t->jawaban_kecermatan) {
+          $skor = $skor + 1;
+        }
       }
+      __is_boolean('tbl_member', 'id_member', $member->id_member, 'nilai_akhir', $skor);
     }
 
-    __is_boolean('tbl_member', 'id_member', $id_member, 'nilai_akhir', $skor);
     $data = [
-      'skor'    => $skor,
+      //  'skor'    => $skor,
       'id_simulasi' => $id_simulasi,
-      'urutan_kolom' => $urutan_kolom,
+      //  'urutan_kolom' => $urutan_kolom,
       'kolom' => $kolom,
       // 'rekap_member' => $rekap_member,
       'content'  => 'home/soal/result_kecermatan'

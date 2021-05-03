@@ -41,6 +41,17 @@
                          </div>
                      </div>
 
+                     <div class="form-group">
+                         <div class="row">
+                             <div class="col-md-3">
+                                 <label for="" class="pull-right">Waktu</label>
+                             </div>
+                             <div class="col-md-6">
+                                 <input type="number" name="waktu" required placeholder="Dalam Menit" value="<?= set_value('waktu') ?>" class="form-control">
+                             </div>
+                         </div>
+                     </div>
+
 
                      <!-- Cek apakah id_mapel == kecermatan -->
                      <?php if ($this->uri->segment(4) == 'RPIuQJc5') { ?>
@@ -59,16 +70,7 @@
 
 
 
-                         <div class="form-group">
-                             <div class="row">
-                                 <div class="col-md-3">
-                                     <label for="" class="pull-right">Waktu</label>
-                                 </div>
-                                 <div class="col-md-6">
-                                     <input type="number" name="waktu" required placeholder="Dalam Menit" value="<?= set_value('waktu') ?>" class="form-control">
-                                 </div>
-                             </div>
-                         </div>
+
 
 
                          <div class="form-group">

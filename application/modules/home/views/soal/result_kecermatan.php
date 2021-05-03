@@ -26,11 +26,8 @@
               <?php } ?>
 
             </table>
-            <?php if (count($kolom) < $urutan_kolom) { ?>
-              <a href="<?= base_url('home') ?>" class="btn btn-primary btn-block">Selesai <i class="fa fa-check"></i></a>
-            <?php } else { ?>
-              <a href="<?= base_url('home/kecermatan/start/' . $id_simulasi . '/' . $urutan_kolom); ?>" class="btn btn-primary btn-block">Lanjutkan kolom <?= $urutan_kolom; ?> <i class="fa fa-arrow-right"></i></a>
-            <?php } ?>
+            <a href="<?= base_url('home') ?>" class="btn btn-primary btn-block">Selesai <i class="fa fa-check"></i></a>
+
           </div>
         </div>
       </div>

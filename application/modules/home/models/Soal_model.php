@@ -145,6 +145,16 @@ class Soal_model extends CI_Model
       ->order_by('urutan_kecermatan', 'ASC');
     return $this->db->get()->result();
   }
+
+  function getSimulasiUserKolom($id_user, $id_simulasi, $id_kolom)
+  {
+    $this->db->select('*')
+      ->from('tbl_member')
+      ->where('id_user', $id_user)
+      ->where('id_simulasi', $id_simulasi)
+      ->where('id_kolom', $id_kolom);
+    return $this->db->get()->row();
+  }
 }
 
 /* End of file ModelName.php */

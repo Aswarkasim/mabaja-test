@@ -136,6 +136,7 @@ class Kecermatan extends CI_Controller
       }
       $data = [
         'nama_simulasi'  => $i->post('nama_simulasi'),
+        'waktu'       => $i->post('waktu'),
         'jumlah_kolom' => $jumlah_kolom
       ];
       $this->Crud_model->edit('tbl_simulasi', 'id_simulasi', $id_simulasi, $data);

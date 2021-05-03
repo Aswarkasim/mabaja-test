@@ -27,6 +27,17 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="" class="pull-right">Waktu</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" name="waktu" placeholder="Dalam Menit" required value="<?= $simulasi->waktu ?>" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="form-group">
                     <div class="row">
