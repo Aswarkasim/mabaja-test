@@ -47,7 +47,7 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
 
   </div>
 </div>
-
+<?php $urutan = $kolom->urutan + 1 ?>
 <script>
   // Set the date we're counting down to
   var countDownDate = new Date("<?= $member->time_end; ?>").getTime();
@@ -80,7 +80,7 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
     if (distance < 0) {
       clearInterval(x);
       document.getElementById("waktu").innerHTML = "Waktu Habis!!";
-      window.location = "<?= base_url('home/kecermatan/result/' . $member->id_member . '/' . $member->id_simulasi); ?>";
+      window.location = "<?= base_url('home/kecermatan/start/' . $kolom->id_simulasi . '/' . $urutan); ?>";
     }
   }, 1000);
 </script>
