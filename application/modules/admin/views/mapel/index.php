@@ -14,7 +14,8 @@
             <div class="box-body">
 
                 <p>
-                    <?php include('add.php') ?>
+                    <?php //include('add.php') 
+                    ?>
                 </p>
 
                 <table class="table DataTable">
@@ -23,7 +24,7 @@
                             <th width="40px">No</th>
                             <th>Nama</th>
                             <th>Aktifkan</th>
-                            <th width="100px">Aksi</th>
+                            <!-- <th width="100px">Aksi</th> -->
                         </tr>
                     </thead>
                     <tbody id="targetData">
@@ -65,7 +66,7 @@
                                     </button>
 
                                     <!-- <a href="<?= base_url($tombol['edit']) ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> Edit</a> -->
-                                    <a href="<?= base_url($tombol['delete'] . $row->id_mapel) ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fa fa-trash"></i> Hapus</a>
+                                    <!-- <a href="<?= base_url($tombol['delete'] . $row->id_mapel) ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fa fa-trash"></i> Hapus</a> -->
                                 </td>
                                 <?php include('edit.php')
                                 ?>
