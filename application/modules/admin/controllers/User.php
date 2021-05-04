@@ -45,6 +45,16 @@ class User extends CI_Controller
 
     function delete($id_user)
     {
+        $task = $this->Crud_model->listingOneAll('tbl_task', 'id_user', $id_user);
+        foreach ($task as $row) {
+            $this->Crud_model->delete('tbl_task', 'id_task', $row->id_task);
+        }
+
+        $member = $this->Crud_model->listingOneAll('tbl_member', 'id_user', $id_user);
+        foreach ($member as $row) {
+            $this->Crud_model->delete('tbl_member', 'id_member', $row->id_member);
+        }
+
         $this->Crud_model->delete('tbl_user', 'id_user', $id_user);
         $this->session->set_flashdata('msg', 'dihapus');
         redirect('admin/user');

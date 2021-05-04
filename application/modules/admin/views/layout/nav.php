@@ -88,12 +88,12 @@ $user = $this->Crud_model->listingOneAll('tbl_user', 'is_read', '0');
                     <li class="<?php if ($this->uri->segment(3) == "index") {
                                     echo "active";
                                 } ?>"><a href="<?= base_url('admin/konfigurasi/index') ?>">General</a></li>
-                    <li class="<?php if ($this->uri->segment(3) == "banner") {
-                                    echo "active";
-                                } ?>"><a href="<?= base_url('admin/banner') ?>">Banner</a></li>
+                    <!-- <li class="<?php if ($this->uri->segment(3) == "banner") {
+                                        echo "active";
+                                    } ?>"><a href="<?= base_url('admin/banner') ?>">Banner</a></li>
                     <li class="<?php if ($this->uri->segment(3) == "logo") {
                                     echo "active";
-                                } ?>"><a href="<?= base_url('admin/konfigurasi/logo') ?>">Logo</a></li>
+                                } ?>"><a href="<?= base_url('admin/konfigurasi/logo') ?>">Logo</a></li> -->
 
                     <li class="<?php if ($this->uri->segment(3) == "password") {
                                     echo "active";
