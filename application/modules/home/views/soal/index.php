@@ -44,7 +44,7 @@
     ?>
 
     <?php if ($task != null) { ?>
-      <form action="<?= base_url('home/soal/submit/' . $task->id_task); ?>" method="POST">
+      <form action="<?= base_url('home/soal/submit/' . $task->id_task); ?>" class="swa-confirm" data-flag="0" method="POST">
         <div class="row">
           <div class="col-md-8 p-4">
             <div class="card">
@@ -74,7 +74,7 @@
                   ?>
                     <div class="btn-group" role="group" aria-label="Basic example">
                       <input type="submit" name="ragu" class="btn btn-warning" value="Ragu-ragu">
-                      <input type="submit" name="selesai" class="btn btn-primary <?= $this->uri->segment(4) == $simulasi->jumlah_soal ? 'yakin-selesaikan' : ''; ?>" value="Selesai dan lanjutkan ">
+                      <input type="submit" name="selesai" class="btn btn-primary" value="Selesai dan lanjutkan ">
                     </div>
                   <?php } else { ?>
                     <a href="<?= base_url('home/soal/butir/' . $next) ?>" class="btn btn-primary">Selanjutnya</a>
@@ -87,7 +87,7 @@
 
       </form>
     <?php } ?>
-
+    <!-- <button id="prty_form_save" type="button" onclick="return testalert();">SAVE</button> -->
     <style>
       .nomor-soal {
         width: 50px;
@@ -118,9 +118,6 @@
   </div>
 </div>
 </div>
-
-
-
 
 
 
@@ -165,28 +162,3 @@
   </script>
 <?php }
 ?>
-
-
-<script src="<?= base_url('assets/') ?>js/sweetalert2.all.min.js"></script>
-
-<script>
-  $('.yakin-selesaikan').on('click', function(e) {
-    // Mematikan href
-    e.preventDefault();
-    const href = $(this).attr('home/soal/submit/');
-
-    Swal({
-      title: 'Yakin selesaikan?',
-      text: "anda tidak dapat mengulangi ujian anda",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya!'
-    }).then((result) => {
-      if (result.value) {
-        document.location.href = href;
-      }
-    })
-  })
-</script>

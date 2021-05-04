@@ -51,8 +51,20 @@ class Soal extends CI_Controller
       $this->load->view('home/layout/wrapper', $data, FALSE);
     } else {
       $task = $this->SM->butirSoal($id_user, $id_simulasi, '1');
-      $this->resultTask($task->id_task, $task->id_simulasi, $task->id_member);
+      // $this->resultTask($task->id_task, $task->id_simulasi, $task->id_member);
+      redirect('home/soal/confirm/' . $task->id_task . '/' . $task->id_simulasi . '/' . $task->id_member, 'refresh');
     }
+  }
+
+  function confirm($id_task, $id_simulasi, $id_member)
+  {
+    $data = [
+      'id_task'     => $id_task,
+      'id_simulasi'     => $id_simulasi,
+      'id_member'     => $id_member,
+      'content'     => 'home/soal/confirm'
+    ];
+    $this->load->view('home/layout/wrapper', $data, FALSE);
   }
   function submit($id_task)
   {
