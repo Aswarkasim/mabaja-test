@@ -76,7 +76,7 @@ class Soal extends CI_Controller
             $option = 2;
             break;
           case 'D':
-            $option = 3;
+            $option = 4;
             break;
           case 'E':
             $option = 5;
