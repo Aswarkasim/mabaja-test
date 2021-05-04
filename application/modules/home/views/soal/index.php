@@ -165,3 +165,28 @@
   </script>
 <?php }
 ?>
+
+
+<script src="<?= base_url('assets/') ?>js/sweetalert2.all.min.js"></script>
+
+<script>
+  $('.yakin-selesaikan').on('click', function(e) {
+    // Mematikan href
+    e.preventDefault();
+    const href = $(this).attr('home/soal/submit/');
+
+    Swal({
+      title: 'Yakin selesaikan?',
+      text: "anda tidak dapat mengulangi ujian anda",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya!'
+    }).then((result) => {
+      if (result.value) {
+        document.location.href = href;
+      }
+    })
+  })
+</script>
