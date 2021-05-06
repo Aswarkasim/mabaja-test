@@ -35,28 +35,64 @@
                     <tr>
                         <td><?= $no ?></td>
                         <td>
-
-                        </td>
-
-                        <td>
-
-                        </td>
-
-                        <td>
-
+                            <i class="fa fa-user <?= $row->is_read == 1 ? 'is-read' : 'not-read'; ?>"></i> <strong><?= $row->namalengkap ?></strong><br>
+                            <p><?= $row->email ?></p>
                         </td>
 
                         <td>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-info"><i class="fa fa-cogs"></i></button>
-                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                <?php if ($row->is_active == 1) { ?>
+                                    <button type="button" class="btn btn-success"><i class="fa fa-check"></i> Aktif</button>
+                                <?php } else { ?>
+                                    <button type="button" class="btn btn-danger"><i class="fa fa-times"></i> Tidak Aktif</button>
+                                <?php } ?>
+                                <button type="button" class="btn <?php if ($row->is_active == 1) {
+                                                                        echo 'btn-success';
+                                                                    } else {
+                                                                        echo "btn-danger";
+                                                                    } ?> dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <span class="caret"></span>
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
+
+
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a class="tombol-hapus" href="<?= base_url($delete . $row->id_user)  ?>"><i class="fa fa-trash"></i> Hapus</a></li>
+                                    <?php if ($row->is_active == 0) { ?>
+                                        <li><a href="<?= base_url('admin/user/is_active/1/' . $row->id_user) ?>"><i class="fa fa-check"></i> Aktif</a></li>
+                                    <?php } else { ?>
+                                        <li><a href="<?= base_url('admin/user/is_active/0/' . $row->id_user) ?>"><i class="fa fa-times"></i> Tidak Aktif</a></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
+
+                        </td>
+
+                        <td>
+                            <?php if ($row->is_active == 1) { ?>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <?php $uri_4 = $this->uri->segment(4);
+                                        if ($uri_4 != null) { ?>
+                                            <li><a href="<?= base_url('admin/user/cheangeKelas/' . $row->id_user) ?>"><i class="fa fa-times"></i> Keluarkan</a></li>
+                                        <?php } ?>
+                                        <?php foreach ($kelas as $k) {
+                                            if ($uri_4 != $k->id_kelas) {
+                                        ?>
+                                                <li><a href="<?= base_url('admin/user/cheangeKelas/' . $row->id_user . '/' . $k->id_kelas) ?>"> <?= $k->nama_kelas; ?></a></li>
+                                        <?php }
+                                        } ?>
+                                    </ul>
+                                </div>
+                            <?php } ?>
+                        </td>
+
+                        <td>
+                            <a class="btn btn-danger tombol-hapus" href="<?= base_url($delete . $row->id_user)  ?>"><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                     </tr>
                 <?php $no++;
