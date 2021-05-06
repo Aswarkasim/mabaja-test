@@ -7,6 +7,9 @@
 
             <div class="container">
               <canvas id="myChart"></canvas>
+
+              <a href="<?= base_url('home') ?>" class="btn btn-primary btn-block mt-3">Selesai <i class="fa fa-check"></i></a>
+
             </div>
           </div>
         </div>

@@ -185,4 +185,13 @@ class Soal_model extends CI_Model
       ->order_by('urutan_kecermatan', 'ASC');
     return $this->db->get()->result();
   }
+
+  function cekSimulasiActive($id_mapel)
+  {
+    $this->db->select('*')
+      ->from('tbl_simulasi')
+      ->where('id_mapel', $id_mapel)
+      ->where('is_active', '1');
+    return $this->db->get()->result();
+  }
 }

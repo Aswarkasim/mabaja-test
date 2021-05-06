@@ -49,36 +49,44 @@ class Auth extends CI_Controller
         $password   = $i->post('password');
         $user  = $this->AM->login($email, $password);
 
+
+
         if ($user) {
           if ($user->is_active == 1) {
-            $s = $this->session;
-            $s->set_userdata('id_user', $user->id_user);
-            $s->set_userdata('email', $user->email);
-            $s->set_userdata('namalengkap', $user->namalengkap);
-            $s->set_userdata('is_active', $user->is_active);
+            if ($user->kelas_active == 1) {
+              $s = $this->session;
+              $s->set_userdata('id_user', $user->id_user);
+              $s->set_userdata('email', $user->email);
+              $s->set_userdata('namalengkap', $user->namalengkap);
+              $s->set_userdata('is_active', $user->is_active);
 
-            redirect(base_url('home'), 'refresh');
+              redirect(base_url('home'), 'refresh');
+            } else {
+              $message =  'Ujian anda belum dimulai';
+              $this->redirectError($message);
+            }
           } else {
-            $data = array(
-              'title'     => 'Login',
-              'error'     => 'Akun anda tidak aktif. Hubungi admin untuk mengaktifkan',
-              'content'   => 'home/auth/login'
-            );
-            $this->load->view('home/layout/wrapper', $data);
+            $message =  'Akun anda tidak aktif. Hubungi admin untuk mengaktifkan';
+            $this->redirectError($message);
           }
         } else {
-          $data = array(
-            'title'     => 'Login',
-            'error'     => 'Anda tidak terdaftar',
-            'content'   => 'home/auth/login'
-          );
-          $this->load->view('home/layout/wrapper', $data);
+          $message = 'Anda tidak terdaftar';
+          $this->redirectError($message);
         }
       }
     } else {
-
       redirect('home', 'refresh');
     }
+  }
+
+  function redirectError($message)
+  {
+    $data = array(
+      'title'     => 'Login',
+      'error'     => $message,
+      'content'   => 'home/auth/login'
+    );
+    $this->load->view('home/layout/wrapper', $data);
   }
 
   public function register()

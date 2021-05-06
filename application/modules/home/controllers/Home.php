@@ -15,7 +15,11 @@ class Home extends CI_Controller
     }
     public function index()
     {
-        $mapel = $this->Crud_model->listingOne('tbl_mapel', 'is_active', '1');
+        $id_user = $this->session->userdata('id_user');
+        $user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
+        $kelas = $this->Crud_model->listingOne('tbl_kelas', 'id_kelas', $user->id_kelas);
+
+        $mapel = $this->Crud_model->listingOne('tbl_mapel', 'id_mapel', $kelas->id_mapel);
         $simulasi = $this->HM->listSimulasi($mapel->id_mapel);
         $data = [
             'mapel'    => $mapel,

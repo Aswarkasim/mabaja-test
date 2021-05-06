@@ -34,6 +34,12 @@ class Dashboard extends CI_Controller
             $tahun = $yearNow;
         }
 
+        $kelas = $this->AM->listKelas();
+
+        $kelasAktif = $this->AM->kelasAktif('1');
+
+        $userLimit = $this->AM->listUserDasboard();
+
         $data = [
             'title'     => 'Dashboard',
             'admin'      => $admin,
@@ -42,7 +48,10 @@ class Dashboard extends CI_Controller
             'mapelDetail'      => $mapel,
             'mapel'      => $listMapel,
             'simulasi'      => $simulasi,
+            'kelas'      => $kelas,
+            'userLimit'      => $userLimit,
             'tahun'      => $tahun,
+            'kelasAktif'      => $kelasAktif,
             'yearNow'      => $yearNow,
             'content'   => 'admin/dashboard/index'
         ];

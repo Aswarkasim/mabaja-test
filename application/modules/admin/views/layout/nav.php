@@ -34,13 +34,12 @@ $user = $this->Crud_model->listingOneAll('tbl_user', 'is_read', '0');
                                         ?>"><i class="fa fa-calendar"></i> <span>Mapel</span></a></li>
 
 
-            <!-- <li class="<?php if ($this->uri->segment(2) == "simulasi") {
-                                echo "active";
-                            }
-                            ?>"><a href="<?php echo base_url('admin/simulasi')
-                                            ?>"><i class="fa fa-folder"></i> <span>Simulasi</span></a></li> -->
-
-
+            <li class="<?php if ($this->uri->segment(2) == "kelas") {
+                            echo "active";
+                        }
+                        ?>"><a href="<?php echo base_url('admin/kelas')
+                                        ?>"><i class="fa fa-th"></i> <span>Kelas</span>
+                </a></li>
 
 
             <li class="<?php if ($this->uri->segment(2) == "user") {
@@ -52,6 +51,7 @@ $user = $this->Crud_model->listingOneAll('tbl_user', 'is_read', '0');
                         <span class="label label-primary pull-right"><?= count($user); ?></span>
                     </span>
                 </a></li>
+
 
 
             <?php if ($this->session->userdata('role') == 'superadmin') { ?>

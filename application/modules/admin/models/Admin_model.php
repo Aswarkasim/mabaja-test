@@ -28,11 +28,42 @@ class Admin_model extends CI_Model
   }
 
 
-  function listUser()
+  function listUser($id_kelas = null)
   {
     return $this->db->select('*')
       ->from('tbl_user')
+      ->where('id_kelas', $id_kelas)
       ->order_by('date_created', 'DESC')
+      ->get()
+      ->result();
+  }
+
+  function listUserDasboard()
+  {
+    return $this->db->select('*')
+      ->from('tbl_user')
+      ->where('is_read', '0')
+      ->order_by('date_created', 'DESC')
+      ->limit(10)
+      ->get()
+      ->result();
+  }
+
+  function listKelas()
+  {
+    $this->db->select('tbl_kelas.*,
+                      tbl_mapel.nama_mapel')
+      ->from('tbl_kelas')
+      ->join('tbl_mapel', 'tbl_mapel.id_mapel = tbl_kelas.id_mapel', 'left')
+      ->order_by('tbl_kelas.date_created', 'DESC');
+    return $this->db->get()->result();
+  }
+
+  function kelasAktif($value = null)
+  {
+    return $this->db->select('*')
+      ->from('tbl_kelas')
+      ->where('is_active', $value)
       ->get()
       ->result();
   }

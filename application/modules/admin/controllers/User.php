@@ -15,15 +15,25 @@ class User extends CI_Controller
     }
 
 
-    public function index()
+    public function index($id_kelas = null)
     {
-        $user = $this->HM->listUser();
+        $user = $this->HM->listUser($id_kelas);
+        $kelas = $this->Crud_model->listing('tbl_kelas');
+
+        $title = '';
+        if ($id_kelas != null) {
+            $detailKelas = $this->Crud_model->listingOne('tbl_kelas', 'id_kelas', $id_kelas);
+            $title = $detailKelas->nama_kelas;
+        }
 
         $data = [
             'add'      => 'admin/user/add',
             'edit'      => 'admin/user/edit/',
             'delete'      => 'admin/user/delete/',
+            'title'        => $title,
+            'kelas'      => $kelas,
             'user'      => $user,
+            'id_kelas_now'      => $id_kelas,
             'content'   => 'admin/user/index'
         ];
 
@@ -81,5 +91,13 @@ class User extends CI_Controller
         ];
         $this->Crud_model->edit('tbl_user', 'id_user', $id_user, $data);
         redirect('admin/user', 'refresh');
+    }
+
+    function cheangeKelas($id_user, $id_kelas = null)
+    {
+        $user = $this->Crud_model->listingOne('tbl_user', 'id_user', $id_user);
+        $id_kelas_now = $user->id_kelas;
+        __is_boolean('tbl_user', 'id_user', $id_user, 'id_kelas', $id_kelas);
+        redirect('admin/user/index/' . $id_kelas_now, 'refresh');
     }
 }

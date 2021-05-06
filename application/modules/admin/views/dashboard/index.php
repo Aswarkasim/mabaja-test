@@ -15,9 +15,9 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3><?= $mapelDetail->nama_mapel; ?></h3>
+                <h3><?= count($kelasAktif); ?></h3>
 
-                <p>Mapel Aktif</p>
+                <p>Kelas Aktif</p>
             </div>
             <div class="icon">
                 <i class="fa fa-graduation-cap"></i>
@@ -30,9 +30,9 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3><?= count($simulasi) ?></h3>
+                <h3><?= count($kelas) ?></h3>
 
-                <p>Simulasi</p>
+                <p>Kelas</p>
             </div>
             <div class="icon">
                 <i class="fa fa-cubes"></i>
@@ -82,22 +82,22 @@
     <div class="col-md-7">
         <div class="box">
             <div class="box-header">
-                <div class="box-title">Mapel</div>
+                <div class="box-title">Kelas</div>
             </div>
             <div class="box-body">
-                <?php include('mapel.php') ?>
+                <?php include('kelas.php') ?>
             </div>
         </div>
     </div>
     <div class="col-md-5">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Aktif</h3>
+                <h3 class="box-title">User Baru</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
 
-                <?php include('simulasi.php') ?>
+                <?php include('user.php') ?>
 
             </div>
         </div>
