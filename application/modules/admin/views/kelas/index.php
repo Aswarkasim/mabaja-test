@@ -53,31 +53,32 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="btn-group">
-                                        <?php if ($row->is_active == 1) { ?>
-                                            <button type="button" class="btn btn-success"><i class="fa fa-check"></i> Tes Hari Ini</button>
-                                        <?php } else { ?>
-                                            <button type="button" class="btn btn-danger"><i class="fa fa-times"></i> Kelas Tidak Aktif</button>
-                                        <?php } ?>
-                                        <button type="button" class="btn <?php if ($row->is_active == 1) {
-                                                                                echo 'btn-success';
-                                                                            } else {
-                                                                                echo "btn-danger";
-                                                                            } ?> dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-
-
-                                        <ul class="dropdown-menu" role="menu">
-                                            <?php if ($row->is_active == 0) { ?>
-                                                <li><a href="<?= base_url('admin/kelas/is_active/1/' . $row->id_kelas) ?>"><i class="fa fa-check"></i> Aktif</a></li>
+                                    <?php if ($row->id_mapel != null) { ?>
+                                        <div class="btn-group">
+                                            <?php if ($row->is_active == 1) { ?>
+                                                <button type="button" class="btn btn-success"><i class="fa fa-check"></i> Tes Hari Ini</button>
                                             <?php } else { ?>
-                                                <li><a href="<?= base_url('admin/kelas/is_active/0/' . $row->id_kelas) ?>"><i class="fa fa-times"></i> Tidak Aktif</a></li>
+                                                <button type="button" class="btn btn-danger"><i class="fa fa-times"></i> Kelas Tidak Aktif</button>
                                             <?php } ?>
-                                        </ul>
-                                    </div>
+                                            <button type="button" class="btn <?php if ($row->is_active == 1) {
+                                                                                    echo 'btn-success';
+                                                                                } else {
+                                                                                    echo "btn-danger";
+                                                                                } ?> dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
 
+
+                                            <ul class="dropdown-menu" role="menu">
+                                                <?php if ($row->is_active == 0) { ?>
+                                                    <li><a href="<?= base_url('admin/kelas/is_active/1/' . $row->id_kelas) ?>"><i class="fa fa-check"></i> Aktif</a></li>
+                                                <?php } else { ?>
+                                                    <li><a href="<?= base_url('admin/kelas/is_active/0/' . $row->id_kelas) ?>"><i class="fa fa-times"></i> Tidak Aktif</a></li>
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
+                                    <?php } ?>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#ModalEdit<?= $row->id_kelas ?>">
