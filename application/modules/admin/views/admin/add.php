@@ -21,7 +21,7 @@
                                 <label for="" class="pull-right">Nama</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" name="nama_user" class="form-control">
+                                <input type="text" name="nama_admin" class="form-control">
                             </div>
                         </div>
                     </div>
