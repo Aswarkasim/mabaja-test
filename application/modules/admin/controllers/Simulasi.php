@@ -144,14 +144,15 @@ class Simulasi extends CI_Controller
     $simulasi = $this->SM->detailSimulasi($id_simulasi);
     $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
     $member = $this->SM->listMember($id_simulasi);
+    $kelas = $this->Crud_model->listing('tbl_kelas');
 
     // $hasil =  $this->SM->getSimulasiUser($id_user, $id_simulasi);
 
 
     $data = [
       'simulasi'  => $simulasi,
-      'simulasi'  => $simulasi,
       'member'  => $member,
+      'kelas'  => $kelas,
       'content'  => 'admin/simulasi/detail'
     ];
     $this->load->view('admin/layout/wrapper', $data, FALSE);
@@ -240,5 +241,35 @@ class Simulasi extends CI_Controller
     $this->Crud_model->delete('tbl_member', 'id_member', $id_member);
     $this->session->set_flashdata('msg', 'Ujian dapat diulangi');
     redirect('admin/simulasi/detail/' . $id_simulasi);
+  }
+
+  function resetKelas($id_simulasi, $id_kelas)
+  {
+    $user = $this->Crud_model->listingOneAll('tbl_user', 'id_kelas', $id_kelas);
+
+    foreach ($user as $row) {
+      $member = $this->SM->getSimulasiUser($row->id_user, $id_simulasi);
+      // echo $row->namalengkap;
+      // die;
+      foreach ($member as $m) {
+
+        $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $m->id_member);
+        foreach ($task as $t) {
+          $this->Crud_model->delete('tbl_task', 'id_task', $t->id_task);
+          $this->Crud_model->delete('tbl_member', 'id_member', $m->id_member);
+        }
+      }
+    }
+    $this->session->set_flashdata('msg', 'Kelas direset');
+    redirect('admin/simulasi/detail/' . $id_simulasi);
+  }
+
+  function test()
+  {
+    $mape = $this->Crud_model->listing('tbl_mapel');
+    foreach ($mape as $row) {
+      echo 'a';
+      // die;
+    }
   }
 }

@@ -1,4 +1,19 @@
  <div class="active tab-pane" id="peserta">
+   <p>
+   <div class="btn-group">
+     <button type="button" class="btn btn-danger"><i class="fa fa-warning"></i> Reset Perkelas</button>
+     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+       <span class="caret"></span>
+       <span class="sr-only">Toggle Dropdown</span>
+     </button>
+
+     <ul class="dropdown-menu" role="menu">
+       <?php foreach ($kelas as $k) { ?>
+         <li><a href="<?= base_url('admin/simulasi/resetKelas/' . $simulasi->id_simulasi . '/' . $k->id_kelas) ?>" class="tombol-reset"> <?= $k->nama_kelas; ?></a></li>
+       <?php } ?>
+     </ul>
+   </div>
+   </p>
    <table class="table DataTable">
      <thead>
        <tr>
