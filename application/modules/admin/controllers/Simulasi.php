@@ -256,8 +256,8 @@ class Simulasi extends CI_Controller
         $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $m->id_member);
         foreach ($task as $t) {
           $this->Crud_model->delete('tbl_task', 'id_task', $t->id_task);
-          $this->Crud_model->delete('tbl_member', 'id_member', $m->id_member);
         }
+        $this->Crud_model->delete('tbl_member', 'id_member', $m->id_member);
       }
     }
     $this->session->set_flashdata('msg', 'Kelas direset');
