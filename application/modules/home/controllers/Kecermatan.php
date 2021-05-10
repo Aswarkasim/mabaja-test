@@ -136,7 +136,7 @@ class Kecermatan extends CI_Controller
     // die;
     $urutan = $member->urutan_kecermatan + 1;
     if ($soal == null) {
-      __is_boolean('tbl_member', 'id_member', $member->id_member, 'is_done', '1');
+      // __is_boolean('tbl_member', 'id_member', $member->id_member, 'is_done', '1');
       //sampai disini
       // if (count($kolom) == $member->urutan_kecermatan) {
       //   redirect('home/kecermatan/result/' . $member->id_member . '/' . $kolom->id_simulasi, 'refresh');
