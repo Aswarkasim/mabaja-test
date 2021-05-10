@@ -22,7 +22,9 @@
 $id_user = $this->session->userdata('id_user');
 $this->load->model('home/Soal_model', 'SM');
 $rekap_member = $this->SM->getSimulasiUser($id_user, $id_simulasi);
-
+foreach ($rekap_member as $row) {
+  __is_boolean('tbl_member', 'id_member', $row->id_member, 'is_done', '1');
+}
 ?>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script type="text/javascript">
