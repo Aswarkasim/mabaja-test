@@ -71,6 +71,7 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
       document.getElementById('waktu').innerHTML = pad(minutes) + ":" + pad(remainingSeconds);
       if (seconds <= 0) {
         clearInterval(countdownTimer);
+        document.getElementById('waktu').innerHTML = 'Waktu Habis!!'
         window.location = "<?= base_url('home/kecermatan/start/' . $kolom->id_simulasi . '/' . $urutan); ?>";
       } else {
         seconds--;
