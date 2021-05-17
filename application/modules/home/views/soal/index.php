@@ -141,7 +141,7 @@
         return (n < 10 ? "0" + n : n);
       }
       document.getElementById('waktu').innerHTML = pad(hours) + ":" + pad(minutes) + ":" + pad(remainingSeconds);
-      if (seconds == 0) {
+      if (seconds <= 0) {
         clearInterval(countdownTimer);
         window.location = "<?= base_url('home/soal/resultTask/' . $task->id_task . '/' . $task->id_simulasi . '/' . $task->id_member) ?>";
       } else {
