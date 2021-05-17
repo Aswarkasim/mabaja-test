@@ -54,7 +54,7 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
 <?php if ($member->is_done == 0) { ?>
   <script>
     // var dataMinute = ;
-    var upgradeTime = <?= $member->waktu; ?>;
+    var upgradeTime = <?= $member->waktu - 1; ?>;
     var seconds = upgradeTime;
 
     function timer() {
