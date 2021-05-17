@@ -69,7 +69,7 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
         return (n < 10 ? "0" + n : n);
       }
       document.getElementById('waktu').innerHTML = pad(minutes) + ":" + pad(remainingSeconds);
-      if (seconds == 0) {
+      if (seconds <= 0) {
         clearInterval(countdownTimer);
         window.location = "<?= base_url('home/kecermatan/start/' . $kolom->id_simulasi . '/' . $urutan); ?>";
       } else {
