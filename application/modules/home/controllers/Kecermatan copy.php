@@ -39,7 +39,7 @@ class Kecermatan extends CI_Controller
           'id_simulasi'   => $id_simulasi,
           'id_kolom'   => $row->id_kolom,
           'id_user'       => $id_user,
-          'urutan_kecermatan' => $row->urutan,
+          'urutan_kecermatan'     => $row->urutan,
           'is_done'     => 0,
         ];
         $this->Crud_model->add('tbl_member', $dataMember);
@@ -103,7 +103,7 @@ class Kecermatan extends CI_Controller
 
 
       $dataTime = [
-        'waktu'       => $simulasi->waktu * 60,
+        'waktu'       => $simulasi->waktu,
         'time_start'  => $time_start,
         'time_end'    => $time_end
       ];
@@ -205,16 +205,6 @@ class Kecermatan extends CI_Controller
       'content'  => 'home/soal/result_kecermatan'
     ];
     $this->load->view('home/layout/wrapper', $data, FALSE);
-  }
-
-  function saveTimer()
-  {
-    $id_member = $this->input->post('id_member');
-    $data =
-      [
-        'waktu' => $this->input->post('waktu')
-      ];
-    $this->Crud_model->edit('tbl_member', 'id_member', $id_member, $data);
   }
 }
 /* End of file Controllername.php */

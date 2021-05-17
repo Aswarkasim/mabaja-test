@@ -16,7 +16,9 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
       <div class="card-body">
         <center>
           <b>
-            <h3 id="waktu"></h3>
+            <?php if ($member->is_done == 0) { ?>
+              <h3 id="waktu"></h3>
+            <?php } ?>
           </b>
           <h4>KOLOM <?= $kolom->urutan; ?></h4>
           <h4>Soal nomor <?= $soal->no_soal; ?></h4>
@@ -48,39 +50,52 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
   </div>
 </div>
 <?php $urutan = $kolom->urutan + 1 ?>
-<script>
-  // Set the date we're counting down to
-  var countDownDate = new Date("<?= $member->time_end; ?>").getTime();
-  // var countDownDate = new Date("2020-12-19 13:50:00").getTime();
 
-  // Update the count down every 1 second
-  var x = setInterval(function() {
+<?php if ($member->is_done == 0) { ?>
+  <script>
+    // var dataMinute = ;
+    var upgradeTime = <?= $member->waktu; ?>;
+    var seconds = upgradeTime;
 
-    // Get today's date and time
-    var asiaTime = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Makassar"
-    });
-    var now = new Date(asiaTime).getTime();
+    function timer() {
+      var days = Math.floor(seconds / 24 / 60 / 60);
+      var hoursLeft = Math.floor((seconds) - (days * 86400));
+      var hours = Math.floor(hoursLeft / 3600);
+      var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+      var minutes = Math.floor(minutesLeft / 60);
+      var remainingSeconds = seconds % 60;
 
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-    //  var distance = now - countDownDate;
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-
-    // Display the result in the element with id="waktu"
-    document.getElementById("waktu").innerHTML = hours + ":" + minutes + ":" + seconds;
-
-    // If the count down is finished, write some text
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("waktu").innerHTML = "Waktu Habis!!";
-      window.location = "<?= base_url('home/kecermatan/start/' . $kolom->id_simulasi . '/' . $urutan); ?>";
+      function pad(n) {
+        return (n < 10 ? "0" + n : n);
+      }
+      document.getElementById('waktu').innerHTML = pad(minutes) + ":" + pad(remainingSeconds);
+      if (seconds == 0) {
+        clearInterval(countdownTimer);
+        window.location = "<?= base_url('home/kecermatan/start/' . $kolom->id_simulasi . '/' . $urutan); ?>";
+      } else {
+        seconds--;
+      }
     }
-  }, 1000);
-</script>
+    var countdownTimer = setInterval('timer()', 1000);
+
+    var id_member = '<?= $member->id_member; ?>'
+    var timeleft = upgradeTime;
+    var downloadTimer = setInterval(function() {
+      // document.getElementById("number").value = timeleft
+      saveTime(id_member, timeleft)
+      timeleft -= 1;
+    }, 1000);
+
+
+
+    function saveTime(id_member, timeleft) {
+      var id = id_member
+      $.ajax({
+        type: 'POST',
+        data: 'id_member=' + id + '&waktu=' + timeleft,
+        url: '<?= base_url('home/kecermatan/saveTimer'); ?>',
+        dataType: 'json'
+      })
+    }
+  </script>
+<?php } ?>

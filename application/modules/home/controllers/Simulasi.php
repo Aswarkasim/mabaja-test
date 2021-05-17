@@ -68,6 +68,7 @@ class Simulasi extends CI_Controller
         $time_end = date('y-m-d H:i:s', $endTime);
 
         $dataTime = [
+          'waktu'       => $simulasi->waktu * 60,
           'time_start'  => $time_start,
           'time_end'    => $time_end
         ];
