@@ -8,12 +8,12 @@
               <div class="row">
                 <div class="col-md-3 text-center">
                   <p>Waktu</p>
-                  <?php if ($member->is_done == 0) {
+                  <?php //if ($member->is_done == 0) {
                   ?>
-                    <p id="waktu"></p>
-                  <?php } else {
-                    echo 'Waktu Habis!!';
-                  }
+                  <p id="waktu"></p>
+                  <?php //} else {
+                  //echo 'Waktu Habis!!';
+                  // }
                   ?>
                 </div>
 
