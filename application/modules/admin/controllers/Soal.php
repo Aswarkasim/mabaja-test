@@ -70,20 +70,19 @@ class Soal extends CI_Controller
 
       $a = 'A';
       $option = 5;
-      if ($simulasi->id_mapel = 'mrHXIR2D') {
-        switch ($simulasi->type_option) {
-          case 'B':
-            $option = 2;
-            break;
-          case 'D':
-            $option = 4;
-            break;
-          case 'E':
-            $option = 5;
-            break;
-        }
-      } else {
-        $option = 5;
+      switch ($simulasi->type_option) {
+        case 'B':
+          $option = 2;
+          break;
+        case 'C':
+          $option = 3;
+          break;
+        case 'D':
+          $option = 4;
+          break;
+        case 'E':
+          $option = 5;
+          break;
       }
 
       for ($i = 0; $i < $option; $i++) {

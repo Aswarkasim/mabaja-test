@@ -67,26 +67,25 @@
                              </div>
                          </div>
 
-                         <?php } else {
-                            if ($id_mapel == 'mrHXIR2D') {
-                            ?>
-                             <div class="form-group">
-                                 <div class="row">
-                                     <div class="col-md-3">
-                                         <label for="" class="pull-right">Type Option</label>
-                                     </div>
-                                     <div class="col-md-6">
-                                         <select name="type_option" required class="form-control" id="">
-                                             <option value="">-- Type Option --</option>
-                                             <option value="B">A-B</option>
-                                             <option value="D">A-D</option>
-                                             <option value="E">A-E</option>
-                                         </select>
-                                     </div>
+                     <?php } else { ?>
+
+                         <div class="form-group">
+                             <div class="row">
+                                 <div class="col-md-3">
+                                     <label for="" class="pull-right">Type Option</label>
+                                 </div>
+                                 <div class="col-md-6">
+                                     <select name="type_option" required class="form-control" id="">
+                                         <option value="">-- Type Option --</option>
+                                         <option value="B">A-B</option>
+                                         <option value="C">A-C</option>
+                                         <option value="D">A-D</option>
+                                         <option value="E">A-E</option>
+                                     </select>
                                  </div>
                              </div>
+                         </div>
 
-                         <?php } ?>
 
                          <div class="form-group">
                              <div class="row">
