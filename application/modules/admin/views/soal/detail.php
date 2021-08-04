@@ -120,27 +120,30 @@ $this->load->model('admin/Soal_model', 'SM');
                         </table>
                         <hr>
 
+                        <!-- Jika tidak sama dengan TKP -->
                         <?php if ($simulasi->id_mapel != '45hTKPfdm') { ?>
-                            <form action="<?= base_url('admin/soal/is_trueChoice') ?>" method="POST">
-                                <div class="form-group">
-                                    <input type="hidden" name="id_soal" value="<?= $soal->id_soal ?>">
-                                    <label for="">Jawaban Benar</label>
-                                    <select name="id_pilihan" required class="form-control" id="">
-                                        <option value="">-- Anotasi --</option>
-                                        <?php foreach ($pilihan as $row) { ?>
-                                            <option <?php if ($row->id_pilihan == $soal->id_pilihan) {
-                                                        echo "selected";
-                                                    } ?> value="<?= $row->id_pilihan; ?>"><?= $row->anotasi . ' - ' . character_limiter($row->butir_pilihan, '50'); ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                            <?php if ($soal->klasifikasi != 'TKP') { ?>
+                                <form action="<?= base_url('admin/soal/is_trueChoice') ?>" method="POST">
+                                    <div class="form-group">
+                                        <input type="hidden" name="id_soal" value="<?= $soal->id_soal ?>">
+                                        <label for="">Jawaban Benar</label>
+                                        <select name="id_pilihan" required class="form-control" id="">
+                                            <option value="">-- Anotasi --</option>
+                                            <?php foreach ($pilihan as $row) { ?>
+                                                <option <?php if ($row->id_pilihan == $soal->id_pilihan) {
+                                                            echo "selected";
+                                                        } ?> value="<?= $row->id_pilihan; ?>"><?= $row->anotasi . ' - ' . character_limiter($row->butir_pilihan, '50'); ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
 
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Pilih</button>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Pilih</button>
+                                    </div>
+                                </form>
 
-                        <?php } ?>
+                        <?php }
+                        } ?>
 
                     </div>
                 </div>
