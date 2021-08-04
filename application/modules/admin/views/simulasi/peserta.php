@@ -43,7 +43,11 @@
                <span class="label label-warning"><i class="fa fa-spinner"></i> Proses</span>
              <?php } ?>
            </td>
-           <td><?= $row->nilai_akhir; ?></td>
+           <?php if ($simulasi->id_mapel === 'c67PIBg8') {
+              echo '<td>TWK = ' . $row->nilai_twk . ', TIU = ' . $row->nilai_tiu . ', TKP = ' . $row->nilai_tkp . '</td>';
+            } else {
+              echo '<td>' . $row->nilai_akhir . '</td>';
+            } ?>
            <td><a href="<?= base_url('admin/simulasi/deleteMember/' . $row->id_member); ?>" class="btn btn-warning btn-sm tombol-reset"><i class="fa fa-refresh"></i> Ulangi ujian</a></td>
          </tr>
          <?php include('rekap_jawaban.php') ?>

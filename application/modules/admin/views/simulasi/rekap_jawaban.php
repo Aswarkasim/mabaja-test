@@ -11,6 +11,11 @@
 
 
       <div class="modal-body">
+
+        <p>Skor TWK : <?= $row->nilai_twk; ?></p>
+        <p>Skor TIU : <?= $row->nilai_tiu; ?></p>
+        <p>Skor TKP : <?= $row->nilai_tkp; ?></p>
+        <p><b>Rincian</b></p>
         <div class="row">
           <?php
 
@@ -18,21 +23,33 @@
           $task = $this->SM->pilihanTask($row->id_member);
           foreach ($task as $t) {
           ?>
+            <!-- Mapel TKP -->
             <?php if ($simulasi->id_mapel == '45hTKPfdm') { ?>
+
               <div class="col-md-1">
                 <div class="form-group">
                   <label for=""><i class="fa fa-check text-success"></i><?= $t->no_soal . ' ' . $t->anotasi; ?></label>
                 </div>
               </div>
-            <?php } else { ?>
-              <div class="col-md-1">
-                <div class="form-group">
-                  <label for=""><i class="<?= $t->jawaban_benar == $t->id_pilihan ? 'fa fa-check text-success' : 'fa fa-times text-danger'; ?>"></i><?= $t->no_soal . ' ' . $t->anotasi; ?></label>
+              <?php } else {
+              if ($t->klasifikasi === 'TKP') {
+              ?>
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <label for="">
+                      <?= $t->no_soal  . $t->anotasi . ' = ' . $t->poin; ?></label>
+                  </div>
                 </div>
-              </div>
+              <?php } else { ?>
+                <div class="col-md-1">
+                  <div class="form-group">
+                    <label for=""><i class="<?= $t->jawaban_benar == $t->id_pilihan ? 'fa fa-check text-success' : 'fa fa-times text-danger'; ?>"></i><?= $t->no_soal . ' ' . $t->anotasi; ?></label>
+                  </div>
+                </div>
 
 
           <?php
+              }
             }
           } ?>
 

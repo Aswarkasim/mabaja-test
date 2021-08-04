@@ -67,6 +67,22 @@ $this->load->model('admin/Soal_model', 'SM');
                                 </div>
                             <?php } ?>
 
+                            <?php if ($soal->klasifikasi == "TKP") { ?>
+                                <div class="form-group">
+                                    <label for="">Poin</label>
+                                    <select name="poin" required class="form-control" id="">
+                                        <option value="">-- Poin --</option>
+                                        <?php
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            $cek = $this->SM->cekPoin($soal->id_soal, $i);
+                                            if ($cek->poin != $i) {
+                                                echo '<option value="' . $i . '">' . $i . '</option>';
+                                            }
+                                        } ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
+
 
                             <div class="form-group">
                                 <div class="row">
@@ -125,12 +141,6 @@ $this->load->model('admin/Soal_model', 'SM');
                             </form>
 
                         <?php } ?>
-
-
-
-
-
-
 
                     </div>
                 </div>

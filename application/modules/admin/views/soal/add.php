@@ -113,9 +113,6 @@ $this->load->model('admin/Soal_model', 'SM');
                                     </select>
                                 </div>
 
-
-
-
                             </div>
                         </div>
 
@@ -130,7 +127,23 @@ $this->load->model('admin/Soal_model', 'SM');
                             </div>
                         </div>
 
-
+                        <?php if ($simulasi->id_mapel == 'c67PIBg8') { ?>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label for="" class="pull-right">Klasifikasi</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select name="klasifikasi" required class="form-control" id="">
+                                            <option value="">--- Klasifikasi ---</option>
+                                            <option value="TWK">TWK</option>
+                                            <option value="TIU">TIU</option>
+                                            <option value="TKP">TKP</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
 
                         <div class="form-group">
                             <div class="row">

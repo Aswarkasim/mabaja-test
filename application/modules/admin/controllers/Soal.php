@@ -63,6 +63,7 @@ class Soal extends CI_Controller
         'id_soal'        => random_string(),
         'id_simulasi'       => $id_simulasi,
         'butir_soal'     => $i->post('butir_soal'),
+        'klasifikasi'     => $i->post('klasifikasi'),
         'no_soal'        => $i->post('no_soal')
 
       ];

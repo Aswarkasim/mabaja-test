@@ -20,3 +20,30 @@
     </div>
   </div>
 </div>
+
+<?php $member = $this->Crud_model->listingOne('tbl_member', 'id_member', $id_member) ?>
+<script>
+  var upgradeTime = <?= $member->waktu - 1; ?>;
+  var seconds = upgradeTime;
+
+
+
+  var id_member = '<?= $id_member; ?>'
+  var timeleft = upgradeTime;
+  var downloadTimer = setInterval(function() {
+    // document.getElementById("number").value = timeleft
+    saveTime(id_member, timeleft)
+    timeleft -= 1;
+  }, 1000);
+
+
+  function saveTime(id_member, timeleft) {
+    var id = id_member
+    $.ajax({
+      type: 'POST',
+      data: 'id_member=' + id + '&waktu=' + timeleft,
+      url: '<?= base_url('home/kecermatan/saveTimer'); ?>',
+      dataType: 'json'
+    })
+  }
+</script>

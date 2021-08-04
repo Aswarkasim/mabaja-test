@@ -15,8 +15,12 @@
       <table class="table DataTable">
         <thead>
           <tr>
-            <th width="40px">No Soal</th>
-            <!-- <th width="100%">Butir</th> -->
+            <th width="100px">No Soal</th>
+
+            <!-- Cek jika CPNS -->
+            <?php if ($simulasi->id_mapel === 'c67PIBg8') { ?>
+              <th width="200px">Klasifikasi</th>
+            <?php } ?>
             <th>Status</th>
             <th width="60px">Tindakan</th>
           </tr>
@@ -27,6 +31,9 @@
             <tr>
               <td> <a href="<?= $simulasi->id_mapel == 'RPIuQJc5' ? base_url('admin/soal/detailKecermatan/' . $row->id_soal) : base_url('admin/soal/detail/' . $row->id_soal); ?>" class="btn btn-primary"> <?= $row->no_soal; ?></a></td>
               <!-- <td><a href="<?= base_url('admin/soal/detail/' . $row->id_soal); ?>"><strong><?= character_limiter($row->butir_soal, '50') ?></strong></a></td> -->
+              <?php if ($simulasi->id_mapel === 'c67PIBg8') {
+                echo '<td>' . $row->klasifikasi . '</td>';
+              } ?>
               <td>
                 <?php if ($row->is_done == 1) { ?>
                   <span class="label label-success"><i class="fa fa-check"></i> Selesai</span>

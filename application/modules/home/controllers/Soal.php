@@ -106,63 +106,86 @@ class Soal extends CI_Controller
     $poin = 0;
     $nilai = 0;
 
-    //cek apakah simulasi sama dengan kepribadian
+    if ($simulasi->id_mapel === 'c67PIBg8') {
 
+      $poinCpns = $this->countCpnsResult($task);
 
-    // if ($simulasi->id_mapel == 'mrHXIR2D') {
-    //   $pilihan = $this->Crud_model->listingOne('tbl_pilihan', 'id_pilihan', $task->id_pilihan);
-    //   $poin = $poin + $pilihan->poin;
-    // } else {
+      //masukkan ke DB tbl_member
+      $dataNilai = [
+        'nilai_twk' => $poinCpns['twk'],
+        'nilai_tiu' => $poinCpns['tiu'],
+        'nilai_tkp' => $poinCpns['tkp']
+      ];
+      $this->Crud_model->edit('tbl_member', 'id_member', $id_member, $dataNilai);
 
-    // foreach ($task as $row) {
+      $data = [
+        'poin'        => $poinCpns,
+        'simulasi'        => $simulasi,
+        'listSoal'       => $listSoal,
+        'content'     => 'home/soal/result_cpns'
+      ];
 
-    //   if ($row->id_pilihan == $row->kunci_jawaban) {
-    //     $nilai = $nilai;
-    //     $nilai = $nilai + 1;
-    //     $poin = 0;
-    //     if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
-    //       $poin = $nilai;
-    //     } else if ($simulasi->id_mapel == '45hTKPfdm') {
-    //     } else {
-    //       $jumlah = $simulasi->jumlah_soal;
-    //       $poin = ($nilai / $jumlah) * 100;
-    //     }
-    //   }
-    // }
-    //}
-
-
-    foreach ($task as $row) {
-      if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
-        if ($row->id_pilihan == $row->kunci_jawaban) {
-          $poin = $poin + 1;
+      $this->load->view('home/layout/wrapper', $data, FALSE);
+    } else {
+      foreach ($task as $row) {
+        if ($simulasi->id_mapel == 'Zatq9ywj' || $simulasi->id_mapel == 'UxWSqb6E' || $simulasi->id_mapel == 'mrHXIR2D') {
+          if ($row->id_pilihan == $row->kunci_jawaban) {
+            $poin = $poin + 1;
+          }
+        } else if ($simulasi->id_mapel == '45hTKPfdm') {
+          $poin = $poin + $row->poin;
+        } else {
+          if ($row->id_pilihan == $row->kunci_jawaban) {
+            $nilai = $nilai + 1;
+            $jumlah = $simulasi->jumlah_soal;
+            $poin = ($nilai / $jumlah) * 100;
+          }
         }
-      } else if ($simulasi->id_mapel == '45hTKPfdm') {
-        $poin = $poin + $row->poin;
-      } else {
+      }
+
+
+
+      $nilai_akhir = [
+        'nilai_akhir' => $poin
+      ];
+      $this->Crud_model->edit('tbl_member', 'id_member', $id_member, $nilai_akhir);
+
+      $data = [
+        'poin'        => $poin,
+        'simulasi'        => $simulasi,
+        'listSoal'       => $listSoal,
+        'content'     => 'home/soal/result_akademik'
+      ];
+      $this->load->view('home/layout/wrapper', $data, FALSE);
+    }
+  }
+
+
+  private function countCpnsResult($task)
+  {
+    $twk = 0;
+    $tiu = 0;
+    $tkp = 0;
+    foreach ($task as $row) {
+      if ($row->klasifikasi === 'TKP') {
+        $tkp = $tkp + $row->poin;
+      } else if ($row->klasifikasi === 'TIU') {
         if ($row->id_pilihan == $row->kunci_jawaban) {
-          $nilai = $nilai + 1;
-          $jumlah = $simulasi->jumlah_soal;
-          $poin = ($nilai / $jumlah) * 100;
+          $tiu = $tiu + 5;
+        }
+      } else if ($row->klasifikasi === 'TWK') {
+        if ($row->id_pilihan == $row->kunci_jawaban) {
+          $twk = $twk + 5;
         }
       }
     }
 
-
-
-    $nilai_akhir = [
-      'nilai_akhir' => $poin
+    $poinCpns = [
+      'twk' => $twk,
+      'tiu' => $tiu,
+      'tkp' => $tkp
     ];
-    $this->Crud_model->edit('tbl_member', 'id_member', $id_member, $nilai_akhir);
 
-    $data = [
-      'poin'        => $poin,
-      'simulasi'        => $simulasi,
-      'listSoal'       => $listSoal,
-      'content'     => 'home/soal/result_akademik'
-    ];
-    $this->load->view('home/layout/wrapper', $data, FALSE);
+    return $poinCpns;
   }
 }
-
-/* End of file Controllername.php */

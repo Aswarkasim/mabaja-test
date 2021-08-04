@@ -149,6 +149,8 @@ class Soal_model extends CI_Model
   {
     $this->db->select('tbl_task.*, 
                     tbl_pilihan.anotasi,
+                    tbl_pilihan.poin,
+                    tbl_soal.klasifikasi,
                     tbl_soal.id_pilihan as jawaban_benar')
       ->from('tbl_task')
       ->join('tbl_pilihan', 'tbl_pilihan.id_pilihan = tbl_task.id_pilihan', 'left')
