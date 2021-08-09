@@ -81,6 +81,9 @@
                                          <option value="C">A-C</option>
                                          <option value="D">A-D</option>
                                          <option value="E">A-E</option>
+                                         <option value="F">A-F</option>
+                                         <option value="G">A-G</option>
+                                         <option value="H">A-H</option>
                                      </select>
                                  </div>
                              </div>

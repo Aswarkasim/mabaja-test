@@ -84,6 +84,15 @@ class Soal extends CI_Controller
         case 'E':
           $option = 5;
           break;
+        case 'F':
+          $option = 6;
+          break;
+        case 'G':
+          $option = 7;
+          break;
+        case 'H':
+          $option = 8;
+          break;
       }
 
       for ($i = 0; $i < $option; $i++) {
