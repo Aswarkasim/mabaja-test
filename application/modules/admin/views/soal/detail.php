@@ -152,10 +152,12 @@ $this->load->model('admin/Soal_model', 'SM');
     </div>
 </div>
 
-<script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
+<!-- <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script> -->
+<script src="<?= base_url('assets/js/ckeditor/ckeditor.js'); ?>"></script>
 <script>
     CKEDITOR.replace('editor1', {
         height: 300,
-        filebrowserUploadUrl: "<?= base_url('admin/soal/upload'); ?>"
+        filebrowserUploadUrl: "<?= base_url('admin/soal/upload'); ?>",
+        filebrowserUploadMethod: "form"
     });
 </script>
