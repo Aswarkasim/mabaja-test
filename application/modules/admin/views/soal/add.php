@@ -128,6 +128,7 @@ $this->load->model('admin/Soal_model', 'SM');
                             </div>
                         </div>
 
+                        <!-- Cek apkah mapl ==== cpns -->
                         <?php if ($simulasi->id_mapel == 'c67PIBg8') { ?>
                             <div class="form-group">
                                 <div class="row">

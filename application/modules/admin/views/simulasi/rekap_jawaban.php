@@ -12,9 +12,14 @@
 
       <div class="modal-body">
 
-        <p>Skor TWK : <?= $row->nilai_twk; ?></p>
-        <p>Skor TIU : <?= $row->nilai_tiu; ?></p>
-        <p>Skor TKP : <?= $row->nilai_tkp; ?></p>
+        <!-- cek apakah mapel === cpns -->
+        <?php if ($simulasi->id_mapel === 'c67PIBg8') { ?>
+
+          <p>Skor TWK : <?= $row->nilai_twk; ?></p>
+          <p>Skor TIU : <?= $row->nilai_tiu; ?></p>
+          <p>Skor TKP : <?= $row->nilai_tkp; ?></p>
+        <?php } ?>
+
         <p><b>Rincian</b></p>
         <div class="row">
           <?php
