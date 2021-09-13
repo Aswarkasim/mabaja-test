@@ -22,6 +22,7 @@
               <th width="200px">Klasifikasi</th>
             <?php } ?>
             <th>Status</th>
+            <th>Jawaban</th>
             <th width="60px">Tindakan</th>
           </tr>
         </thead>
@@ -41,6 +42,7 @@
                   <span class="label label-warning"><i class="fa fa-spinner"></i> Draft</span>
                 <?php } ?>
               </td>
+              <td><?= $row->anotasi; ?></td>
               <td><a href="<?= base_url('admin/soal/deleteSoal/' . $row->id_soal); ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fa fa-times"></i></a></td>
             </tr>
           <?php } ?>

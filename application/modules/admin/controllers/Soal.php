@@ -19,7 +19,7 @@ class Soal extends CI_Controller
   {
     $id_simulasi = $this->session->userdata('id_simulasi');
     $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
-    $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
+    $soal = $this->SM->listSoal($id_simulasi);
     $data = [
       'delete'   => 'admin/soal/delete/',
       'edit'     => 'admin/soal/edit/',

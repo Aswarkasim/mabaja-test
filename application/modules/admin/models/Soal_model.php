@@ -196,4 +196,14 @@ class Soal_model extends CI_Model
       ->where('is_active', '1');
     return $this->db->get()->result();
   }
+
+  function listSoal($id_simulasi)
+  {
+    $this->db->select('tbl_soal.*, 
+                      tbl_pilihan.anotasi')
+      ->from('tbl_soal')
+      ->join('tbl_pilihan', 'tbl_pilihan.id_pilihan = tbl_soal.id_pilihan', 'left')
+      ->where('id_simulasi', $id_simulasi);
+    return $this->db->get()->result();
+  }
 }
