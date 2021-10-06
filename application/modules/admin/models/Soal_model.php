@@ -24,7 +24,8 @@ class Soal_model extends CI_Model
   {
     $this->db->select('*')
       ->from('tbl_simulasi')
-      ->where('id_mapel', $id_mapel);
+      ->where('id_mapel', $id_mapel)
+      ->orde_by('nama_simulasi', 'ASC');
     return $this->db->get()->result();
   }
 
