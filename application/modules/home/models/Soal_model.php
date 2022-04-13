@@ -153,6 +153,30 @@ class Soal_model extends CI_Model
       ->where('id_kolom', $id_kolom);
     return $this->db->get()->row();
   }
+
+  function getMemberSimulasiUserPaket($id_user, $id_simulasi, $id_paket)
+  {
+    $this->db->select('*')
+      ->from('tbl_member')
+      ->where('id_user', $id_user)
+      ->where('id_simulasi', $id_simulasi)
+      ->where('id_paket', $id_paket);
+    return $this->db->get()->row();
+  }
+
+  function getKolomByMember($id_user, $id_simulasi)
+  {
+    $this->db->select('tbl_task.*,
+                  tbl_kolom.urutan,
+                  tbl_soal.jawaban_kecermatan as js_kecermatan')
+      ->from('tbl_task')
+      ->join('tbl_kolom', 'tbl_kolom.id_kolom = tbl_task.id_kolom', 'left')
+      ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
+      ->where('tbl_task.id_user', $id_user)
+      ->where('tbl_task.id_simulasi', $id_simulasi)
+      ->group_by('tbl_kolom.urutan');
+    return $this->db->get()->result();
+  }
 }
 
 /* End of file ModelName.php */

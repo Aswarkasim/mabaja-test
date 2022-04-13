@@ -26,20 +26,23 @@
       } else {
         $link = 'home/simulasi/petunjuk/';
       }
-      foreach ($simulasi as $row) { ?>
+      foreach ($simulasi as $row) {
+        if ($row->id_paket == null) {
+      ?>
 
-        <div class="col-md-4 mt-2">
-          <div class="card">
-            <div class="card-body">
-              <img src="<?= base_url('assets/img/blank_image.jpg'); ?>" width="100%" alt="">
-              <h6 class="mt-2"><strong><?= $row->nama_simulasi; ?></strong></h6>
+          <div class="col-md-4 mt-2">
+            <div class="card">
+              <div class="card-body">
+                <img src="<?= base_url('assets/img/blank_image.jpg'); ?>" width="100%" alt="">
+                <h6 class="mt-2"><strong><?= $row->nama_simulasi; ?></strong></h6>
 
-              <a href="<?= base_url($link . $row->id_simulasi); ?>" class="btn btn-primary btn-block mt-1">Buka</a>
+                <a href="<?= base_url($link . $row->id_simulasi); ?>" class="btn btn-primary btn-block mt-1">Buka</a>
+              </div>
             </div>
           </div>
-        </div>
 
-      <?php } ?>
+      <?php }
+      } ?>
 
 
     </div>

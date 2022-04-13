@@ -39,6 +39,7 @@ class Kecermatan extends CI_Controller
           'id_simulasi'   => $id_simulasi,
           'id_kolom'   => $row->id_kolom,
           'id_user'       => $id_user,
+          'id_paket'      => $simulasi->id_paket,
           'urutan_kecermatan' => $row->urutan,
           'is_done'     => 0,
         ];
@@ -149,7 +150,7 @@ class Kecermatan extends CI_Controller
     // die;
     $urutan = $member->urutan_kecermatan + 1;
     if ($soal == null) {
-      // __is_boolean('tbl_member', 'id_member', $member->id_member, 'is_done', '1');
+      __is_boolean('tbl_member', 'id_member', $member->id_member, 'is_done', '1');
       //sampai disini
       // if (count($kolom) == $member->urutan_kecermatan) {
       //   redirect('home/kecermatan/result/' . $member->id_member . '/' . $kolom->id_simulasi, 'refresh');
@@ -196,15 +197,72 @@ class Kecermatan extends CI_Controller
       __is_boolean('tbl_member', 'id_member', $member->id_member, 'nilai_akhir', $skor);
     }
 
+
+    $content = 'home/soal/result_kecermatan_paket';
+    $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
+    // print_r($simulasi);
+    // die();
+    // if ($simulasi->id_paket) {
+    //   $content = 'home/soal/result_kecermatan_paket';
+    // }
+    $taskByMember = $this->SM->getKolomByMember($id_user, $id_simulasi);
+    // print_r($taskByMember);
     $data = [
       //  'skor'    => $skor,
+      'id_user' => $id_user,
       'id_simulasi' => $id_simulasi,
+      'id_paket' => $simulasi->id_paket,
       //  'urutan_kolom' => $urutan_kolom,
       'kolom' => $kolom,
+      'taskByMember'  => $taskByMember,
       // 'rekap_member' => $rekap_member,
-      'content'  => 'home/soal/result_kecermatan'
+      'content'  => $content
     ];
     $this->load->view('home/layout/wrapper', $data, FALSE);
+  }
+
+  function saveScore()
+  {
+
+    $this->load->helper('string');
+    $this->load->model('home/Kecermatan_model', 'KM');
+
+
+    $i = $this->input;
+    $id_user = $i->get('id_user');
+    $id_simulasi = $i->get('id_simulasi');
+    $id_paket = $i->get('id_paket');
+    $id_member = $i->get('id_member');
+    $kecepatan = $i->get('kecepatan');
+    $ketelitian = $i->get('ketelitian');
+    $kestabilan = $i->get('kestabilan');
+    $ketahanan = $i->get('ketahanan');
+
+
+    $cek = $this->KM->cekSkor($id_user, $id_simulasi, $id_member);
+    if ($cek == true) {
+      $data = [
+        'id_skor_kecermatan' => random_string(),
+        'id_user' => $id_user,
+        'id_simulasi' => $id_simulasi,
+        'id_paket' => $id_paket,
+        'id_member' => $id_member,
+        'kecepatan' => $kecepatan,
+        'ketelitian' => $ketelitian,
+        'kestabilan' => $kestabilan,
+        'ketahanan' => $ketahanan,
+      ];
+      // print_r($data);
+      // die();
+
+      $this->Crud_model->add('tbl_skor_kecermatan', $data);
+    }
+
+    if ($id_paket) {
+      redirect('home/paket/' . $id_paket, 'refresh');
+    } else {
+      redirect('home', 'refresh');
+    }
   }
 
   function saveTimer()

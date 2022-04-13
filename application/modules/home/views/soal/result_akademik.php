@@ -50,7 +50,7 @@
               </table>
             <?php } ?>
 
-            <a href="<?= base_url('home'); ?>" class="btn btn-primary btn-block">Selesai <i class="fa fa-check"></i></a>
+            <a href="<?= base_url('home/paket/' . $simulasi->id_paket); ?>" class="btn btn-primary btn-block">Selesai <i class="fa fa-check"></i></a>
 
 
           </div>

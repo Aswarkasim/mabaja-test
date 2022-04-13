@@ -51,6 +51,8 @@
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Log In</button>
                 </div>
 
+                <p>Login sebagai user <a href="<?= base_url('home/auth'); ?>">di sini</a></p>
+
 
             </form>
 

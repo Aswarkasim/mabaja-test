@@ -27,10 +27,13 @@ class Simulasi extends CI_Controller
     $simulasi = $this->Crud_model->listingOne('tbl_simulasi', 'id_simulasi', $id_simulasi);
     $member = $this->HM->detailMember($id_user, $id_simulasi);
 
+    //TO DO : Detail Paket yang mengecek apakah member ada
+
     if ($member == null) {
       $dataMember = [
         'id_member'     => random_string(),
         'id_simulasi'   => $id_simulasi,
+        'id_paket'       => $simulasi->id_paket,
         'id_user'       => $id_user,
         'is_done'     => 0,
       ];

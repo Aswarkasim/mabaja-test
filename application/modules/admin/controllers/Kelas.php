@@ -55,7 +55,7 @@ class Kelas extends CI_Controller
       ];
       $this->Crud_model->add('tbl_kelas', $data);
       $this->session->set_flashdata('msg', 'kelas berhasil ditambah');
-      redirect('admin/kelas');
+      redirect('admin/kelas', 'refresh');
     }
   }
   function edit($id_kelas)
@@ -75,7 +75,7 @@ class Kelas extends CI_Controller
       ];
       $this->Crud_model->edit('tbl_kelas', 'id_kelas', $id_kelas, $data);
       $this->session->set_flashdata('msg', 'kelas berhasil diedit');
-      redirect('admin/kelas');
+      redirect('admin/kelas', 'refresh');
     }
   }
 
@@ -87,25 +87,39 @@ class Kelas extends CI_Controller
     }
     $this->Crud_model->delete('tbl_kelas', 'id_kelas', $id_kelas);
     $this->session->set_flashdata('msg', 'data telah dihapus');
-    redirect('admin/kelas');
+    redirect('admin/kelas', 'refresh');
   }
 
   function is_active($value, $id_kelas)
   {
     __is_boolean('tbl_kelas', 'id_kelas', $id_kelas, 'is_active', $value);
     $this->session->set_flashdata('msg', 'Kelas diaktifkan');
-    redirect('admin/kelas');
+    redirect('admin/kelas', 'refresh');
   }
 
   function cheangeMapel($id_kelas, $id_mapel = null)
   {
-    $simulasi = $this->SM->cekSimulasiActive($id_mapel);
-    if (count($simulasi) >= 1) {
-      __is_boolean('tbl_kelas', 'id_kelas', $id_kelas, 'id_mapel', $id_mapel);
-      $this->session->set_flashdata('msg', 'Mapel diubah');
+
+    if ($id_mapel === 'KqyMAXUx') {
+      $paket = $this->Crud_model->listingOneAll('tbl_paket', 'is_active', 1);
+      if ($paket) {
+        __is_boolean('tbl_kelas', 'id_kelas', $id_kelas, 'id_mapel', $id_mapel);
+        $this->session->set_flashdata('msg', 'Mapel diubah');
+      } else {
+        $this->session->set_flashdata('msg_er', 'Tidak paket POLRI yang Aktif yang aktif');
+      }
+      redirect('admin/kelas', 'refresh');
     } else {
-      $this->session->set_flashdata('msg_er', 'Tidak ada simulasi yang aktif');
+
+      $simulasi = $this->SM->cekSimulasiActive($id_mapel);
+
+      if (count($simulasi) >= 1) {
+        __is_boolean('tbl_kelas', 'id_kelas', $id_kelas, 'id_mapel', $id_mapel);
+        $this->session->set_flashdata('msg', 'Mapel diubah');
+      } else {
+        $this->session->set_flashdata('msg_er', 'Tidak ada simulasi yang aktif');
+      }
+      redirect('admin/kelas', 'refresh');
     }
-    redirect('admin/kelas');
   }
 }

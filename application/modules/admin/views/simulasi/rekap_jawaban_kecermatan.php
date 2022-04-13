@@ -12,16 +12,86 @@
 
       <div class="modal-body">
         <div class="row">
-          <?php
 
-          $task = $this->SM->detailHasilMemberKecermatan($row->id_user, $row->id_simulasi);
+          <div class="text-center">
+            <h4><b>Resume Hasil Pengerjaan</b></h4>
 
-          foreach ($task as $t) { ?>
+            <table class="table">
+              <tr>
+                <td>Kolom</td>
+                <td>Total</td>
+                <td>Kesalahan</td>
+                <td>Jawaban Benar</td>
+                <td>Xn-X(n-1)</td>
+                <td>Skor Kestabilan</td>
+              </tr>
 
-            <p style="margin-left: 20px;"><?= 'Kolom ' . $t->urutan_kecermatan . ' : ' . $t->nilai_akhir; ?></p>
+              <?php $resume = $this->KM->listResumeKecermatan($row->id_user, $row->id_simulasi);
+              foreach ($resume as $r) { ?>
 
-          <?php
-          } ?>
+                <tr>
+                  <td><?= $r->urutan_kolom; ?></td>
+                  <td><?= $r->total_jawab; ?></td>
+                  <td><?= $r->kesalahan; ?></td>
+                  <td><?= $r->benar; ?></td>
+                  <td><?= $r->xn_selisih; ?></td>
+                  <td><?= $r->skor_kestabilan; ?></td>
+                </tr>
+
+              <?php
+              }
+              ?>
+
+            </table>
+
+            <br>
+            <hr>
+            <b> Faktor Penilaian</b>
+            <?php $skor = $this->KM->listSkorKecermatan($row->id_user, $row->id_simulasi);
+
+            ?>
+            <table class="table">
+              <tr>
+                <td>Kecepatan</td>
+                <td><?= $skor->kecepatan; ?></td>
+                <td>0.40</td>
+                <td><?= $proporsi_kecepatan = $skor->kecepatan * 0.4; ?></td>
+              </tr>
+
+              <tr>
+                <td>Ketelitian</td>
+                <td><?= $skor->ketelitian; ?></td>
+                <td>0.20</td>
+                <td><?= $proporsi_ketelitian =  $skor->ketelitian * 0.20; ?></td>
+              </tr>
+
+              <tr>
+                <td>Kestabilan</td>
+                <td><?= $skor->kestabilan; ?></td>
+                <td>0.30</td>
+                <td><?= $proporsi_kestabilan = $skor->kestabilan * 0.30; ?></td>
+              </tr>
+
+              <tr>
+                <td>Ketahanan</td>
+                <td><?= $skor->ketahanan; ?></td>
+                <td>0.30</td>
+                <td><?= $proporsi_ketahanan = $skor->ketahanan * 0.10; ?></td>
+              </tr>
+
+              <tr>
+                <td><b></b> Total</td>
+                <td><?= $skor->kecepatan + $skor->ketelitian + $skor->kestabilan + $skor->ketahanan; ?></td>
+                <td>1.00</td>
+                <td><?= $proporsi_kecepatan + $proporsi_ketelitian + $proporsi_kestabilan + $proporsi_ketahanan; ?></td>
+              </tr>
+
+            </table>
+
+            <hr>
+            <br>
+          </div>
+
 
         </div>
       </div>

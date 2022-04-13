@@ -14,20 +14,26 @@ class Simulasi extends CI_Controller
 
   public function index($id_mapel = null)
   {
-    if ($id_mapel) {
-      $simulasi = $this->SM->listSimulasiMapel($id_mapel);
+    //jika sama dengan mapel polri
+    if ($id_mapel == 'KqyMAXUx') {
+      redirect('admin/paket');
     } else {
-      $simulasi = $this->SM->listSimulasi();
-    }
 
-    $data = [
-      'simulasi'    => $simulasi,
-      'add'      => 'admin/simulasi/add/',
-      'edit'      => 'admin/simulasi/edit/',
-      'delete'      => 'admin/simulasi/delete/',
-      'title'     => 'Simulasi',
-      'content'   => 'admin/simulasi/index'
-    ];
+      if ($id_mapel) {
+        $simulasi = $this->SM->listSimulasiMapel($id_mapel);
+      } else {
+        $id_paket = $this->input->get('id_paket');
+        $simulasi = $this->SM->listSimulasiPaket($id_paket);
+      }
+      $data = [
+        'simulasi'    => $simulasi,
+        'add'      => 'admin/simulasi/add/',
+        'edit'      => 'admin/simulasi/edit/',
+        'delete'      => 'admin/simulasi/delete/',
+        'title'     => 'Simulasi',
+        'content'   => 'admin/simulasi/index'
+      ];
+    }
 
     $this->load->view('admin/layout/wrapper', $data, FALSE);
   }
@@ -37,7 +43,6 @@ class Simulasi extends CI_Controller
 
     $this->load->helper('string');
     $mapel = $this->Crud_model->listing('tbl_mapel');
-
 
     $required = '%s tidak boleh kosong';
     $valid = $this->form_validation;
@@ -142,7 +147,7 @@ class Simulasi extends CI_Controller
     }
 
     $simulasi = $this->SM->detailSimulasi($id_simulasi);
-    $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
+    // $soal = $this->Crud_model->listingOneAll('tbl_soal', 'id_simulasi', $id_simulasi);
     $member = $this->SM->listMember($id_simulasi);
     $kelas = $this->Crud_model->listing('tbl_kelas');
 

@@ -67,9 +67,27 @@ class Kecermatan extends CI_Controller
 
   function deleteMember($id_member)
   {
+
+    $this->load->model('admin/Kecermatan_model', 'KM');
+
     $member = $this->Crud_model->listingOne('tbl_member', 'id_member', $id_member);
+    // print_r($member);
+    // die();
     $id_simulasi = $member->id_simulasi;
-    $member_rekap = $this->SM->detailHasilMemberKecermatan($member->id_user, $member->id_simulasi);
+    $member_rekap = $this->SM->detailHasilMemberKecermatan($member->id_user, $id_simulasi);
+
+    $skor = $this->KM->listSkorKecermatanAll($member->id_user, $id_simulasi);
+    foreach ($skor as $row) {
+      $this->Crud_model->delete('tbl_skor_kecermatan', 'id_skor_kecermatan', $row->id_skor_kecermatan);
+    }
+
+    $resume = $this->KM->listResumeKecermatan($member->id_user, $id_simulasi);
+    foreach ($resume as $row) {
+      $this->Crud_model->delete('tbl_resume_kecermatan', 'id_resume_kecermatan', $row->id_resume_kecermatan);
+    }
+
+
+
     foreach ($member_rekap as $row) {
       $this->Crud_model->delete('tbl_member', 'id_member', $row->id_member);
       $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $row->id_member);
@@ -77,6 +95,9 @@ class Kecermatan extends CI_Controller
         $this->Crud_model->delete('tbl_task', 'id_task', $t->id_task);
       }
     }
+
+
+
     redirect('admin/simulasi/detail/' . $id_simulasi, 'refresh');
   }
 

@@ -22,6 +22,15 @@ class Home_model extends CI_Model
     return $this->db->get()->result();
   }
 
+  public function listSimulasiPaket($id_paket)
+  {
+    $this->db->select('*')
+      ->from('tbl_simulasi')
+      ->where('id_paket', $id_paket)
+      ->where('is_active', '1');
+    return $this->db->get()->result();
+  }
+
 
   public function listPaket($limit)
   {
@@ -120,5 +129,24 @@ class Home_model extends CI_Model
       ->where('id_user', $id_user)
       ->where('id_kolom', $id_kolom);
     return $this->db->get()->row();
+  }
+
+  function taskByKolom($id_member, $id_kolom)
+  {
+    $this->db->select('*')
+      ->from('tbl_task')
+      ->where('id_member', $id_member)
+      ->where('id_kolom', $id_kolom);
+    return $this->db->get()->result();
+  }
+
+  function taskByKolomOnNull($id_member, $id_kolom)
+  {
+    $this->db->select('*')
+      ->from('tbl_task')
+      ->where('id_member', $id_member)
+      ->where('id_kolom', $id_kolom)
+      ->where('jawaban_kecermatan', null);
+    return $this->db->get()->result();
   }
 }

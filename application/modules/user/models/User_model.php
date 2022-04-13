@@ -10,6 +10,7 @@ class User_model extends CI_Model
   {
     $this->db->select('tbl_member.*, 
                       tbl_simulasi.nama_simulasi,
+                      tbl_simulasi.id_mapel,
                       tbl_mapel.nama_mapel')
       ->from('tbl_member')
       ->join('tbl_simulasi', 'tbl_simulasi.id_simulasi = tbl_member.id_simulasi', 'left')
@@ -27,6 +28,14 @@ class User_model extends CI_Model
   }
 
 
+  function listSkorKecermatan($id_user, $id_simulasi)
+  {
+    $this->db->select('*')
+      ->from('tbl_skor_kecermatan')
+      ->where('id_user', $id_user)
+      ->where('id_simulasi', $id_simulasi);
+    return $this->db->get()->row();
+  }
 
 
   function myPayment($id_user)

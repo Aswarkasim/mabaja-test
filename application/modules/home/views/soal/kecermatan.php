@@ -41,7 +41,7 @@ $link = 'home/kecermatan/submit/' . $soal->id_task . '/' . $no_next
             <a href="<?= base_url($link . '/D'); ?>" class="btn btn-outline-primary mr-2 ml-2">D</a>
             <a href="<?= base_url($link . '/E'); ?>" class="btn btn-outline-primary mr-2 ml-2">E</a>
           <?php } else { ?>
-            <a href="<?= base_url('home/kecermatan/result/' . $member->id_member . '/' . $member->id_simulasi); ?>" class="btn btn-outline-primary">Lihat Hasil</a>
+            <a href="<?= base_url('home/kecermatan/result/' . $member->id_simulasi); ?>" class="btn btn-outline-primary">Lihat Hasil</a>
           <?php } ?>
         </center>
       </div>

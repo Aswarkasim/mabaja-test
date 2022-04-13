@@ -29,6 +29,15 @@ class Soal_model extends CI_Model
     return $this->db->get()->result();
   }
 
+  function listSimulasiPaket($id_paket)
+  {
+    $this->db->select('*')
+      ->from('tbl_simulasi')
+      ->where('id_paket', $id_paket)
+      ->order_by('nama_simulasi', 'ASC');
+    return $this->db->get()->result();
+  }
+
 
   function detailSimulasi($id_simulasi)
   {
@@ -194,6 +203,15 @@ class Soal_model extends CI_Model
     $this->db->select('*')
       ->from('tbl_simulasi')
       ->where('id_mapel', $id_mapel)
+      ->where('is_active', '1');
+    return $this->db->get()->result();
+  }
+
+  function cekSimulasiPaket($id_paket)
+  {
+    $this->db->select('*')
+      ->from('tbl_simulasi')
+      ->where('id_paket', $id_paket)
       ->where('is_active', '1');
     return $this->db->get()->result();
   }
