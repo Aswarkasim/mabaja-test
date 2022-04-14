@@ -215,7 +215,9 @@
 
                 </table>
               </div>
-              <?php $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $kestabilan, $ketahanan, $totalSkor) ?>
+              <?php 
+              $this->KM->editMPaket($id_user, $id_paket,'kecermatan',$totalSkor);
+              $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $kestabilan, $ketahanan, $totalSkor) ?>
               <a href="<?= base_url('home') ?>" class="btn btn-primary btn-block mt-3">Selesai<i class="fa fa-check"></i></a>
 
             </div>

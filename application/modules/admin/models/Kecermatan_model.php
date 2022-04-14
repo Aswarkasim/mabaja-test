@@ -60,4 +60,6 @@ class Kecermatan_model extends CI_Model
       ->order_by('tbl_member.date_created', 'DESC');
     return $this->db->get()->result();
   }
+
+  
 }

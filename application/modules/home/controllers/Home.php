@@ -58,7 +58,14 @@ class Home extends CI_Controller
 
     function paket($id_paket)
     {
+        $this->load->model('home/Kecermatan_model', 'KM');
         $id_user = $this->session->userdata('id_user');
+        $cek = $this->KM->cekPaket($id_user, $id_paket);
+
+        if($cek){
+            $this->KM->insertMPaket($id_user, $id_paket);
+        }
+
         $simulasi = $this->HM->listSimulasiPaket($id_paket);
         // $member = $this->SM->getMemberSimulasiUserPaket($id_user, $);
         $data = [
