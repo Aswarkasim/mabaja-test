@@ -10,6 +10,8 @@ class Paket extends CI_Controller
   {
     parent::__construct();
     // is_logged_in_admin();
+
+    $this->load->model('admin/Data_model', 'DM');
   }
 
 
@@ -33,14 +35,17 @@ class Paket extends CI_Controller
 
   function detail($id_paket)
   {
+
+    $this->load->model('admin/Data_model', 'DM');
+
     $simulasi = $this->Crud_model->listingOneAll('tbl_simulasi', 'id_paket', $id_paket);
     $paket = $this->Crud_model->listingOne('tbl_paket', 'id_paket', $id_paket);
+
+    $peserta = $this->DM->listPesertaPaket($id_paket);
     $data = [
       'simulasi'    => $simulasi,
       'paket'    => $paket,
-      // 'add'      => 'admin/simulasi/add/',
-      // 'edit'      => 'admin/simulasi/edit/',
-      // 'delete'      => 'admin/simulasi/delete/',
+      'peserta'    => $peserta,
       'title'     => 'Simulasi ',
       'content'   => 'admin/paket/detail'
     ];
@@ -155,5 +160,23 @@ class Paket extends CI_Controller
       $this->session->set_flashdata('msg', 'Masih ada simulasi yang belum Aktif');
       redirect('admin/paket/detail/' . $id_paket, 'refresh');
     }
+  }
+
+  //Belum Rampung
+  function deleteUserPaket($id_m_paket)
+  {
+    $m_paket = $this->Crud_model->listingOne('tbl_m_paket', 'id_m_paket', $id_m_paket);
+    // print_r($m_paket);
+    // die('masuk');
+    $member = $this->DM->listMemberByPaket($m_paket->id_user, $m_paket->id_paket);
+    foreach ($member as $m) {
+      // $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $m->id_member);
+      // foreach ($task as $t) {
+      // $this->Crud_model->delete('tbl_task', 'id_task', $t->id_task);
+      // }
+      // $this->Crud_model->delete('tbl_member', 'id_member', $m->id_member);
+    }
+    $this->Crud_model->delete('tbl_m_paket', 'id_m_paket', $m_paket->id_m_paket);
+    redirect('admin/paket/detail/' . $m_paket->id_paket);
   }
 }

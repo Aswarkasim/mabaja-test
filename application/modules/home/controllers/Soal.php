@@ -94,6 +94,7 @@ class Soal extends CI_Controller
   function resultTask($id_task, $id_simulasi, $id_member)
   {
 
+    $id_user = $this->session->userdata('id_user');
     $this->session->unset_userdata('id_task');
 
     __is_boolean('tbl_member', 'id_member', $id_member, 'is_done', '1');
@@ -149,6 +150,20 @@ class Soal extends CI_Controller
         'nilai_akhir' => $poin
       ];
       $this->Crud_model->edit('tbl_member', 'id_member', $id_member, $nilai_akhir);
+
+      if ($simulasi->id_paket) {
+        //Jika kepribadian
+        if ($simulasi->id_mapel === 'mrHXIR2D') {
+          $skor = $poin * (30 / 100);
+          $this->HM->editMPaket($id_user, $simulasi->id_paket, 'kepribadian', $skor);
+
+          //jika kecerdasan
+        } else if ($simulasi->id_mapel === 'UxWSqb6E') {
+          // die('masuk');
+          $skor = $poin * (40 / 100);
+          $this->HM->editMPaket($id_user, $simulasi->id_paket, 'kecerdasan', $skor);
+        }
+      }
 
       $data = [
         'poin'        => $poin,

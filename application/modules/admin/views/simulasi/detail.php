@@ -6,6 +6,10 @@
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
+
+          <?php if ($simulasi->id_paket) { ?>
+            <a href="<?= base_url('admin/paket/detail/' . $simulasi->id_paket); ?>" class="btn btn-warning"><i class="fa fa-arrow-left"></i> Kembali</a><br>
+          <?php } ?>
           <img class="" width="100%" src="<?= base_url($simulasi->cover) ?>" alt="User profile picture">
 
           <br><br>

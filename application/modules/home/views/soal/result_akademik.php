@@ -5,7 +5,9 @@
         <div class="card">
           <div class="card-body">
 
-
+<?php 
+$this->load->model('home/Home_model', 'HM');
+ ?>
 
             <center>
               <h4><b>Hasil Simulasi</b></h4>

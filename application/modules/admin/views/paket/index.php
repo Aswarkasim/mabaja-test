@@ -8,7 +8,7 @@
 
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Manajemen Mapel</h3>
+                <h3 class="box-title">Manajemen Paket</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -48,7 +48,7 @@
 
                                     <a href="<?= base_url($tombol['delete'] . $row->id_paket) ?>" class="btn btn-danger btn-xs tombol-hapus"><i class="fa fa-trash"></i> Hapus</a>
                                 </td>
-                                <?php include('edit.php')
+                                 <?php include('edit.php')
                                 ?>
                             </tr>
                         <?php $no++;

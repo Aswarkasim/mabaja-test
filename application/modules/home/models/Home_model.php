@@ -149,4 +149,55 @@ class Home_model extends CI_Model
       ->where('jawaban_kecermatan', null);
     return $this->db->get()->result();
   }
+
+  function cekPaket($id_user, $id_paket)
+  {
+    $nilai = $this->db->select('*')
+      ->from('tbl_m_paket')
+      ->where('id_user', $id_user)
+      ->where('id_paket', $id_paket)
+      ->get()->result();
+
+    if (count($nilai) <= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function  insertMPaket($id_user, $id_paket)
+  {
+    $this->load->helper('string');
+
+    $data = [
+      'id_m_paket' => random_string(),
+      'id_user'    => $id_user,
+      'id_paket'   => $id_paket,
+      'kecerdasan' => 0,
+      'kepribadian' => 0,
+      'kecermatan' => 0,
+      'skor_akhir' => 0
+    ];
+    $this->Crud_model->add('tbl_m_paket', $data);
+  }
+
+  function editMPaket($id_user, $id_paket, $field, $skor)
+  {
+
+    $nilai = $this->db->select('*')
+      ->from('tbl_m_paket')
+      ->where('id_user', $id_user)
+      ->where('id_paket', $id_paket)
+      ->get()->row();
+
+    $skor_akhir = $nilai->kecerdasan + $nilai->kecermatan + $nilai->kepribadian;
+
+    $data = [
+      'id_user'       => $id_user,
+      'id_paket'      => $id_paket,
+      $field          => $skor,
+      'skor_akhir'        => $skor_akhir,
+    ];
+    $this->Crud_model->edit('tbl_m_paket', 'id_m_paket', $nilai->id_m_paket, $data);
+  }
 }

@@ -23,6 +23,7 @@
                   </tr>
                   <?php
                   $this->load->model('home/Kecermatan_model', 'KM');
+                  $this->load->model('home/Home_model', 'HM');
 
                   $total_soal = 0;
                   $total_jawaban = 0;
@@ -215,8 +216,9 @@
 
                 </table>
               </div>
-              <?php 
-              $this->KM->editMPaket($id_user, $id_paket,'kecermatan',$totalSkor);
+              <?php
+              $skor_akhir = $totalSkor * (30 / 100);
+              $this->HM->editMPaket($id_user, $id_paket, 'kecermatan', $skor_akhir);
               $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $kestabilan, $ketahanan, $totalSkor) ?>
               <a href="<?= base_url('home') ?>" class="btn btn-primary btn-block mt-3">Selesai<i class="fa fa-check"></i></a>
 

@@ -150,49 +150,4 @@ class Kecermatan_model extends CI_Model
       $this->Crud_model->add('tbl_resume_kecermatan', $data);
     }
   }
-
-  function cekPaket($id_user, $id_paket){
-    $nilai = $this->db->select('*')
-                      ->from('tbl_m_paket')
-                      ->where('id_user', $id_user)
-                      ->where('id_paket', $id_paket)
-                      ->get()->result();
-
-    if(count($nilai) <= 0){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  function  insertMPaket($id_user, $id_paket){
-    $this->load->helper('string');
-
-    $data = [
-      'id_m_paket' => random_string(),
-      'id_user'    => $id_user,
-      'id_paket'   => $id_paket,
-      'kecerdasan' => 0,
-      'kepribadian'=> 0,
-      'kecermatan' => 0,
-      'rerata'     => 0
-    ];
-    $this->Crud_model->add('tbl_m_paket', $data);
-  }
-
-  function editMPaket($id_user, $id_paket, $field, $kecermatan){
-
-    $nilai = $this->db->select('*')
-                      ->from('tbl_m_paket')
-                      ->where('id_user', $id_user)
-                      ->where('id_paket', $id_paket)
-                      ->get()->row();
-    $data = [
-      'id_user'       => $id_user,
-      'id_paket'      => $id_paket,
-      $field          => $kecermatan,
-      'rerata'        => 0,
-    ];
-    $this->Crud_model->edit('tbl_m_paket', 'id_m_paket', $nilai->id_m_paket, $data);
-  }
 }
