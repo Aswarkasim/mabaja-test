@@ -170,11 +170,11 @@ class Paket extends CI_Controller
     // die('masuk');
     $member = $this->DM->listMemberByPaket($m_paket->id_user, $m_paket->id_paket);
     foreach ($member as $m) {
-      // $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $m->id_member);
-      // foreach ($task as $t) {
-      // $this->Crud_model->delete('tbl_task', 'id_task', $t->id_task);
-      // }
-      // $this->Crud_model->delete('tbl_member', 'id_member', $m->id_member);
+      $task = $this->Crud_model->listingOneAll('tbl_task', 'id_member', $m->id_member);
+      foreach ($task as $t) {
+        $this->Crud_model->delete('tbl_task', 'id_task', $t->id_task);
+      }
+      $this->Crud_model->delete('tbl_member', 'id_member', $m->id_member);
     }
     $this->Crud_model->delete('tbl_m_paket', 'id_m_paket', $m_paket->id_m_paket);
     redirect('admin/paket/detail/' . $m_paket->id_paket);
