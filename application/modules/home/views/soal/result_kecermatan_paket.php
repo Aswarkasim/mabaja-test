@@ -68,8 +68,6 @@
 
                   $id_member = null;
 
-                  // $total_soal_all = 0;
-
 
                   foreach ($taskByMember as $key => $row) {
                     $id_member = $row->id_member;
@@ -117,8 +115,7 @@
                     // $ketahanan = 100 - abs()
 
 
-                    // $total_soal_all = $total_soal_all + $total_soal;
-                    $total_jawaban_all = $total_jawaban_all + $total_soal;
+                    $total_jawaban_all = $total_jawaban_all + $total_jawaban;
                     $total_salah_all = $total_salah_all + $kesalahan;
                     $total_benar_all = $total_benar_all + $benar;
                     $total_xn_all = $total_xn_all + $xn_akhir;
@@ -146,7 +143,7 @@
                   ?>
                     <tr>
                       <td><?= $row->urutan; ?></td>
-                      <td><?= $total_soal_by_kolom; ?></td>
+                      <td><?= $total_jawaban++; ?></td>
                       <td><?= $kesalahan; ?></td>
                       <td><?= $benar; ?></td>
                       <td><?= $xn_akhir; ?></td>
@@ -159,7 +156,7 @@
                   } ?>
                   <tr>
                     <td>Total</td>
-                    <td><?= $total_soal; ?></td>
+                    <td><?= $total_jawaban_all; ?></td>
                     <td><?= $total_salah_all; ?></td>
                     <td><?= $total_benar_all; ?></td>
                     <td><?= $total_xn_all; ?></td>
