@@ -174,6 +174,7 @@ class Soal_model extends CI_Model
       ->join('tbl_soal', 'tbl_soal.id_soal = tbl_task.id_soal', 'left')
       ->where('tbl_task.id_user', $id_user)
       ->where('tbl_task.id_simulasi', $id_simulasi)
+      ->order_by('tbl_kolom.urutan', 'ASC')
       ->group_by('tbl_kolom.urutan');
     return $this->db->get()->result();
   }

@@ -115,6 +115,7 @@
                     // $ketahanan = 100 - abs()
 
 
+
                     $total_jawaban_all = $total_jawaban_all + $total_jawaban;
                     $total_salah_all = $total_salah_all + $kesalahan;
                     $total_benar_all = $total_benar_all + $benar;
@@ -143,7 +144,7 @@
                   ?>
                     <tr>
                       <td><?= $row->urutan; ?></td>
-                      <td><?= $total_jawaban++; ?></td>
+                      <td><?= $total_soal_by_kolom; ?></td>
                       <td><?= $kesalahan; ?></td>
                       <td><?= $benar; ?></td>
                       <td><?= $xn_akhir; ?></td>
