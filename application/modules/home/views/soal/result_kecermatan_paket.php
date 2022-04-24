@@ -219,8 +219,11 @@
               <?php
               // echo round(2.434534534535, 2);
               $skor_akhir = $totalSkor * (30 / 100);
-              $this->HM->editMPaket($id_user, $id_paket, 'kecermatan', $skor_akhir);
-              $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $kestabilan, $ketahanan, $totalSkor) ?>
+              // echo $skor_akhir;
+              if ($id_paket != null) {
+                $this->HM->editMPaket($id_user, $id_paket, 'kecermatan', $skor_akhir);
+              }
+              $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $total_kestabilan_all, $ketahanan, $totalSkor) ?>
               <a href="<?= base_url('home') ?>" class="btn btn-primary btn-block mt-3">Selesai<i class="fa fa-check"></i></a>
 
             </div>
