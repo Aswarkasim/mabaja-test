@@ -181,23 +181,23 @@
                 <table class="table">
                   <tr>
                     <td>Kecepatan</td>
-                    <td><?= $kecepatan; ?></td>
+                    <td><?= round($kecepatan); ?></td>
                     <td>0.40</td>
                     <td><?= $proporsi_kecepatan = $kecepatan * 0.4; ?></td>
                   </tr>
 
                   <tr>
                     <td>Ketelitian</td>
-                    <td><?= $ketelitian; ?></td>
+                    <td><?= round($ketelitian); ?></td>
                     <td>0.20</td>
-                    <td><?= $proporsi_ketelitian =  $ketelitian * 0.20; ?></td>
+                    <td><?= $proporsi_ketelitian =  round($ketelitian) * 0.20; ?></td>
                   </tr>
 
                   <tr>
                     <td>Kestabilan</td>
-                    <td><?= $total_kestabilan_all; ?></td>
+                    <td><?= round($total_kestabilan_all); ?></td>
                     <td>0.30</td>
-                    <td><?= $proporsi_kestabilan = $total_kestabilan_all * 0.30; ?></td>
+                    <td><?= $proporsi_kestabilan = round($total_kestabilan_all) * 0.30; ?></td>
                   </tr>
 
                   <tr>
