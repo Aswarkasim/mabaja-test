@@ -218,9 +218,10 @@
               </div>
               <?php
               // echo round(2.434534534535, 2);
-              $skor_akhir = $totalSkor * (30 / 100);
+              // $skor_akhir = $totalSkor * (30 / 100);
               // echo $skor_akhir;
               if ($id_paket != null) {
+                $skor_akhir = $totalSkor * (30 / 100);
                 $this->HM->editMPaket($id_user, $id_paket, 'kecermatan', $skor_akhir);
               }
               $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $total_kestabilan_all, $ketahanan, $totalSkor) ?>
