@@ -27,6 +27,11 @@
               </tr>
 
               <?php $resume = $this->KM->listResumeKecermatan($row->id_user, $row->id_simulasi);
+              $total_jawaban_all = 0;
+              $total_salah_all = 0;
+              $total_benar_all = 0;
+              $total_xn_all = 0;
+              $total_kestabilan_all = 0;
               foreach ($resume as $r) { ?>
 
                 <tr>
@@ -39,8 +44,21 @@
                 </tr>
 
               <?php
-              }
-              ?>
+                $total_jawaban_all = $total_jawaban_all + $r->total_jawab;
+                $total_salah_all = $total_salah_all + $r->kesalahan;
+                $total_benar_all = $total_benar_all + $r->benar;
+                $total_xn_all = $total_xn_all + $r->xn_selisih;
+                $total_kestabilan_all = $total_kestabilan_all + $r->skor_kestabilan;
+              } ?>
+
+              <tr>
+                <td>Total</td>
+                <td><?= $total_jawaban_all; ?></td>
+                <td><?= $total_salah_all; ?></td>
+                <td><?= $total_benar_all; ?></td>
+                <td><?= $total_xn_all; ?></td>
+                <td><?= $total_kestabilan_all; ?></td>
+              </tr>
 
             </table>
 
