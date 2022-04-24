@@ -181,30 +181,30 @@
                 <table class="table">
                   <tr>
                     <td>Kecepatan</td>
-                    <td><?= round($kecepatan); ?></td>
+                    <td><?= round($kecepatan, 2); ?></td>
                     <td>0.40</td>
                     <td><?= $proporsi_kecepatan = $kecepatan * 0.4; ?></td>
                   </tr>
 
                   <tr>
                     <td>Ketelitian</td>
-                    <td><?= round($ketelitian); ?></td>
+                    <td><?= round($ketelitian, 2); ?></td>
                     <td>0.20</td>
-                    <td><?= $proporsi_ketelitian =  round($ketelitian) * 0.20; ?></td>
+                    <td><?= $proporsi_ketelitian =  round($ketelitian, 2) * 0.20; ?></td>
                   </tr>
 
                   <tr>
                     <td>Kestabilan</td>
-                    <td><?= round($total_kestabilan_all); ?></td>
+                    <td><?= round($total_kestabilan_all, 2); ?></td>
                     <td>0.30</td>
-                    <td><?= $proporsi_kestabilan = round($total_kestabilan_all) * 0.30; ?></td>
+                    <td><?= $proporsi_kestabilan = round($total_kestabilan_all, 2) * 0.30; ?></td>
                   </tr>
 
                   <tr>
                     <td>Ketahanan</td>
-                    <td><?= $ketahanan; ?></td>
+                    <td><?= round($ketahanan, 2); ?></td>
                     <td>0.30</td>
-                    <td><?= $proporsi_ketahanan = $ketahanan * 0.10; ?></td>
+                    <td><?= $proporsi_ketahanan = round($ketahanan, 2) * 0.10; ?></td>
                   </tr>
 
                   <tr>
@@ -217,6 +217,7 @@
                 </table>
               </div>
               <?php
+              // echo round(2.434534534535, 2);
               $skor_akhir = $totalSkor * (30 / 100);
               $this->HM->editMPaket($id_user, $id_paket, 'kecermatan', $skor_akhir);
               $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $kestabilan, $ketahanan, $totalSkor) ?>
