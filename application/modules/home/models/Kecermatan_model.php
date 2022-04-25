@@ -55,10 +55,13 @@ class Kecermatan_model extends CI_Model
     $salah = 0;
 
     foreach ($task as $row) {
-      if ($row->jawaban_kecermatan == $row->js_kecermatan) {
-        $benar = $benar + 1;
-      } else {
-        $salah = $salah + 1;
+      if ($row->jawaban_kecermatan != null) {
+
+        if ($row->jawaban_kecermatan == $row->js_kecermatan) {
+          $benar = $benar + 1;
+        } else {
+          $salah = $salah + 1;
+        }
       }
     }
 
@@ -96,28 +99,31 @@ class Kecermatan_model extends CI_Model
     $cek = $this->db->select('*')
       ->from('tbl_skor_kecermatan')
       ->where('id_member', $id_member)
-      ->get()->result();
+      ->get();
 
-    if (count($cek) <= 0) {
+    $data = [
+      'id_user' => $id_user,
+      'id_simulasi' => $id_simulasi,
+      'id_paket' => $id_paket,
+      'id_member' => $id_member,
+      'kecepatan' => $kecepatan,
+      'ketelitian' => $ketelitian,
+      'kestabilan' => $kestabilan,
+      'ketahanan' => $ketahanan,
+      'total' => $total
+    ];
+
+    if (count($cek->result()) <= 0) {
 
       $this->load->helper('string');
-
-      $data = [
-        'id_skor_kecermatan' => random_string(),
-        'id_user' => $id_user,
-        'id_simulasi' => $id_simulasi,
-        'id_paket' => $id_paket,
-        'id_member' => $id_member,
-        'kecepatan' => $kecepatan,
-        'ketelitian' => $ketelitian,
-        'kestabilan' => $kestabilan,
-        'ketahanan' => $ketahanan,
-        'total' => $total
-      ];
+      $data['id_skor_kecermatan'] = random_string();
       // print_r($data);
       // die();
 
       $this->Crud_model->add('tbl_skor_kecermatan', $data);
+    } else {
+      $skor_kecermatan = $cek->row();
+      $this->Crud_model->edit('tbl_skor_kecermatan', 'id_skor_kecermatan', $skor_kecermatan->id_skor_kecermatan, $data);
     }
   }
 
@@ -128,26 +134,29 @@ class Kecermatan_model extends CI_Model
     $cek = $this->db->select('*')
       ->from('tbl_resume_kecermatan')
       ->where('id_member', $id_member)
-      ->get()->result();
+      ->get();
 
-    if (count($cek) <= 0) {
+    $data = [
+      'id_member' => $id_member,
+      'id_user' => $id_user,
+      'id_simulasi' => $id_simulasi,
+      'id_kolom' => $id_kolom,
+      'urutan_kolom' => $urutan_kolom,
+      'total_jawab' => $total_jawab,
+      'kesalahan' => $kesalahan,
+      'benar' => $benar,
+      'xn_selisih' => $xn_selisih,
+      'skor_kestabilan' => $skor_kestabilan
+    ];
 
+    if (count($cek->result()) <= 0) {
       $this->load->helper('string');
 
-      $data = [
-        'id_resume_kecermatan' => random_string(),
-        'id_member' => $id_member,
-        'id_user' => $id_user,
-        'id_simulasi' => $id_simulasi,
-        'id_kolom' => $id_kolom,
-        'urutan_kolom' => $urutan_kolom,
-        'total_jawab' => $total_jawab,
-        'kesalahan' => $kesalahan,
-        'benar' => $benar,
-        'xn_selisih' => $xn_selisih,
-        'skor_kestabilan' => $skor_kestabilan
-      ];
+      $data['id_resume_kecermatan'] = random_string();
       $this->Crud_model->add('tbl_resume_kecermatan', $data);
+    } else {
+      $resume_kecermatan = $cek->row();
+      $this->Crud_model->edit('tbl_resume_kecermatan', 'id_resume_kecermatan', $resume_kecermatan->id_resume_kecermatan, $data);
     }
   }
 }

@@ -143,7 +143,7 @@
                   ?>
                     <tr>
                       <td><?= $row->urutan; ?></td>
-                      <td><?= $total_jawaban++; ?></td>
+                      <td><?= $total_jawaban; ?></td>
                       <td><?= $kesalahan; ?></td>
                       <td><?= $benar; ?></td>
                       <td><?= $xn_akhir; ?></td>
@@ -183,7 +183,7 @@
                     <td>Kecepatan</td>
                     <td><?= round($kecepatan, 2); ?></td>
                     <td>0.40</td>
-                    <td><?= $proporsi_kecepatan = $kecepatan * 0.4; ?></td>
+                    <td><?= $proporsi_kecepatan = round($kecepatan, 2) * 0.4; ?></td>
                   </tr>
 
                   <tr>
@@ -203,7 +203,7 @@
                   <tr>
                     <td>Ketahanan</td>
                     <td><?= round($ketahanan, 2); ?></td>
-                    <td>0.30</td>
+                    <td>0.10</td>
                     <td><?= $proporsi_ketahanan = round($ketahanan, 2) * 0.10; ?></td>
                   </tr>
 
@@ -211,7 +211,7 @@
                     <td><b></b> Total</td>
                     <td><?= $kecepatan + $ketelitian + $kestabilan + $ketahanan; ?></td>
                     <td>1.00</td>
-                    <td><?= $totalSkor = $proporsi_kecepatan + $proporsi_ketelitian + $proporsi_kestabilan + $proporsi_ketahanan; ?></td>
+                    <td><?= $totalSkor = round($proporsi_kecepatan + $proporsi_ketelitian + $proporsi_kestabilan + $proporsi_ketahanan, 2); ?></td>
                   </tr>
 
                 </table>

@@ -24,7 +24,8 @@ class Kecermatan_model extends CI_Model
       ->from('tbl_resume_kecermatan')
       ->join('tbl_user', 'tbl_user.id_user = tbl_resume_kecermatan.id_user')
       ->where('tbl_resume_kecermatan.id_user', $id_user)
-      ->where('tbl_resume_kecermatan.id_simulasi', $id_simulasi);
+      ->where('tbl_resume_kecermatan.id_simulasi', $id_simulasi)
+      ->order_by('tbl_resume_kecermatan.urutan_kolom', 'ASC');
     return $this->db->get()->result();
   }
 
@@ -60,6 +61,4 @@ class Kecermatan_model extends CI_Model
       ->order_by('tbl_member.date_created', 'DESC');
     return $this->db->get()->result();
   }
-
-  
 }
