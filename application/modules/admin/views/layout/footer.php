@@ -30,7 +30,7 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url('assets/admin/') ?>dist/js/adminlte.min.js"></script>
 <script src="<?= base_url('assets/') ?>js/sweetalert2.all.min.js"></script>
-<!-- <script src="<?= base_url('assets/') ?>js/mySwal.js"></script> -->
+<script src="<?= base_url('assets/') ?>js/mySwal.js"></script>
 
 <!-- page script -->
 <script>
