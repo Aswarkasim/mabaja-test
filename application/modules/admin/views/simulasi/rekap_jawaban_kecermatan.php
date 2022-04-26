@@ -27,6 +27,7 @@
               </tr>
 
               <?php $resume = $this->KM->listResumeKecermatan($row->id_user, $row->id_simulasi);
+              $total_data = count($resume);
               $total_jawaban_all = 0;
               $total_salah_all = 0;
               $total_benar_all = 0;
@@ -51,6 +52,8 @@
                 $total_kestabilan_all = $total_kestabilan_all + $r->skor_kestabilan;
               } ?>
 
+
+
               <tr>
                 <td>Total</td>
                 <td><?= $total_jawaban_all; ?></td>
@@ -58,6 +61,15 @@
                 <td><?= $total_benar_all; ?></td>
                 <td><?= $total_xn_all; ?></td>
                 <td><?= $total_kestabilan_all; ?></td>
+              </tr>
+
+              <tr>
+                <td>Rerata</td>
+                <td><?= round($total_jawaban_all / $total_data); ?></td>
+                <td><?= round($total_salah_all / $total_data); ?></td>
+                <td><?= round($total_benar_all / $total_data); ?></td>
+                <td><?= round($total_xn_all / ($total_data - 1)); ?></td>
+                <td><?= round($total_kestabilan_all / ($total_data - 1)); ?></td>
               </tr>
 
             </table>
@@ -93,7 +105,7 @@
               <tr>
                 <td>Ketahanan</td>
                 <td><?= $skor->ketahanan; ?></td>
-                <td>0.30</td>
+                <td>0.10</td>
                 <td><?= $proporsi_ketahanan = $skor->ketahanan * 0.10; ?></td>
               </tr>
 

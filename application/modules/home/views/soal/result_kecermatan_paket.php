@@ -164,11 +164,11 @@
                   </tr>
                   <tr>
                     <td>Rata-rata</td>
-                    <td><?= round($rerata_jawaban, 2); ?></td>
-                    <td><?= round($rerata_kesalahan, 2); ?></td>
-                    <td><?= round($rerata_benar, 2); ?></td>
-                    <td><?= round($rerata_xn, 2); ?></td>
-                    <td><?= round($rerata_kestabilan, 2); ?></td>
+                    <td><?= round($rerata_jawaban); ?></td>
+                    <td><?= round($rerata_kesalahan); ?></td>
+                    <td><?= round($rerata_benar); ?></td>
+                    <td><?= round($rerata_xn); ?></td>
+                    <td><?= round($rerata_kestabilan); ?></td>
                   </tr>
                 </table>
 
@@ -181,37 +181,37 @@
                 <table class="table">
                   <tr>
                     <td>Kecepatan</td>
-                    <td><?= round($kecepatan, 2); ?></td>
+                    <td><?= round($kecepatan); ?></td>
                     <td>0.40</td>
-                    <td><?= $proporsi_kecepatan = round($kecepatan, 2) * 0.4; ?></td>
+                    <td><?= $proporsi_kecepatan = round($kecepatan) * 0.4; ?></td>
                   </tr>
 
                   <tr>
                     <td>Ketelitian</td>
-                    <td><?= round($ketelitian, 2); ?></td>
+                    <td><?= round($ketelitian); ?></td>
                     <td>0.20</td>
-                    <td><?= $proporsi_ketelitian =  round($ketelitian, 2) * 0.20; ?></td>
+                    <td><?= $proporsi_ketelitian =  round($ketelitian) * 0.20; ?></td>
                   </tr>
 
                   <tr>
                     <td>Kestabilan</td>
-                    <td><?= round($total_kestabilan_all, 2); ?></td>
+                    <td><?= round($rerata_kestabilan); ?></td>
                     <td>0.30</td>
-                    <td><?= $proporsi_kestabilan = round($total_kestabilan_all, 2) * 0.30; ?></td>
+                    <td><?= $proporsi_kestabilan = round($rerata_kestabilan) * 0.30; ?></td>
                   </tr>
 
                   <tr>
                     <td>Ketahanan</td>
-                    <td><?= round($ketahanan, 2); ?></td>
+                    <td><?= round($ketahanan); ?></td>
                     <td>0.10</td>
-                    <td><?= $proporsi_ketahanan = round($ketahanan, 2) * 0.10; ?></td>
+                    <td><?= $proporsi_ketahanan = round($ketahanan) * 0.10; ?></td>
                   </tr>
 
                   <tr>
                     <td><b></b> Total</td>
-                    <td><?= $kecepatan + $ketelitian + $kestabilan + $ketahanan; ?></td>
+                    <td><?= round($kecepatan) + round($ketelitian) + round($kestabilan) + round($ketahanan); ?></td>
                     <td>1.00</td>
-                    <td><?= $totalSkor = round($proporsi_kecepatan + $proporsi_ketelitian + $proporsi_kestabilan + $proporsi_ketahanan, 2); ?></td>
+                    <td><?= $totalSkor = round($proporsi_kecepatan + $proporsi_ketelitian + $proporsi_kestabilan + $proporsi_ketahanan); ?></td>
                   </tr>
 
                 </table>
@@ -224,7 +224,7 @@
                 $skor_akhir = $totalSkor * (30 / 100);
                 $this->HM->editMPaket($id_user, $id_paket, 'kecermatan', $skor_akhir);
               }
-              $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $total_kestabilan_all, $ketahanan, $totalSkor) ?>
+              $this->KM->insertSkor($id_member, $id_user, $id_simulasi, $id_paket, $kecepatan, $ketelitian, $rerata_kestabilan, $ketahanan, $totalSkor) ?>
               <a href="<?= base_url('home') ?>" class="btn btn-primary btn-block mt-3">Selesai<i class="fa fa-check"></i></a>
 
             </div>
