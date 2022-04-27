@@ -33,7 +33,8 @@ class User_model extends CI_Model
     $this->db->select('*')
       ->from('tbl_skor_kecermatan')
       ->where('id_user', $id_user)
-      ->where('id_simulasi', $id_simulasi);
+      ->where('id_simulasi', $id_simulasi)
+      ->group_by('id_simulasi');
     return $this->db->get()->row();
   }
 
