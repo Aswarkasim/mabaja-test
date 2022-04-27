@@ -15,7 +15,8 @@ class User_model extends CI_Model
       ->from('tbl_member')
       ->join('tbl_simulasi', 'tbl_simulasi.id_simulasi = tbl_member.id_simulasi', 'left')
       ->join('tbl_mapel', 'tbl_simulasi.id_mapel = tbl_mapel.id_mapel', 'left')
-      ->where('id_user', $id_user);
+      ->where('id_user', $id_user)
+      ->order_by('tbl_member.id_simulasi', 'desc');
     return $this->db->get()->result();
   }
 
@@ -33,8 +34,7 @@ class User_model extends CI_Model
     $this->db->select('*')
       ->from('tbl_skor_kecermatan')
       ->where('id_user', $id_user)
-      ->where('id_simulasi', $id_simulasi)
-      ->group_by('id_simulasi');
+      ->where('id_simulasi', $id_simulasi);
     return $this->db->get()->row();
   }
 
