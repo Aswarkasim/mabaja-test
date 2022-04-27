@@ -16,7 +16,7 @@ class User_model extends CI_Model
       ->join('tbl_simulasi', 'tbl_simulasi.id_simulasi = tbl_member.id_simulasi', 'left')
       ->join('tbl_mapel', 'tbl_simulasi.id_mapel = tbl_mapel.id_mapel', 'left')
       ->where('id_user', $id_user)
-      ->order_by('tbl_member.id_simulasi', 'desc');
+      ->group_by('tbl_member.id_simulasi', 'desc');
     return $this->db->get()->result();
   }
 
