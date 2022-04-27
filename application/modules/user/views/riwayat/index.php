@@ -26,9 +26,9 @@
             <td><?= $no++; ?></td>
             <td><?= $row->nama_mapel ?></td>
             <td><?php echo $row->nama_simulasi;
-                if (isset($kolom)) {
-                  echo  '<br> Kolom ' . $kolom->urutan;
-                } ?></td>
+                // if (isset($kolom)) {
+                //   echo  '<br> Kolom ' . $kolom->urutan;
+                // } ?></td>
 
             <?php
             // IF Kecermatan
